@@ -4,33 +4,23 @@ namespace DrdPlus\Exceptionalities\Fates;
 use Doctrineum\Strict\String\StrictStringEnum;
 use Drd\DiceRoll\RollInterface;
 
-abstract class AbstractExceptionalityFate extends StrictStringEnum
+abstract class ExceptionalityFate extends StrictStringEnum
 {
     /**
-     * @return AbstractExceptionalityFate
+     * @return ExceptionalityFate
      */
     public static function getIt()
     {
-        return static::getEnum(static::getFateName());
+        return static::getEnum(static::getCode());
     }
 
-    /**
-     * @param string $fateName
-     *
-     * @return AbstractExceptionalityFate
-     */
-    protected static function createByValue($fateName)
+    public static function getCode()
     {
-        $exceptionality = parent::createByValue($fateName);
-        /** @var $exceptionality AbstractExceptionalityFate */
-        if ($exceptionality::getFateName() !== $fateName) {
-            throw new \LogicException(
-                'Given exceptionality type ' . var_export($fateName, true) .
-                ' results into exceptionality ' . get_class($exceptionality) . ' with type ' . var_export($exceptionality::getFateName(), true) . '.'
-            );
-        }
+        $classBaseName = preg_replace('~.+[\\\](\w+)$~', '$1', static::class);
+        $basenameUnderscored = preg_replace('~.([A-Z])~', '_$1', $classBaseName);
+        $code = strtolower($basenameUnderscored);
 
-        return $exceptionality;
+        return $code;
     }
 
     /**

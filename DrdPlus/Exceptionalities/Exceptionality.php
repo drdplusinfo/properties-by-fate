@@ -2,7 +2,7 @@
 namespace DrdPlus\Exceptionalities;
 
 use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
-use DrdPlus\Exceptionalities\Fates\AbstractExceptionalityFate;
+use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use Granam\Strict\Object\StrictObject;
 
 /**
@@ -37,19 +37,18 @@ class Exceptionality extends StrictObject
     /**
      * @var ExceptionalityProperties
      *
-     * @ORM\Column(type="exceptionality_properties")
+     * @ORM\OneToOne(targetEntity="DrdPlus\Exceptionalities\ExceptionalityProperties")
      */
     private $exceptionalityProperties;
 
     public function __construct(
         ExceptionalityChoice $exceptionalityChoice,
-        AbstractExceptionalityFate $exceptionalityKind,
+        ExceptionalityFate $exceptionalityKind,
         ExceptionalityProperties $exceptionalityProperties
     )
     {
         $this->exceptionalityChoice = $exceptionalityChoice;
         $this->exceptionalityFate = $exceptionalityKind;
-        $exceptionalityProperties->setExceptionality($this);
         $this->exceptionalityProperties = $exceptionalityProperties;
     }
 
@@ -70,7 +69,7 @@ class Exceptionality extends StrictObject
     }
 
     /**
-     * @return AbstractExceptionalityFate
+     * @return ExceptionalityFate
      */
     public function getExceptionalityFate()
     {

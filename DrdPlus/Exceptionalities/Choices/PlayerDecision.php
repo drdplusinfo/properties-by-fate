@@ -3,7 +3,6 @@ namespace DrdPlus\Exceptionalities\Choices;
 
 /**
  * @method static PlayerDecision getIt()
- * @see ExceptionalityChoice::getIt()
  */
 class PlayerDecision extends ExceptionalityChoice
 {

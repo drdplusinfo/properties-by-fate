@@ -2,7 +2,8 @@
 namespace DrdPlus\Exceptionalities;
 
 use Drd\DiceRoll\RollInterface;
-use DrdPlus\Exceptionalities\Fates\AbstractExceptionalityFate;
+use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BaseProperty;
 use DrdPlus\Properties\Base\Charisma;
@@ -16,7 +17,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
 {
 
     public function createFortuneProperties(
-        AbstractExceptionalityFate $fate,
+        ExceptionalityFate $fate,
         ProfessionLevel $profession,
         RollInterface $strengthRoll,
         RollInterface $agilityRoll,
@@ -49,7 +50,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         );
     }
 
-    private function createFortuneStrength(ProfessionLevel $profession, AbstractExceptionalityFate $fate, RollInterface $strengthRoll)
+    private function createFortuneStrength(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $strengthRoll)
     {
         if ($profession->isPrimaryProperty(Strength::STRENGTH)) {
             $strengthValue = $fate->getPrimaryPropertiesBonusOnFortune($strengthRoll);
@@ -65,19 +66,20 @@ class ExceptionalityPropertiesFactory extends StrictObject
 
     /**
      * @param BaseProperty $property
-     * @param AbstractExceptionalityFate $fate
+     * @param ExceptionalityFate $fate
      * @param ProfessionLevel $profession
      */
-    private function checkFortunePropertyValue(BaseProperty $property, AbstractExceptionalityFate $fate, ProfessionLevel $profession)
+    private function checkFortunePropertyValue(BaseProperty $property, ExceptionalityFate $fate, ProfessionLevel $profession)
     {
         if ($property->getValue() > $fate->getUpToSingleProperty()) {
             throw new \LogicException(
-                ucfirst($property->getCode()) . " bonus on fortune should be at most {$fate->getUpToSingleProperty()} for profession {$profession->getProfession()->getCode()}, is $property"
+                ucfirst($property->getCode()) . " bonus on fortune should be at most {$fate->getUpToSingleProperty()}"
+                . " for profession {$profession->getProfession()->getCode()}, is $property"
             );
         }
     }
 
-    private function createFortuneAgility(ProfessionLevel $profession, AbstractExceptionalityFate $fate, RollInterface $agilityRoll)
+    private function createFortuneAgility(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $agilityRoll)
     {
         if ($profession->isPrimaryProperty(Agility::AGILITY)) {
             $agilityValue = $fate->getPrimaryPropertiesBonusOnFortune($agilityRoll);
@@ -91,7 +93,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return $agility;
     }
 
-    private function createFortuneKnack(ProfessionLevel $profession, AbstractExceptionalityFate $fate, RollInterface $knackRoll)
+    private function createFortuneKnack(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $knackRoll)
     {
         if ($profession->isPrimaryProperty(Knack::KNACK)) {
             $knackValue = $fate->getPrimaryPropertiesBonusOnFortune($knackRoll);
@@ -105,7 +107,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return $knack;
     }
 
-    private function createFortuneWill(ProfessionLevel $profession, AbstractExceptionalityFate $fate, RollInterface $willRoll)
+    private function createFortuneWill(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $willRoll)
     {
         if ($profession->isPrimaryProperty(Will::WILL)) {
             $willValue = $fate->getPrimaryPropertiesBonusOnFortune($willRoll);
@@ -119,7 +121,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return $will;
     }
 
-    private function createFortuneIntelligence(ProfessionLevel $profession, AbstractExceptionalityFate $fate, RollInterface $intelligenceRoll)
+    private function createFortuneIntelligence(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $intelligenceRoll)
     {
         if ($profession->isPrimaryProperty(Intelligence::INTELLIGENCE)) {
             $intelligenceValue = $fate->getPrimaryPropertiesBonusOnFortune($intelligenceRoll);
@@ -130,7 +132,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return Intelligence::getIt($intelligenceValue);
     }
 
-    private function createFortuneCharisma(ProfessionLevel $profession, AbstractExceptionalityFate $fate, RollInterface $charismaRoll)
+    private function createFortuneCharisma(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $charismaRoll)
     {
         if ($profession->isPrimaryProperty(Charisma::CHARISMA)) {
             $charismaValue = $fate->getPrimaryPropertiesBonusOnFortune($charismaRoll);
@@ -145,7 +147,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
     }
 
     public function createChosenProperties(
-        AbstractExceptionalityFate $fate,
+        ExceptionalityFate $fate,
         ProfessionLevel $profession,
         Strength $chosenStrength,
         Agility $chosenAgility,
@@ -167,7 +169,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return new ChosenProperties($chosenStrength, $chosenAgility, $chosenKnack, $chosenWill, $chosenIntelligence, $chosenCharisma);
     }
 
-    private function checkChosenProperty(ProfessionLevel $profession, AbstractExceptionalityFate $fate, BaseProperty $chosenProperty)
+    private function checkChosenProperty(ProfessionLevel $profession, ExceptionalityFate $fate, BaseProperty $chosenProperty)
     {
         if ($profession->isPrimaryProperty($chosenProperty->getCode())) {
             $maximalValue = $fate->getPrimaryPropertiesBonusOnChoice();
@@ -178,12 +180,12 @@ class ExceptionalityPropertiesFactory extends StrictObject
         $this->checkChosenPropertyValue($maximalValue, $chosenProperty, $fate, $profession);
     }
 
-    private function checkChosenPropertyValue($maximalValue, BaseProperty $chosenProperty, AbstractExceptionalityFate $fate, ProfessionLevel $professionLevel)
+    private function checkChosenPropertyValue($maximalValue, BaseProperty $chosenProperty, ExceptionalityFate $fate, ProfessionLevel $professionLevel)
     {
         if ($chosenProperty->getValue() > $maximalValue) {
             throw new \LogicException(
                 "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher then allowed"
-                . " maximum $maximalValue for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getFateName()}"
+                . " maximum $maximalValue for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getCode()}"
             );
         }
     }
@@ -196,7 +198,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         Intelligence $intelligence,
         Charisma $charisma,
         ProfessionLevel $profession,
-        AbstractExceptionalityFate $fate
+        ExceptionalityFate $fate
     )
     {
         $primaryPropertySum = 0;

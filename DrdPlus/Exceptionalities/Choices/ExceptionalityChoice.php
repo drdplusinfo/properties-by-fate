@@ -7,11 +7,19 @@ abstract class ExceptionalityChoice extends StrictStringEnum
 {
 
     /**
-     * @param string $choiceName
      * @return ExceptionalityChoice
      */
-    protected static function getIt($choiceName)
+    public static function getIt()
     {
-        return static::getEnum($choiceName);
+        return static::getEnum(static::getCode());
+    }
+
+    public static function getCode()
+    {
+        $classBaseName = preg_replace('~.+[\\\](\w+)$~', '$1', static::class);
+        $basenameUnderscored = preg_replace('~.([A-Z])~', '_$1', $classBaseName);
+        $code = strtolower($basenameUnderscored);
+
+        return $code;
     }
 }

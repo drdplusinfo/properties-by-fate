@@ -3,9 +3,9 @@ namespace DrdPlus\Exceptionalities;
 
 use DrdPlus\Exceptionalities\Choices\Fortune;
 use DrdPlus\Exceptionalities\Choices\PlayerDecision;
-use DrdPlus\Exceptionalities\Fates\ExceptionalityFateOfCombination;
-use DrdPlus\Exceptionalities\Fates\ExceptionalityFateOfExceptionalProperties;
-use DrdPlus\Exceptionalities\Fates\ExceptionalityFateOfGoodRear;
+use DrdPlus\Exceptionalities\Fates\FateOfCombination;
+use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
+use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
 use Granam\Strict\Object\StrictObject;
 
 class ExceptionalityFactory extends StrictObject
@@ -32,26 +32,26 @@ class ExceptionalityFactory extends StrictObject
     // FATES
 
     /**
-     * @return ExceptionalityFateOfCombination
+     * @return FateOfCombination
      */
     public function getCombination()
     {
-        return ExceptionalityFateOfCombination::getIt();
+        return FateOfCombination::getIt();
     }
 
     /**
-     * @return ExceptionalityFateOfGoodRear
+     * @return FateOfGoodRear
      */
     public function getGoodRear()
     {
-        return ExceptionalityFateOfGoodRear::getIt();
+        return FateOfGoodRear::getIt();
     }
 
     /**
-     * @return ExceptionalityFateOfExceptionalProperties
+     * @return FateOfExceptionalProperties
      */
     public function getExceptionalProperties()
     {
-        return ExceptionalityFateOfExceptionalProperties::getIt();
+        return FateOfExceptionalProperties::getIt();
     }
 }

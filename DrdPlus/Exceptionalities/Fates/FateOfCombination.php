@@ -2,8 +2,9 @@
 namespace DrdPlus\Exceptionalities\Fates;
 
 use Drd\DiceRoll\RollInterface;
+use Granam\Scalar\Tools\ValueDescriber;
 
-class ExceptionalityFateOfCombination extends AbstractExceptionalityFate
+class FateOfCombination extends ExceptionalityFate
 {
     const FATE_OF_COMBINATION = 'fate_of_combination';
 
@@ -49,8 +50,8 @@ class ExceptionalityFateOfCombination extends AbstractExceptionalityFate
             case 6:
                 return 2;
             default:
-                throw new \RuntimeException(
-                    'Unexpected roll value ' . var_export($roll->getLastRollSummary(), true)
+                throw new Exceptions\UnexpectedRoll(
+                    'Unexpected roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
                 );
         }
     }

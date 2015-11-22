@@ -4,7 +4,7 @@ namespace DrdPlus\Exceptionalities\Fates;
 use Drd\DiceRoll\RollInterface;
 use Granam\Scalar\Tools\ValueDescriber;
 
-class ExceptionalityFateOfExceptionalProperties extends AbstractExceptionalityFate
+class FateOfExceptionalProperties extends ExceptionalityFate
 {
     const FATE_OF_EXCEPTIONAL_PROPERTIES = 'fate_of_exceptional_properties';
     /**
@@ -48,8 +48,8 @@ class ExceptionalityFateOfExceptionalProperties extends AbstractExceptionalityFa
             case 6:
                 return 2;
             default:
-                throw new \RuntimeException(
-                    'Unexpected dice roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
+                throw new Exceptions\UnexpectedRoll(
+                    'Unexpected roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
                 );
         }
     }
@@ -73,7 +73,7 @@ class ExceptionalityFateOfExceptionalProperties extends AbstractExceptionalityFa
             case 6:
                 return 3;
             default:
-                throw new \RuntimeException(
+                throw new Exceptions\UnexpectedRoll(
                     'Unexpected roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
                 );
         }

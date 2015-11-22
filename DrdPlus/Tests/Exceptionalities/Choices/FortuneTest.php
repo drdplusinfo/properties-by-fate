@@ -1,9 +1,6 @@
 <?php
-namespace DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Choices;
-
-use DrdPlus\Cave\UnitBundle\Tests\Person\Attributes\Exceptionalities\Choices\AbstractTestOfChoice;
+namespace DrdPlus\Tests\Exceptionalities\Choices;
 
 class FortuneTest extends AbstractTestOfChoice
 {
-
 }

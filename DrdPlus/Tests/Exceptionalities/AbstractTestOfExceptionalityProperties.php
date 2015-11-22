@@ -1,15 +1,15 @@
 <?php
-namespace DrdPlus\Cave\UnitBundle\Tests\Person\Attributes\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities;
 
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Exceptionality;
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\ExceptionalityProperties;
+use DrdPlus\Exceptionalities\ChosenProperties;
+use DrdPlus\Exceptionalities\ExceptionalityProperties;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
-use DrdPlus\Cave\UnitBundle\Tests\TestWithMockery;
+use DrdPlus\Tools\Tests\TestWithMockery;
 
 abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
 {
@@ -18,7 +18,7 @@ abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
      *
      * @test
      */
-    public function can_be_created()
+    public function I_can_create_it()
     {
         $className = $this->getClassName();
         $instance = new $className(
@@ -30,7 +30,9 @@ abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
             $this->getCharisma()
         );
 
+        /** @var ChosenProperties $instance */
         $this->assertNotNull($instance);
+        $this->assertNull($instance->getId());
 
         return $instance;
     }
@@ -94,21 +96,10 @@ abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
     }
 
     /**
-     * @param ExceptionalityProperties $exceptionalityProperties
-     *
      * @test
-     * @depends can_be_created
+     * @depends I_can_create_it
      */
-    public function new_instance_has_null_id(ExceptionalityProperties $exceptionalityProperties)
-    {
-        $this->assertNull($exceptionalityProperties->getId());
-    }
-
-    /**
-     * @test
-     * @depends can_be_created
-     */
-    public function gives_the_same_strength_as_got()
+    public function I_can_get_every_property()
     {
         $className = $this->getClassName();
         /** @var ExceptionalityProperties $exceptionalityProperties */
@@ -126,174 +117,5 @@ abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
         $this->assertSame($will, $exceptionalityProperties->getWill());
         $this->assertSame($intelligence, $exceptionalityProperties->getIntelligence());
         $this->assertSame($charisma, $exceptionalityProperties->getCharisma());
-    }
-
-    /**
-     * @param ExceptionalityProperties $exceptionalityProperties
-     * @return ExceptionalityProperties
-     *
-     * @test
-     * @depends can_be_created
-     */
-    public function new_instance_has_null_exceptionality(ExceptionalityProperties $exceptionalityProperties)
-    {
-        $this->assertNull($exceptionalityProperties->getExceptionality());
-
-        return $exceptionalityProperties;
-    }
-
-    /**
-     * @param ExceptionalityProperties $exceptionalityProperties
-     *
-     * @test
-     * @depends new_instance_has_null_exceptionality
-     */
-    public function exceptionality_can_be_set(ExceptionalityProperties $exceptionalityProperties)
-    {
-        $exceptionality = $this->mockery(Exceptionality::class);
-        $exceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($exceptionalityProperties);
-        /** @var Exceptionality $exceptionality */
-        $exceptionalityProperties->setExceptionality($exceptionality);
-        $this->assertSame($exceptionality, $exceptionalityProperties->getExceptionality());
-    }
-
-    /**
-     * @test
-     * @depends exceptionality_can_be_set
-     * @expectedException \LogicException
-     */
-    public function adding_another_new_exceptionality_with_different_properties_cause_exception()
-    {
-        $className = $this->getClassName();
-        /** @var ExceptionalityProperties $exceptionalityProperties */
-        $exceptionalityProperties = new $className(
-            $strength = $this->getStrength(),
-            $agility = $this->getAgility(),
-            $knack = $this->getKnack(),
-            $will = $this->getWill(),
-            $intelligence = $this->getIntelligence(),
-            $charisma = $this->getCharisma()
-        );
-
-        $exceptionality = $this->mockery(Exceptionality::class);
-        $exceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($exceptionalityProperties);
-        $exceptionality->shouldReceive('getId')
-            ->andReturnNull();
-        /** @var Exceptionality $exceptionality */
-        $exceptionalityProperties->setExceptionality($exceptionality);
-        try {
-            $exceptionalityProperties->setExceptionality($exceptionality); // setting the same exceptionality should pass
-        } catch (\Exception $unwantedException) {
-            $this->fail(
-                'No exception should occurs on set of the same exceptionality: ' . $unwantedException->getMessage() . '; ' . $unwantedException->getTraceAsString()
-            );
-        }
-
-        $anotherExceptionality = $this->mockery(Exceptionality::class);
-        $anotherExceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($anotherExceptionalityProperties = $this->mockery(ExceptionalityProperties::class));
-        $anotherExceptionalityProperties->shouldReceive('getId')
-            ->andReturnNull();
-
-        /** @var Exceptionality $anotherExceptionality */
-        $exceptionalityProperties->setExceptionality($anotherExceptionality);
-    }
-
-    /**
-     * @test
-     * @depends adding_another_new_exceptionality_with_different_properties_cause_exception
-     * @expectedException \LogicException
-     */
-    public function adding_another_exceptionality_with_different_properties_cause_exception()
-    {
-        $className = $this->getClassName();
-        /** @var ExceptionalityProperties $exceptionalityProperties */
-        $exceptionalityProperties = new $className(
-            $strength = $this->getStrength(),
-            $agility = $this->getAgility(),
-            $knack = $this->getKnack(),
-            $will = $this->getWill(),
-            $intelligence = $this->getIntelligence(),
-            $charisma = $this->getCharisma()
-        );
-
-        $exceptionality = $this->mockery(Exceptionality::class);
-        $exceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($exceptionalityProperties);
-        $exceptionality->shouldReceive('getId')
-            ->andReturnNull();
-        /** @var Exceptionality $exceptionality */
-        $exceptionalityProperties->setExceptionality($exceptionality);
-        try {
-            $exceptionalityProperties->setExceptionality($exceptionality); // setting the same exceptionality should pass
-        } catch (\Exception $unwantedException) {
-            $this->fail(
-                'No exception should occurs on set of the same exceptionality: ' . $unwantedException->getMessage() . '; ' . $unwantedException->getTraceAsString()
-            );
-        }
-
-        $exceptionalityPropertiesReflection = new \ReflectionClass($exceptionalityProperties);
-        $idReflection = $exceptionalityPropertiesReflection->getProperty('id');
-        $idReflection->setAccessible(true);
-        $idReflection->setValue($exceptionalityProperties, 'foo'); // filling an ID
-
-        $anotherExceptionality = $this->mockery(Exceptionality::class);
-        $anotherExceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($anotherExceptionalityProperties = $this->mockery(ExceptionalityProperties::class));
-        $anotherExceptionalityProperties->shouldReceive('getId')
-            ->andReturn('bar'); // filling an ID
-
-        /** @var Exceptionality $anotherExceptionality */
-        $exceptionalityProperties->setExceptionality($anotherExceptionality);
-    }
-
-    /**
-     * @test
-     * @depends adding_another_new_exceptionality_with_different_properties_cause_exception
-     * @expectedException \LogicException
-     */
-    public function adding_different_exceptionality_cause_exception()
-    {
-        $className = $this->getClassName();
-        /** @var ExceptionalityProperties $exceptionalityProperties */
-        $exceptionalityProperties = new $className(
-            $strength = $this->getStrength(),
-            $agility = $this->getAgility(),
-            $knack = $this->getKnack(),
-            $will = $this->getWill(),
-            $intelligence = $this->getIntelligence(),
-            $charisma = $this->getCharisma()
-        );
-
-        $exceptionality = $this->mockery(Exceptionality::class);
-        $exceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($exceptionalityProperties);
-        $exceptionality->shouldReceive('getId')
-            ->andReturn('foo');
-        /** @var Exceptionality $exceptionality */
-        $exceptionalityProperties->setExceptionality($exceptionality);
-        try {
-            $exceptionalityProperties->setExceptionality($exceptionality); // setting the same exceptionality should pass
-        } catch (\Exception $unwantedException) {
-            $this->fail(
-                'No exception should occurs on set of the same exceptionality: ' . $unwantedException->getMessage() . '; ' . $unwantedException->getTraceAsString()
-            );
-        }
-
-        $exceptionalityPropertiesReflection = new \ReflectionClass($exceptionalityProperties);
-        $idReflection = $exceptionalityPropertiesReflection->getProperty('id');
-        $idReflection->setAccessible(true);
-        $idReflection->setValue($exceptionalityProperties, 'foo'); // filling an ID
-
-        $anotherExceptionality = $this->mockery(Exceptionality::class);
-        $anotherExceptionality->shouldReceive('getExceptionalityProperties')
-            ->andReturn($exceptionalityProperties);
-        $anotherExceptionality->shouldReceive('getId')
-            ->andReturn('bar');
-
-        /** @var Exceptionality $anotherExceptionality */
-        $exceptionalityProperties->setExceptionality($anotherExceptionality);
     }
 }

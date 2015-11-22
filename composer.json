@@ -10,9 +10,11 @@
   },
   "require": {
     "php": ">=5.5.0",
-    "granam/strict-object" : "dev-master",
+    "granam/strict-object": "dev-master",
+    "granam/scalar": "dev-master",
     "drd-plus/properties": "dev-master",
     "drd-plus/tools": "dev-master",
+    "drd-plus/profession-levels": "dev-master",
     "doctrine/orm": "~2.0"
   },
   "require-dev": {

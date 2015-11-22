@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\Cave\UnitBundle\Tests\Person\Attributes\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities;
 
 class ChosenPropertiesTest extends AbstractTestOfExceptionalityProperties
 {

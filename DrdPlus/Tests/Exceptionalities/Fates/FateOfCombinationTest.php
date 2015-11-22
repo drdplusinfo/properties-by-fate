@@ -1,9 +1,9 @@
 <?php
-namespace DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Fates;
+namespace DrdPlus\Exceptionalities\Fates;
 
-use DrdPlus\Cave\UnitBundle\Tests\Person\Attributes\Exceptionalities\Fates\AbstractTestOfFate;
+use DrdPlus\Tests\Exceptionalities\Fates\AbstractTestOfExceptionalityFate;
 
-class FateOfCombinationTest extends AbstractTestOfFate
+class FateOfCombinationTest extends AbstractTestOfExceptionalityFate
 {
 
     protected function getExpectedPrimaryPropertiesBonusOnChoice()

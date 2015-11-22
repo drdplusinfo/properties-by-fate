@@ -1,20 +1,19 @@
 <?php
-namespace DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities;
+namespace DrdPlus\Exceptionalities;
 
-use Doctrine\DBAL\Types\Type;
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Choices\Fortune;
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Choices\PlayerDecision;
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Fates\FateOfCombination;
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Fates\FateOfExceptionalProperties;
-use DrdPlus\Cave\UnitBundle\Person\Attributes\Exceptionalities\Fates\FateOfGoodRear;
-use DrdPlus\Cave\UnitBundle\Tests\TestWithMockery;
+use DrdPlus\Exceptionalities\Choices\Fortune;
+use DrdPlus\Exceptionalities\Choices\PlayerDecision;
+use DrdPlus\Exceptionalities\Fates\FateOfCombination;
+use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
+use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
+use DrdPlus\Tools\Tests\TestWithMockery;
 
 class ExceptionalityFactoryTest extends TestWithMockery
 {
     /**
      * @test
      */
-    public function can_be_created()
+    public function I_can_create_it()
     {
         $instance = new ExceptionalityFactory();
         $this->assertNotNull($instance);
@@ -23,83 +22,56 @@ class ExceptionalityFactoryTest extends TestWithMockery
     }
 
     /**
-     * @test
-     * @depends can_be_created
-     */
-    public function good_rear_is_registered_after_factory_creation()
-    {
-        $this->assertTrue(Type::hasType(FateOfGoodRear::getTypeName()));
-    }
-
-    /**
-     * @test
-     * @depends can_be_created
-     */
-    public function combination_is_registered_after_factory_creation()
-    {
-        $this->assertTrue(Type::hasType(FateOfCombination::getTypeName()));
-    }
-
-    /**
-     * @test
-     * @depends can_be_created
-     */
-    public function exceptional_properties_type_is_registered_after_factory_creation()
-    {
-        $this->assertTrue(Type::hasType(FateOfExceptionalProperties::getTypeName()));
-    }
-
-    /**
-     * @depends can_be_created
+     * @depends I_can_create_it
      * @test
      *
      * @param ExceptionalityFactory $factory
      */
-    public function can_give_good_rear(ExceptionalityFactory $factory)
+    public function I_can_get_good_rear(ExceptionalityFactory $factory)
     {
         $this->assertInstanceOf(FateOfGoodRear::class, $factory->getGoodRear());
     }
 
     /**
-     * @depends can_be_created
+     * @depends I_can_create_it
      * @test
      *
      * @param ExceptionalityFactory $factory
      */
-    public function can_give_combination(ExceptionalityFactory $factory)
+    public function I_can_get_combination(ExceptionalityFactory $factory)
     {
         $this->assertInstanceOf(FateOfCombination::class, $factory->getCombination());
     }
 
     /**
-     * @depends can_be_created
+     * @depends I_can_create_it
      * @test
      *
      * @param ExceptionalityFactory $factory
      */
-    public function can_give_exceptional_properties(ExceptionalityFactory $factory)
+    public function I_can_get_exceptional_properties(ExceptionalityFactory $factory)
     {
         $this->assertInstanceOf(FateOfExceptionalProperties::class, $factory->getExceptionalProperties());
     }
 
     /**
-     * @depends can_be_created
+     * @depends I_can_create_it
      * @test
      *
      * @param ExceptionalityFactory $factory
      */
-    public function can_give_player_decision(ExceptionalityFactory $factory)
+    public function I_can_get_player_decision(ExceptionalityFactory $factory)
     {
         $this->assertInstanceOf(PlayerDecision::class, $factory->getPlayerDecision());
     }
     
     /**
-     * @depends can_be_created
+     * @depends I_can_create_it
      * @test
      *
      * @param ExceptionalityFactory $factory
      */
-    public function can_give_fortune(ExceptionalityFactory $factory)
+    public function I_can_get_fortune(ExceptionalityFactory $factory)
     {
         $this->assertInstanceOf(Fortune::class, $factory->getFortune());
     }

@@ -26,13 +26,6 @@ abstract class ExceptionalityProperties extends StrictObject
     protected $id;
 
     /**
-     * @var Exceptionality|null
-     *
-     * @ORM\OneToOne(targetEntity="DrdPlus\Exceptionalities\Exceptionality")
-     */
-    protected $exceptionality;
-
-    /**
      * @var Strength
      *
      * @ORM\Column(type="strength")
@@ -97,37 +90,6 @@ abstract class ExceptionalityProperties extends StrictObject
     public function getId()
     {
         return $this->id;
-    }
-
-    public function setExceptionality(Exceptionality $exceptionality)
-    {
-        $this->checkExceptionalityToSet($exceptionality);
-        $this->exceptionality = $exceptionality; // instance of same ID is replaced anyway
-    }
-
-    private function checkExceptionalityToSet(Exceptionality $exceptionality)
-    {
-        if (is_null($this->getId()) && is_null($exceptionality->getExceptionalityProperties()->getId())
-            && $this !== $exceptionality->getExceptionalityProperties()
-        ) {
-            throw new \LogicException;
-        }
-
-        if ($exceptionality->getExceptionalityProperties()->getId() !== $this->getId()) {
-            throw new \LogicException;
-        }
-
-        if ($this->getExceptionality() && $this->getExceptionality()->getId() !== $exceptionality->getId()) {
-            throw new \LogicException;
-        }
-    }
-
-    /**
-     * @return Exceptionality|null
-     */
-    public function getExceptionality()
-    {
-        return $this->exceptionality;
     }
 
     /**
