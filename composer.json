@@ -1,8 +1,8 @@
 {
-  "name": "drd-plus/profession-levels",
+  "name": "drd-plus/exceptionalities",
   "license": "MIT",
   "type": "project",
-  "description": "Levels of professions for Drd+",
+  "description": "Exceptional properties bo choose or fortune for DrD+",
   "autoload": {
     "psr-4": {
       "DrdPlus\\": "DrdPlus/"
@@ -10,9 +10,9 @@
   },
   "require": {
     "php": ">=5.5.0",
-    "drd-plus/codes": "dev-master",
+    "granam/strict-object" : "dev-master",
     "drd-plus/properties": "dev-master",
-    "drd-plus/professions": "dev-master",
+    "drd-plus/tools": "dev-master",
     "doctrine/orm": "~2.0"
   },
   "require-dev": {
