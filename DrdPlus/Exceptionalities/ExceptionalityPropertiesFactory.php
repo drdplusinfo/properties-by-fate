@@ -59,24 +59,8 @@ class ExceptionalityPropertiesFactory extends StrictObject
         }
 
         $strength = Strength::getIt($strengthValue);
-        $this->checkFortunePropertyValue($strength, $fate, $profession);
 
         return $strength;
-    }
-
-    /**
-     * @param BaseProperty $property
-     * @param ExceptionalityFate $fate
-     * @param ProfessionLevel $profession
-     */
-    private function checkFortunePropertyValue(BaseProperty $property, ExceptionalityFate $fate, ProfessionLevel $profession)
-    {
-        if ($property->getValue() > $fate->getUpToSingleProperty()) {
-            throw new \LogicException(
-                ucfirst($property->getCode()) . " bonus on fortune should be at most {$fate->getUpToSingleProperty()}"
-                . " for profession {$profession->getProfession()->getCode()}, is $property"
-            );
-        }
     }
 
     private function createFortuneAgility(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $agilityRoll)
@@ -88,7 +72,6 @@ class ExceptionalityPropertiesFactory extends StrictObject
         }
 
         $agility = Agility::getIt($agilityValue);
-        $this->checkFortunePropertyValue($agility, $fate, $profession);
 
         return $agility;
     }
@@ -102,7 +85,6 @@ class ExceptionalityPropertiesFactory extends StrictObject
         }
 
         $knack = Knack::getIt($knackValue);
-        $this->checkFortunePropertyValue($knack, $fate, $profession);
 
         return $knack;
     }
@@ -116,7 +98,6 @@ class ExceptionalityPropertiesFactory extends StrictObject
         }
 
         $will = Will::getIt($willValue);
-        $this->checkFortunePropertyValue($will, $fate, $profession);
 
         return $will;
     }
@@ -141,7 +122,6 @@ class ExceptionalityPropertiesFactory extends StrictObject
         }
 
         $charisma = Charisma::getIt($charismaValue);
-        $this->checkFortunePropertyValue($charisma, $fate, $profession);
 
         return $charisma;
     }
@@ -157,13 +137,6 @@ class ExceptionalityPropertiesFactory extends StrictObject
         Charisma $chosenCharisma
     )
     {
-        $this->checkChosenProperty($professionLevel, $fate, $chosenStrength);
-        $this->checkChosenProperty($professionLevel, $fate, $chosenAgility);
-        $this->checkChosenProperty($professionLevel, $fate, $chosenKnack);
-        $this->checkChosenProperty($professionLevel, $fate, $chosenWill);
-        $this->checkChosenProperty($professionLevel, $fate, $chosenIntelligence);
-        $this->checkChosenProperty($professionLevel, $fate, $chosenCharisma);
-
         $this->checkChosenProperties(
             $chosenStrength,
             $chosenAgility,
@@ -176,27 +149,6 @@ class ExceptionalityPropertiesFactory extends StrictObject
         );
 
         return new ChosenProperties($chosenStrength, $chosenAgility, $chosenKnack, $chosenWill, $chosenIntelligence, $chosenCharisma);
-    }
-
-    private function checkChosenProperty(ProfessionLevel $profession, ExceptionalityFate $fate, BaseProperty $chosenProperty)
-    {
-        if ($profession->isPrimaryProperty($chosenProperty->getCode())) {
-            $maximalValue = $fate->getPrimaryPropertiesBonusOnChoice();
-        } else {
-            $maximalValue = $fate->getSecondaryPropertiesBonusOnChoice();
-        }
-
-        $this->checkChosenPropertyValue($maximalValue, $chosenProperty, $fate, $profession);
-    }
-
-    private function checkChosenPropertyValue($maximalValue, BaseProperty $chosenProperty, ExceptionalityFate $fate, ProfessionLevel $professionLevel)
-    {
-        if ($chosenProperty->getValue() > $maximalValue) {
-            throw new \LogicException(
-                "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher then allowed"
-                . " maximum $maximalValue for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getCode()}"
-            );
-        }
     }
 
     private function checkChosenProperties(
@@ -213,6 +165,8 @@ class ExceptionalityPropertiesFactory extends StrictObject
         $primaryPropertiesSum = 0;
         $secondaryPropertiesSum = 0;
         foreach ([$strength, $agility, $knack, $will, $intelligence, $charisma] as $property) {
+            $this->checkChosenProperty($profession, $fate, $property);
+
             /** @var BaseProperty $property */
             if ($profession->isPrimaryProperty($property->getCode())) {
                 $primaryPropertiesSum += $property->getValue();
@@ -234,4 +188,14 @@ class ExceptionalityPropertiesFactory extends StrictObject
         }
     }
 
+    private function checkChosenProperty(ProfessionLevel $professionLevel, ExceptionalityFate $fate, BaseProperty $chosenProperty)
+    {
+        if ($chosenProperty->getValue() > $fate->getUpToSingleProperty()) {
+            throw new \LogicException(
+                "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher then allowed"
+                . " maximum {$fate->getUpToSingleProperty()} for profession {$professionLevel->getProfession()->getCode()}"
+                . " and fate {$fate->getCode()}"
+            );
+        }
+    }
 }
