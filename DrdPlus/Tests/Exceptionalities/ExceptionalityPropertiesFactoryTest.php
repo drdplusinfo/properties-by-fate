@@ -4,7 +4,7 @@ namespace DrdPlus\Exceptionalities;
 use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\ProfessionLevels\ProfessionLevel;
-use DrdPlus\Professions\AbstractProfession;
+use DrdPlus\Professions\Profession;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
@@ -99,7 +99,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 return in_array($propertyCode, $primaryPropertyCodes);
             });
         $professionLevel->shouldReceive('getProfession')
-            ->andReturn($profession = $this->mockery(AbstractProfession::class));
+            ->andReturn($profession = $this->mockery(Profession::class));
         $profession->shouldReceive('getCode')
             ->andReturn('foo');
 
