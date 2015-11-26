@@ -6,6 +6,7 @@ use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Professions\Profession;
 use DrdPlus\Properties\Base\Agility;
+use DrdPlus\Properties\Base\BasePropertyFactory;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
@@ -447,7 +448,8 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             $this->createRoll($knackRoll),
             $this->createRoll($willRoll),
             $this->createRoll($intelligenceRoll),
-            $this->createRoll($charismaRoll)
+            $this->createRoll($charismaRoll),
+            new BasePropertyFactory()
         );
         $this->assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
         $this->assertSame($strengthRoll, $chosenProperties->getStrengthRoll());
@@ -522,7 +524,8 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             $this->createRoll($knackRoll),
             $this->createRoll($willRoll),
             $this->createRoll($intelligenceRoll),
-            $this->createRoll($charismaRoll)
+            $this->createRoll($charismaRoll),
+            new BasePropertyFactory()
         );
         $this->assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
         $this->assertSame($strengthRoll, $chosenProperties->getStrengthRoll());

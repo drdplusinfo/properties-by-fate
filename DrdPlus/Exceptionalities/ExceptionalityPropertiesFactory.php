@@ -6,6 +6,7 @@ use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BaseProperty;
+use DrdPlus\Properties\Base\BasePropertyFactory;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
@@ -24,15 +25,28 @@ class ExceptionalityPropertiesFactory extends StrictObject
         RollInterface $knackRoll,
         RollInterface $willRoll,
         RollInterface $intelligenceRoll,
-        RollInterface $charismaRoll
+        RollInterface $charismaRoll,
+        BasePropertyFactory $basePropertyFactory
     )
     {
-        $strength = $this->createFortuneStrength($professionLevel, $fate, $strengthRoll);
-        $agility = $this->createFortuneAgility($professionLevel, $fate, $agilityRoll);
-        $knack = $this->createFortuneKnack($professionLevel, $fate, $knackRoll);
-        $will = $this->createFortuneWill($professionLevel, $fate, $willRoll);
-        $intelligence = $this->createFortuneIntelligence($professionLevel, $fate, $intelligenceRoll);
-        $charisma = $this->createFortuneCharisma($professionLevel, $fate, $charismaRoll);
+        $strength = $this->createFortuneProperty(
+            $professionLevel, $fate, $strengthRoll, Strength::STRENGTH, $basePropertyFactory
+        );
+        $agility = $this->createFortuneProperty(
+            $professionLevel, $fate, $agilityRoll, Agility::AGILITY, $basePropertyFactory
+        );
+        $knack = $this->createFortuneProperty(
+            $professionLevel, $fate, $knackRoll, Knack::KNACK, $basePropertyFactory
+        );
+        $will = $this->createFortuneProperty(
+            $professionLevel, $fate, $willRoll, Will::WILL, $basePropertyFactory
+        );
+        $intelligence = $this->createFortuneProperty(
+            $professionLevel, $fate, $intelligenceRoll, Intelligence::INTELLIGENCE, $basePropertyFactory
+        );
+        $charisma = $this->createFortuneProperty(
+            $professionLevel, $fate, $charismaRoll, Charisma::CHARISMA, $basePropertyFactory
+        );
 
         return new FortuneProperties(
             $strength,
@@ -50,80 +64,23 @@ class ExceptionalityPropertiesFactory extends StrictObject
         );
     }
 
-    private function createFortuneStrength(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $strengthRoll)
+    private function createFortuneProperty(
+        ProfessionLevel $profession,
+        ExceptionalityFate $fate,
+        RollInterface $roll,
+        $propertyCode,
+        BasePropertyFactory $basePropertyFactory
+    )
     {
-        if ($profession->isPrimaryProperty(Strength::STRENGTH)) {
-            $strengthValue = $fate->getPrimaryPropertyBonusOnFortune($strengthRoll);
+        if ($profession->isPrimaryProperty($propertyCode)) {
+            $value = $fate->getPrimaryPropertyBonusOnFortune($roll);
         } else {
-            $strengthValue = $fate->getSecondaryPropertyBonusOnFortune($strengthRoll);
+            $value = $fate->getSecondaryPropertyBonusOnFortune($roll);
         }
 
-        $strength = Strength::getIt($strengthValue);
+        $property = $basePropertyFactory->createProperty($value, $propertyCode);
 
-        return $strength;
-    }
-
-    private function createFortuneAgility(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $agilityRoll)
-    {
-        if ($profession->isPrimaryProperty(Agility::AGILITY)) {
-            $agilityValue = $fate->getPrimaryPropertyBonusOnFortune($agilityRoll);
-        } else {
-            $agilityValue = $fate->getSecondaryPropertyBonusOnFortune($agilityRoll);
-        }
-
-        $agility = Agility::getIt($agilityValue);
-
-        return $agility;
-    }
-
-    private function createFortuneKnack(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $knackRoll)
-    {
-        if ($profession->isPrimaryProperty(Knack::KNACK)) {
-            $knackValue = $fate->getPrimaryPropertyBonusOnFortune($knackRoll);
-        } else {
-            $knackValue = $fate->getSecondaryPropertyBonusOnFortune($knackRoll);
-        }
-
-        $knack = Knack::getIt($knackValue);
-
-        return $knack;
-    }
-
-    private function createFortuneWill(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $willRoll)
-    {
-        if ($profession->isPrimaryProperty(Will::WILL)) {
-            $willValue = $fate->getPrimaryPropertyBonusOnFortune($willRoll);
-        } else {
-            $willValue = $fate->getSecondaryPropertyBonusOnFortune($willRoll);
-        }
-
-        $will = Will::getIt($willValue);
-
-        return $will;
-    }
-
-    private function createFortuneIntelligence(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $intelligenceRoll)
-    {
-        if ($profession->isPrimaryProperty(Intelligence::INTELLIGENCE)) {
-            $intelligenceValue = $fate->getPrimaryPropertyBonusOnFortune($intelligenceRoll);
-        } else {
-            $intelligenceValue = $fate->getSecondaryPropertyBonusOnFortune($intelligenceRoll);
-        }
-
-        return Intelligence::getIt($intelligenceValue);
-    }
-
-    private function createFortuneCharisma(ProfessionLevel $professionLevel, ExceptionalityFate $fate, RollInterface $charismaRoll)
-    {
-        if ($professionLevel->isPrimaryProperty(Charisma::CHARISMA)) {
-            $charismaValue = $fate->getPrimaryPropertyBonusOnFortune($charismaRoll);
-        } else {
-            $charismaValue = $fate->getSecondaryPropertyBonusOnFortune($charismaRoll);
-        }
-
-        $charisma = Charisma::getIt($charismaValue);
-
-        return $charisma;
+        return $property;
     }
 
     public function createChosenProperties(
