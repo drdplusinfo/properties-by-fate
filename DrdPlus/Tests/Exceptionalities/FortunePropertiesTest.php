@@ -101,4 +101,28 @@ class FortunePropertiesTest extends AbstractTestOfExceptionalityProperties
         $this->assertSame($intelligenceRoll, $fortuneProperties->getIntelligenceRoll());
         $this->assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
     }
+
+    /**
+     * @test
+     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownBasePropertyCode
+     */
+    public function I_can_not_use_invalid_property_code_for_generic_getter()
+    {
+        $exceptionalityProperties = new FortuneProperties(
+            $this->getStrength(),
+            $this->getRoll(),
+            $this->getAgility(),
+            $this->getRoll(),
+            $this->getKnack(),
+            $this->getRoll(),
+            $this->getWill(),
+            $this->getRoll(),
+            $this->getIntelligence(),
+            $this->getRoll(),
+            $this->getCharisma(),
+            $this->getRoll()
+        );
+
+        $exceptionalityProperties->getProperty('invalid code');
+    }
 }

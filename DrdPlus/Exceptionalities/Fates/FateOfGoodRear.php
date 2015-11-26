@@ -37,7 +37,7 @@ class FateOfGoodRear extends ExceptionalityFate
      *
      * @return int
      */
-    public function getPrimaryPropertiesBonusOnFortune(RollInterface $roll)
+    public function getPrimaryPropertyBonusOnFortune(RollInterface $roll)
     {
         switch ($roll->getLastRollSummary()) {
             case 1:
@@ -60,10 +60,10 @@ class FateOfGoodRear extends ExceptionalityFate
      *
      * @return int
      */
-    public function getSecondaryPropertiesBonusOnFortune(RollInterface $roll)
+    public function getSecondaryPropertyBonusOnFortune(RollInterface $roll)
     {
         // secondary and primary properties got same bonus
-        return $this->getPrimaryPropertiesBonusOnFortune($roll);
+        return $this->getPrimaryPropertyBonusOnFortune($roll);
     }
 
 }

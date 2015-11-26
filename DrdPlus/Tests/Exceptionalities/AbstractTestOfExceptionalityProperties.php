@@ -112,10 +112,36 @@ abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
             $charisma = $this->getCharisma()
         );
         $this->assertSame($strength, $exceptionalityProperties->getStrength());
+        $this->assertSame($strength, $exceptionalityProperties->getProperty(Strength::STRENGTH));
         $this->assertSame($agility, $exceptionalityProperties->getAgility());
+        $this->assertSame($agility, $exceptionalityProperties->getProperty(Agility::AGILITY));
         $this->assertSame($knack, $exceptionalityProperties->getKnack());
+        $this->assertSame($knack, $exceptionalityProperties->getProperty(Knack::KNACK));
         $this->assertSame($will, $exceptionalityProperties->getWill());
+        $this->assertSame($will, $exceptionalityProperties->getProperty(Will::WILL));
         $this->assertSame($intelligence, $exceptionalityProperties->getIntelligence());
+        $this->assertSame($intelligence, $exceptionalityProperties->getProperty(Intelligence::INTELLIGENCE));
         $this->assertSame($charisma, $exceptionalityProperties->getCharisma());
+        $this->assertSame($charisma, $exceptionalityProperties->getProperty(Charisma::CHARISMA));
+    }
+
+    /**
+     * @test
+     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownBasePropertyCode
+     */
+    public function I_can_not_use_invalid_property_code_for_generic_getter()
+    {
+        $className = $this->getClassName();
+        /** @var ExceptionalityProperties $exceptionalityProperties */
+        $exceptionalityProperties = new $className(
+            $strength = $this->getStrength(),
+            $agility = $this->getAgility(),
+            $knack = $this->getKnack(),
+            $will = $this->getWill(),
+            $intelligence = $this->getIntelligence(),
+            $charisma = $this->getCharisma()
+        );
+
+        $exceptionalityProperties->getProperty('invalid code');
     }
 }

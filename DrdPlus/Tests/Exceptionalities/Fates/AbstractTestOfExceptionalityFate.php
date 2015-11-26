@@ -73,15 +73,15 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
             /** @var RollInterface $roll */
             $this->assertSame(
                 $this->getExpectedPrimaryPropertiesBonusOnFortune($value),
-                $kind->getPrimaryPropertiesBonusOnFortune($roll),
+                $kind->getPrimaryPropertyBonusOnFortune($roll),
                 "Value of $value should result to bonus {$this->getExpectedSecondaryPropertiesBonusOnFortune($value)}"
-                . ", but resulted into {$kind->getSecondaryPropertiesBonusOnFortune($roll)}"
+                . ", but resulted into {$kind->getSecondaryPropertyBonusOnFortune($roll)}"
             );
             $this->assertSame(
                 $this->getExpectedSecondaryPropertiesBonusOnFortune($value),
-                $kind->getSecondaryPropertiesBonusOnFortune($roll),
+                $kind->getSecondaryPropertyBonusOnFortune($roll),
                 "Value of $value should result to bonus {$this->getExpectedSecondaryPropertiesBonusOnFortune($value)}"
-                . ", but resulted into {$kind->getSecondaryPropertiesBonusOnFortune($roll)}"
+                . ", but resulted into {$kind->getSecondaryPropertyBonusOnFortune($roll)}"
             );
         }
     }
@@ -99,7 +99,7 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
         $roll->shouldReceive('getLastRollSummary')
             ->andReturn(7);
         /** @var RollInterface $roll */
-        $fate->getPrimaryPropertiesBonusOnFortune($roll);
+        $fate->getPrimaryPropertyBonusOnFortune($roll);
     }
 
     /**
@@ -115,7 +115,7 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
         $roll->shouldReceive('getLastRollSummary')
             ->andReturn(7);
         /** @var RollInterface $roll */
-        $fate->getSecondaryPropertiesBonusOnFortune($roll);
+        $fate->getSecondaryPropertyBonusOnFortune($roll);
     }
 
     /**

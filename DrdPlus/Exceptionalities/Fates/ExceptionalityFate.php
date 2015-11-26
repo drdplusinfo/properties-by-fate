@@ -38,14 +38,14 @@ abstract class ExceptionalityFate extends StrictStringEnum
      *
      * @return int
      */
-    abstract public function getPrimaryPropertiesBonusOnFortune(RollInterface $roll);
+    abstract public function getPrimaryPropertyBonusOnFortune(RollInterface $roll);
 
     /**
      * @param RollInterface $roll
      *
      * @return int
      */
-    abstract public function getSecondaryPropertiesBonusOnFortune(RollInterface $roll);
+    abstract public function getSecondaryPropertyBonusOnFortune(RollInterface $roll);
 
     /**
      * @return int

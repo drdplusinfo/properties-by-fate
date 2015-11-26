@@ -6,6 +6,8 @@ use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use Granam\Strict\Object\StrictObject;
 
 /**
+ * Container for all the pieces making together the exceptionality
+ *
  * @ORM\Table()
  * @ORM\Entity()
  */
@@ -43,12 +45,12 @@ class Exceptionality extends StrictObject
 
     public function __construct(
         ExceptionalityChoice $exceptionalityChoice,
-        ExceptionalityFate $exceptionalityKind,
+        ExceptionalityFate $exceptionalityFate,
         ExceptionalityProperties $exceptionalityProperties
     )
     {
         $this->exceptionalityChoice = $exceptionalityChoice;
-        $this->exceptionalityFate = $exceptionalityKind;
+        $this->exceptionalityFate = $exceptionalityFate;
         $this->exceptionalityProperties = $exceptionalityProperties;
     }
 

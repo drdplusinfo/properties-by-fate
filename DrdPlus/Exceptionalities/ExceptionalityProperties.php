@@ -140,4 +140,24 @@ abstract class ExceptionalityProperties extends StrictObject
         return $this->charisma;
     }
 
+    public function getProperty($propertyCode)
+    {
+        switch ($propertyCode) {
+            case Strength::STRENGTH :
+                return $this->getStrength();
+            case Agility::AGILITY :
+                return $this->getAgility();
+            case Knack::KNACK :
+                return $this->getKnack();
+            case Will::WILL :
+                return $this->getWill();
+            case Intelligence::INTELLIGENCE :
+                return $this->getIntelligence();
+            case Charisma::CHARISMA :
+                return $this->getCharisma();
+            default :
+                throw new Exceptions\UnknownBasePropertyCode($propertyCode);
+        }
+    }
+
 }

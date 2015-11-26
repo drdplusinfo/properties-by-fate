@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities\Fates\Exceptions;
 
-interface Exception
+interface Exception extends \DrdPlus\Exceptionalities\Exceptions\Exception
 {
 
 }

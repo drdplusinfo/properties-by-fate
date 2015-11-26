@@ -36,7 +36,7 @@ class FateOfExceptionalProperties extends ExceptionalityFate
      *
      * @return int
      */
-    public function getPrimaryPropertiesBonusOnFortune(RollInterface $roll)
+    public function getPrimaryPropertyBonusOnFortune(RollInterface $roll)
     {
         switch ($roll->getLastRollSummary()) {
             case 1:
@@ -59,7 +59,7 @@ class FateOfExceptionalProperties extends ExceptionalityFate
      *
      * @return int
      */
-    public function getSecondaryPropertiesBonusOnFortune(RollInterface $roll)
+    public function getSecondaryPropertyBonusOnFortune(RollInterface $roll)
     {
         switch ($roll->getLastRollSummary()) {
             case 1:

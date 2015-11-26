@@ -37,7 +37,7 @@ class FateOfCombination extends ExceptionalityFate
      *
      * @return int
      */
-    public function getPrimaryPropertiesBonusOnFortune(RollInterface $roll)
+    public function getPrimaryPropertyBonusOnFortune(RollInterface $roll)
     {
         switch ($roll->getLastRollSummary()) {
             case 1:
@@ -61,10 +61,10 @@ class FateOfCombination extends ExceptionalityFate
      *
      * @return int
      */
-    public function getSecondaryPropertiesBonusOnFortune(RollInterface $roll)
+    public function getSecondaryPropertyBonusOnFortune(RollInterface $roll)
     {
         // combination has same secondary and primary properties bonus
-        return $this->getPrimaryPropertiesBonusOnFortune($roll);
+        return $this->getPrimaryPropertyBonusOnFortune($roll);
     }
 
 }
