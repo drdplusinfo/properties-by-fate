@@ -18,7 +18,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
 
     public function createFortuneProperties(
         ExceptionalityFate $fate,
-        ProfessionLevel $profession,
+        ProfessionLevel $professionLevel,
         RollInterface $strengthRoll,
         RollInterface $agilityRoll,
         RollInterface $knackRoll,
@@ -27,12 +27,12 @@ class ExceptionalityPropertiesFactory extends StrictObject
         RollInterface $charismaRoll
     )
     {
-        $strength = $this->createFortuneStrength($profession, $fate, $strengthRoll);
-        $agility = $this->createFortuneAgility($profession, $fate, $agilityRoll);
-        $knack = $this->createFortuneKnack($profession, $fate, $knackRoll);
-        $will = $this->createFortuneWill($profession, $fate, $willRoll);
-        $intelligence = $this->createFortuneIntelligence($profession, $fate, $intelligenceRoll);
-        $charisma = $this->createFortuneCharisma($profession, $fate, $charismaRoll);
+        $strength = $this->createFortuneStrength($professionLevel, $fate, $strengthRoll);
+        $agility = $this->createFortuneAgility($professionLevel, $fate, $agilityRoll);
+        $knack = $this->createFortuneKnack($professionLevel, $fate, $knackRoll);
+        $will = $this->createFortuneWill($professionLevel, $fate, $willRoll);
+        $intelligence = $this->createFortuneIntelligence($professionLevel, $fate, $intelligenceRoll);
+        $charisma = $this->createFortuneCharisma($professionLevel, $fate, $charismaRoll);
 
         return new FortuneProperties(
             $strength,
@@ -113,9 +113,9 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return Intelligence::getIt($intelligenceValue);
     }
 
-    private function createFortuneCharisma(ProfessionLevel $profession, ExceptionalityFate $fate, RollInterface $charismaRoll)
+    private function createFortuneCharisma(ProfessionLevel $professionLevel, ExceptionalityFate $fate, RollInterface $charismaRoll)
     {
-        if ($profession->isPrimaryProperty(Charisma::CHARISMA)) {
+        if ($professionLevel->isPrimaryProperty(Charisma::CHARISMA)) {
             $charismaValue = $fate->getPrimaryPropertyBonusOnFortune($charismaRoll);
         } else {
             $charismaValue = $fate->getSecondaryPropertyBonusOnFortune($charismaRoll);
@@ -175,26 +175,33 @@ class ExceptionalityPropertiesFactory extends StrictObject
             }
         }
 
-        if ($primaryPropertiesSum !== $fate->getPrimaryPropertiesBonusOnChoice()) {
-            throw new \LogicException(
-                "Expected sum of primary properties was {$fate->getPrimaryPropertiesBonusOnChoice()}, got $primaryPropertiesSum"
-            );
-        }
-
-        if ($secondaryPropertiesSum !== $fate->getSecondaryPropertiesBonusOnChoice()) {
-            throw new \LogicException(
-                "Expected sum of secondary properties was {$fate->getSecondaryPropertiesBonusOnChoice()}, got $secondaryPropertiesSum"
-            );
-        }
+        $this->checkChosenPropertiesSum($primaryPropertiesSum, $secondaryPropertiesSum, $fate, $profession);
     }
 
     private function checkChosenProperty(ProfessionLevel $professionLevel, ExceptionalityFate $fate, BaseProperty $chosenProperty)
     {
         if ($chosenProperty->getValue() > $fate->getUpToSingleProperty()) {
-            throw new \LogicException(
-                "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher then allowed"
+            throw new Exceptions\InvalidValueOfChosenProperty(
+                "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher than allowed"
                 . " maximum {$fate->getUpToSingleProperty()} for profession {$professionLevel->getProfession()->getCode()}"
                 . " and fate {$fate->getCode()}"
+            );
+        }
+    }
+
+    private function checkChosenPropertiesSum($primaryPropertiesSum, $secondaryPropertiesSum, ExceptionalityFate $fate, ProfessionLevel $professionLevel)
+    {
+        if ($primaryPropertiesSum !== $fate->getPrimaryPropertiesBonusOnChoice()) {
+            throw new Exceptions\InvalidSumOfChosenProperties(
+                "Expected sum of primary properties is {$fate->getPrimaryPropertiesBonusOnChoice()}, got $primaryPropertiesSum"
+                . " for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getCode()}"
+            );
+        }
+
+        if ($secondaryPropertiesSum !== $fate->getSecondaryPropertiesBonusOnChoice()) {
+            throw new Exceptions\InvalidSumOfChosenProperties(
+                "Expected sum of secondary properties is {$fate->getSecondaryPropertiesBonusOnChoice()}, got $secondaryPropertiesSum"
+                . " for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getCode()}"
             );
         }
     }
