@@ -1,9 +1,9 @@
 <?php
 namespace DrdPlus\Exceptionalities\Choices;
 
-use Doctrineum\Strict\String\StrictStringEnum;
+use Doctrineum\Scalar\Enum;
 
-abstract class ExceptionalityChoice extends StrictStringEnum
+abstract class ExceptionalityChoice extends Enum
 {
 
     /**

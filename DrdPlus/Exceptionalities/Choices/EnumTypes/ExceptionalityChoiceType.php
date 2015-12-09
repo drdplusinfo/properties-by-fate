@@ -1,11 +1,11 @@
 <?php
 namespace DrdPlus\Exceptionalities\Choices\EnumTypes;
 
-use Doctrineum\Strict\String\StrictStringEnumType;
+use Doctrineum\Scalar\EnumType;
 use DrdPlus\Exceptionalities\Choices\Fortune;
 use DrdPlus\Exceptionalities\Choices\PlayerDecision;
 
-class ExceptionalityChoiceType extends StrictStringEnumType
+class ExceptionalityChoiceType extends EnumType
 {
     const EXCEPTIONALITY_CHOICE = 'exceptionality_choice';
 
