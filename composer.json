@@ -10,12 +10,12 @@
   },
   "require": {
     "php": ">=5.5.0",
+    "doctrine/annotations": "~1.2",
     "granam/strict-object": "dev-master",
     "granam/scalar": "dev-master",
     "drd-plus/properties": "dev-master",
     "drd-plus/tools": "dev-master",
-    "drd-plus/profession-levels": "dev-master",
-    "doctrine/orm": "~2.0"
+    "drd-plus/profession-levels": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.4",
