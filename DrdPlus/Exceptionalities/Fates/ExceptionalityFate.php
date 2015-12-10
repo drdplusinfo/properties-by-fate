@@ -1,10 +1,10 @@
 <?php
 namespace DrdPlus\Exceptionalities\Fates;
 
-use Doctrineum\Scalar\Enum;
+use Doctrineum\Scalar\ScalarEnum;
 use Drd\DiceRoll\RollInterface;
 
-abstract class ExceptionalityFate extends Enum
+abstract class ExceptionalityFate extends ScalarEnum
 {
     /**
      * @return ExceptionalityFate

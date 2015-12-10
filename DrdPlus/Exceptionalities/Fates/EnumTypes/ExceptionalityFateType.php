@@ -1,12 +1,12 @@
 <?php
 namespace DrdPlus\Exceptionalities\Fates\EnumTypes;
 
-use Doctrineum\Scalar\EnumType;
+use Doctrineum\Scalar\ScalarEnumType;
 use DrdPlus\Exceptionalities\Fates\FateOfCombination;
 use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
 use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
 
-class ExceptionalityFateType extends EnumType
+class ExceptionalityFateType extends ScalarEnumType
 {
     const EXCEPTIONALITY_FATE = 'exceptionality_fate';
 

@@ -1,11 +1,11 @@
 <?php
 namespace DrdPlus\Exceptionalities\Choices\EnumTypes;
 
-use Doctrineum\Scalar\EnumType;
+use Doctrineum\Scalar\ScalarEnumType;
 use DrdPlus\Exceptionalities\Choices\Fortune;
 use DrdPlus\Exceptionalities\Choices\PlayerDecision;
 
-class ExceptionalityChoiceType extends EnumType
+class ExceptionalityChoiceType extends ScalarEnumType
 {
     const EXCEPTIONALITY_CHOICE = 'exceptionality_choice';
 

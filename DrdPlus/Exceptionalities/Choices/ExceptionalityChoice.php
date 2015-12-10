@@ -1,9 +1,9 @@
 <?php
 namespace DrdPlus\Exceptionalities\Choices;
 
-use Doctrineum\Scalar\Enum;
+use Doctrineum\Scalar\ScalarEnum;
 
-abstract class ExceptionalityChoice extends Enum
+abstract class ExceptionalityChoice extends ScalarEnum
 {
 
     /**
