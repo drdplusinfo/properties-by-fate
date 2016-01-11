@@ -5,7 +5,7 @@ use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
 use DrdPlus\Exceptionalities\Exceptionality;
 use DrdPlus\Exceptionalities\ExceptionalityProperties;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
-use DrdPlus\Tools\Tests\TestWithMockery;
+use DrdPlus\Tests\Tools\TestWithMockery;
 
 class ExceptionalityTest extends TestWithMockery
 {

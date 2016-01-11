@@ -3,7 +3,7 @@ namespace DrdPlus\Exceptionalities;
 
 use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
-use DrdPlus\ProfessionLevels\ProfessionLevel;
+use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Professions\Profession;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BasePropertyFactory;
@@ -12,7 +12,7 @@ use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
-use DrdPlus\Tools\Tests\TestWithMockery;
+use DrdPlus\Tests\Tools\TestWithMockery;
 
 class ExceptionalityPropertiesFactoryTest extends TestWithMockery
 {

@@ -3,7 +3,7 @@ namespace DrdPlus\Exceptionalities;
 
 use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
-use DrdPlus\ProfessionLevels\ProfessionLevel;
+use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BaseProperty;
 use DrdPlus\Properties\Base\BasePropertyFactory;
@@ -140,7 +140,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         if ($chosenProperty->getValue() > $fate->getUpToSingleProperty()) {
             throw new Exceptions\InvalidValueOfChosenProperty(
                 "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher than allowed"
-                . " maximum {$fate->getUpToSingleProperty()} for profession {$professionLevel->getProfession()->getCode()}"
+                . " maximum {$fate->getUpToSingleProperty()} for profession {$professionLevel->getProfession()->getValue()}"
                 . " and fate {$fate->getCode()}"
             );
         }
@@ -151,14 +151,14 @@ class ExceptionalityPropertiesFactory extends StrictObject
         if ($primaryPropertiesSum !== $fate->getPrimaryPropertiesBonusOnChoice()) {
             throw new Exceptions\InvalidSumOfChosenProperties(
                 "Expected sum of primary properties is {$fate->getPrimaryPropertiesBonusOnChoice()}, got $primaryPropertiesSum"
-                . " for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getCode()}"
+                . " for profession {$professionLevel->getProfession()->getValue()} and fate {$fate->getCode()}"
             );
         }
 
         if ($secondaryPropertiesSum !== $fate->getSecondaryPropertiesBonusOnChoice()) {
             throw new Exceptions\InvalidSumOfChosenProperties(
                 "Expected sum of secondary properties is {$fate->getSecondaryPropertiesBonusOnChoice()}, got $secondaryPropertiesSum"
-                . " for profession {$professionLevel->getProfession()->getCode()} and fate {$fate->getCode()}"
+                . " for profession {$professionLevel->getProfession()->getValue()} and fate {$fate->getCode()}"
             );
         }
     }
