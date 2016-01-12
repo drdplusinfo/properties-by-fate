@@ -101,7 +101,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             });
         $professionLevel->shouldReceive('getProfession')
             ->andReturn($profession = $this->mockery(Profession::class));
-        $profession->shouldReceive('getCode')
+        $profession->shouldReceive('getValue')
             ->andReturn('foo');
 
         return $professionLevel;
