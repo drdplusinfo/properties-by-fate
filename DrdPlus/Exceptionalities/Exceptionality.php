@@ -30,7 +30,7 @@ class Exceptionality extends StrictObject
     private $exceptionalityChoice;
 
     /**
-     * @var ExceptionalityChoice
+     * @var ExceptionalityFate
      *
      * @ORM\Column(type="exceptionality_fate")
      */
