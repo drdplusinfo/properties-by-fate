@@ -6,6 +6,7 @@ use DrdPlus\Exceptionalities\Choices\PlayerDecision;
 use DrdPlus\Exceptionalities\Fates\FateOfCombination;
 use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
 use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
+use Granam\Scalar\Tools\ValueDescriber;
 use Granam\Strict\Object\StrictObject;
 
 class ExceptionalityFactory extends StrictObject
@@ -29,15 +30,21 @@ class ExceptionalityFactory extends StrictObject
         return Fortune::getIt();
     }
 
-    // FATES
-
-    /**
-     * @return FateOfCombination
-     */
-    public function getCombination()
+    public function getChoice($choiceCode)
     {
-        return FateOfCombination::getIt();
+        switch ($choiceCode) {
+            case PlayerDecision::PLAYER_DECISION :
+                return $this->getPlayerDecision();
+            case Fortune::FORTUNE :
+                return $this->getFortune();
+            default :
+                throw new Exceptions\UnknownExceptionalityChoice(
+                    'Unknown exceptionality choice code ' . ValueDescriber::describe($choiceCode)
+                );
+        }
     }
+
+    // FATES
 
     /**
      * @return FateOfGoodRear
@@ -45,6 +52,14 @@ class ExceptionalityFactory extends StrictObject
     public function getGoodRear()
     {
         return FateOfGoodRear::getIt();
+    }
+
+    /**
+     * @return FateOfCombination
+     */
+    public function getCombination()
+    {
+        return FateOfCombination::getIt();
     }
 
     /**

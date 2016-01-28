@@ -10,7 +10,7 @@ abstract class ExceptionalityChoice extends ScalarEnum
     /**
      * @return ExceptionalityChoice
      */
-    public static function getIt()
+    protected static function getIt()
     {
         return static::getEnum(static::getCode());
     }
