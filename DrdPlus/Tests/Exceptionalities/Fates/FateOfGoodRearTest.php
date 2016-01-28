@@ -39,4 +39,10 @@ class FateOfGoodRearTest extends AbstractTestOfExceptionalityFate
     {
         return (int)floor($value / 4);
     }
+
+    protected function getExpectedFateCode()
+    {
+        return 'fate_of_good_rear';
+    }
+
 }

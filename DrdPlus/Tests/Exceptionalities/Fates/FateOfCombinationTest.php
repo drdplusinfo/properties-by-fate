@@ -40,4 +40,9 @@ class FateOfCombinationTest extends AbstractTestOfExceptionalityFate
         return (int)round($value / 2) - 1;
     }
 
+    protected function getExpectedFateCode()
+    {
+        return 'fate_of_combination';
+    }
+
 }

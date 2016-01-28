@@ -2,6 +2,7 @@
 namespace DrdPlus\Exceptionalities\Choices;
 
 use Doctrineum\Scalar\ScalarEnum;
+use Granam\Tools\Naming;
 
 abstract class ExceptionalityChoice extends ScalarEnum
 {
@@ -16,10 +17,6 @@ abstract class ExceptionalityChoice extends ScalarEnum
 
     public static function getCode()
     {
-        $classBaseName = preg_replace('~.+[\\\](\w+)$~', '$1', static::class);
-        $basenameUnderscored = preg_replace('~.([A-Z])~', '_$1', $classBaseName);
-        $code = strtolower($basenameUnderscored);
-
-        return $code;
+        return Naming::camelCaseClassToSnakeCase(static::class);
     }
 }

@@ -144,4 +144,33 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
      * @return int
      */
     abstract protected function getExpectedUpToSingleProperty();
+
+    /**
+     * @test
+     */
+    public function I_can_get_choice_code()
+    {
+        $fateClass = $this->getFateClass();
+        $this->assertSame(
+            $this->getExpectedFateCode(),
+            $fateClass::getCode()
+        );
+        $codeConstantName = $this->getCodeConstantName();
+        $this->assertSame(
+            $this->getExpectedFateCode(),
+            constant("$fateClass::$codeConstantName")
+        );
+    }
+
+    /**
+     * @return string
+     */
+    abstract protected function getExpectedFateCode();
+
+    private function getCodeConstantName()
+    {
+        $code = $this->getExpectedFateCode();
+
+        return strtoupper($code);
+    }
 }

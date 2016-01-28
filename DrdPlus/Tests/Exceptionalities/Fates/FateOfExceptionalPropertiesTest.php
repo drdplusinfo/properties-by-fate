@@ -39,4 +39,10 @@ class FateOfExceptionalPropertiesTest extends AbstractTestOfExceptionalityFate
     {
         return (int)floor($value / 2);
     }
+
+    protected function getExpectedFateCode()
+    {
+        return 'fate_of_exceptional_properties';
+    }
+
 }

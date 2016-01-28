@@ -13,6 +13,7 @@
     "doctrine/annotations": "~1.2",
     "granam/strict-object": "dev-master",
     "granam/scalar": "dev-master",
+    "granam/tools": "dev-master",
     "drd-plus/properties": "dev-master",
     "drd-plus/tools": "dev-master",
     "drd-plus/profession-levels": "dev-master"

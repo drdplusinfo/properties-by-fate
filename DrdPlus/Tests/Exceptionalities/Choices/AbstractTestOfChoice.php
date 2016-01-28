@@ -27,4 +27,33 @@ abstract class AbstractTestOfChoice extends \PHPUnit_Framework_TestCase
     {
         return preg_replace('~[\\\]Tests(.+)Test$~', '$1', static::class);
     }
+
+    /**
+     * @test
+     */
+    public function I_can_get_choice_code()
+    {
+        $choiceClass = $this->getChoiceClass();
+        $this->assertSame(
+            $this->getExpectedChoiceCode(),
+            $choiceClass::getCode()
+        );
+        $codeConstantName = $this->getCodeConstantName();
+        $this->assertSame(
+            $this->getExpectedChoiceCode(),
+            constant("$choiceClass::$codeConstantName")
+        );
+    }
+
+    /**
+     * @return string
+     */
+    abstract protected function getExpectedChoiceCode();
+
+    private function getCodeConstantName()
+    {
+        $code = $this->getExpectedChoiceCode();
+
+        return strtoupper($code);
+    }
 }
