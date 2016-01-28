@@ -115,24 +115,24 @@ class ExceptionalityPropertiesFactory extends StrictObject
         Will $will,
         Intelligence $intelligence,
         Charisma $charisma,
-        ProfessionLevel $profession,
+        ProfessionLevel $professionLevel,
         ExceptionalityFate $fate
     )
     {
         $primaryPropertiesSum = 0;
         $secondaryPropertiesSum = 0;
         foreach ([$strength, $agility, $knack, $will, $intelligence, $charisma] as $property) {
-            $this->checkChosenProperty($profession, $fate, $property);
+            $this->checkChosenProperty($professionLevel, $fate, $property);
 
             /** @var BaseProperty $property */
-            if ($profession->isPrimaryProperty($property->getCode())) {
+            if ($professionLevel->isPrimaryProperty($property->getCode())) {
                 $primaryPropertiesSum += $property->getValue();
             } else {
                 $secondaryPropertiesSum += $property->getValue();
             }
         }
 
-        $this->checkChosenPropertiesSum($primaryPropertiesSum, $secondaryPropertiesSum, $fate, $profession);
+        $this->checkChosenPropertiesSum($primaryPropertiesSum, $secondaryPropertiesSum, $fate, $professionLevel);
     }
 
     private function checkChosenProperty(ProfessionLevel $professionLevel, ExceptionalityFate $fate, BaseProperty $chosenProperty)
