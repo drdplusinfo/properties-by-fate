@@ -47,7 +47,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
 
     /**
      * @test
-     * @dataProvider provideChoiceCodeAndClass
+     * @dataProvider provideChoiceCodeAndExpectedClass
      *
      * @param string $code
      * @param string $expectedChoiceClass
@@ -58,7 +58,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
         $this->assertInstanceOf($expectedChoiceClass, $exceptionalityFactory->getChoice($code));
     }
 
-    public function provideChoiceCodeAndClass()
+    public function provideChoiceCodeAndExpectedClass()
     {
         return [
             [PlayerDecision::PLAYER_DECISION, PlayerDecision::class],
@@ -74,7 +74,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_not_create_choice_from_unknown_code(ExceptionalityFactory $factory)
     {
-        $factory->getChoice('who I am?');
+        $factory->getChoice('Gardener');
     }
 
     // FATES
@@ -87,7 +87,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_good_rear(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(FateOfGoodRear::class, $factory->getGoodRear());
+        $this->assertInstanceOf(FateOfGoodRear::class, $factory->getFateOfGoodRear());
     }
 
     /**
@@ -98,7 +98,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_combination(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(FateOfCombination::class, $factory->getCombination());
+        $this->assertInstanceOf(FateOfCombination::class, $factory->getFateOfCombination());
     }
 
     /**
@@ -109,7 +109,39 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_exceptional_properties(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(FateOfExceptionalProperties::class, $factory->getExceptionalProperties());
+        $this->assertInstanceOf(FateOfExceptionalProperties::class, $factory->getFateOfExceptionalProperties());
     }
 
+    /**
+     * @test
+     * @dataProvider provideFateCodeAndExpectedClass
+     *
+     * @param string $fateCode
+     * @param string $expectedFateClass
+     */
+    public function I_can_get_fate_by_code($fateCode, $expectedFateClass)
+    {
+        $factory = new ExceptionalityFactory();
+        $this->assertInstanceOf($expectedFateClass, $factory->getFate($fateCode));
+    }
+
+    public function provideFateCodeAndExpectedClass()
+    {
+        return [
+            [FateOfGoodRear::FATE_OF_GOOD_REAR, FateOfGoodRear::class],
+            [FateOfCombination::FATE_OF_COMBINATION, FateOfCombination::class],
+            [FateOfExceptionalProperties::FATE_OF_EXCEPTIONAL_PROPERTIES, FateOfExceptionalProperties::class],
+        ];
+    }
+
+    /**
+     * @test
+     * @depends I_can_create_it
+     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityFate
+     * @param ExceptionalityFactory $factory
+     */
+    public function I_can_not_create_fate_from_unknown_code(ExceptionalityFactory $factory)
+    {
+        $factory->getFate('Conquer of the words');
+    }
 }

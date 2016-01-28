@@ -49,7 +49,7 @@ class ExceptionalityFactory extends StrictObject
     /**
      * @return FateOfGoodRear
      */
-    public function getGoodRear()
+    public function getFateOfGoodRear()
     {
         return FateOfGoodRear::getIt();
     }
@@ -57,7 +57,7 @@ class ExceptionalityFactory extends StrictObject
     /**
      * @return FateOfCombination
      */
-    public function getCombination()
+    public function getFateOfCombination()
     {
         return FateOfCombination::getIt();
     }
@@ -65,8 +65,25 @@ class ExceptionalityFactory extends StrictObject
     /**
      * @return FateOfExceptionalProperties
      */
-    public function getExceptionalProperties()
+    public function getFateOfExceptionalProperties()
     {
         return FateOfExceptionalProperties::getIt();
     }
+
+    public function getFate($fateCode)
+    {
+        switch ($fateCode) {
+            case FateOfGoodRear::FATE_OF_GOOD_REAR :
+                return $this->getFateOfGoodRear();
+            case FateOfCombination::FATE_OF_COMBINATION :
+                return $this->getFateOfCombination();
+            case FateOfExceptionalProperties::FATE_OF_EXCEPTIONAL_PROPERTIES :
+                return $this->getFateOfExceptionalProperties();
+            default :
+                throw new Exceptions\UnknownExceptionalityFate(
+                    'Unknown exceptionality fate code ' . ValueDescriber::describe($fateCode)
+                );
+        }
+    }
+
 }
