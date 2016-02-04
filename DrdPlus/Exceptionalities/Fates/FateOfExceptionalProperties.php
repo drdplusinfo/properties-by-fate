@@ -2,7 +2,7 @@
 namespace DrdPlus\Exceptionalities\Fates;
 
 use Drd\DiceRoll\RollInterface;
-use Granam\Scalar\Tools\ValueDescriber;
+use Granam\Tools\ValueDescriber;
 
 class FateOfExceptionalProperties extends ExceptionalityFate
 {
