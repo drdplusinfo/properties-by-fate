@@ -6,6 +6,7 @@ use DrdPlus\Exceptionalities\Choices\PlayerDecision;
 use DrdPlus\Exceptionalities\Fates\FateOfCombination;
 use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
 use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
+use Granam\Scalar\Tools\ToString;
 use Granam\Tools\ValueDescriber;
 use Granam\Strict\Object\StrictObject;
 
@@ -32,7 +33,7 @@ class ExceptionalityFactory extends StrictObject
 
     public function getChoice($choiceCode)
     {
-        switch ($choiceCode) {
+        switch (ToString::toString($choiceCode)) {
             case PlayerDecision::PLAYER_DECISION :
                 return $this->getPlayerDecision();
             case Fortune::FORTUNE :
@@ -72,7 +73,7 @@ class ExceptionalityFactory extends StrictObject
 
     public function getFate($fateCode)
     {
-        switch ($fateCode) {
+        switch (ToString::toString($fateCode)) {
             case FateOfGoodRear::FATE_OF_GOOD_REAR :
                 return $this->getFateOfGoodRear();
             case FateOfCombination::FATE_OF_COMBINATION :

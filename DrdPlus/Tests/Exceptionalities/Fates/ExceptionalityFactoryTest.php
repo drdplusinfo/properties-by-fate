@@ -77,6 +77,17 @@ class ExceptionalityFactoryTest extends TestWithMockery
         $factory->getChoice('Gardener');
     }
 
+    /**
+     * @test
+     * @depends I_can_create_it
+     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityChoice
+     * @param ExceptionalityFactory $factory
+     */
+    public function I_can_not_create_choice_from_true_as_code(ExceptionalityFactory $factory)
+    {
+        $factory->getChoice(true);
+    }
+
     // FATES
 
     /**
@@ -143,5 +154,16 @@ class ExceptionalityFactoryTest extends TestWithMockery
     public function I_can_not_create_fate_from_unknown_code(ExceptionalityFactory $factory)
     {
         $factory->getFate('Conquer of the words');
+    }
+
+    /**
+     * @test
+     * @depends I_can_create_it
+     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityFate
+     * @param ExceptionalityFactory $factory
+     */
+    public function I_can_not_create_fate_from_true_as_code(ExceptionalityFactory $factory)
+    {
+        $factory->getFate(true);
     }
 }

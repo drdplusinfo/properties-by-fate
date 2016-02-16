@@ -9,9 +9,9 @@ use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
-use DrdPlus\Tests\Tools\TestWithMockery;
+use Granam\Tests\Tools\TestWithMockery;
 
-abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
+abstract class ExceptionalityPropertiesTest extends TestWithMockery
 {
     /**
      * @return ExceptionalityProperties
@@ -131,17 +131,24 @@ abstract class AbstractTestOfExceptionalityProperties extends TestWithMockery
      */
     public function I_can_not_use_invalid_property_code_for_generic_getter()
     {
-        $className = $this->getClassName();
-        /** @var ExceptionalityProperties $exceptionalityProperties */
-        $exceptionalityProperties = new $className(
-            $strength = $this->getStrength(),
-            $agility = $this->getAgility(),
-            $knack = $this->getKnack(),
-            $will = $this->getWill(),
-            $intelligence = $this->getIntelligence(),
-            $charisma = $this->getCharisma()
-        );
+        $exceptionalityProperties = $this->createExceptionalityProperties();
 
         $exceptionalityProperties->getProperty('invalid code');
+    }
+
+    /**
+     * @return ExceptionalityProperties
+     */
+    abstract protected function createExceptionalityProperties();
+
+    /**
+     * @test
+     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownBasePropertyCode
+     */
+    public function I_can_not_use_true_as_property_code_for_generic_getter()
+    {
+        $exceptionalityProperties = $this->createExceptionalityProperties();
+
+        $exceptionalityProperties->getProperty(true);
     }
 }

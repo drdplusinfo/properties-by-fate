@@ -7,6 +7,7 @@ use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
+use Granam\Scalar\Tools\ToString;
 use Granam\Strict\Object\StrictObject;
 
 /**
@@ -142,7 +143,7 @@ abstract class ExceptionalityProperties extends StrictObject
 
     public function getProperty($propertyCode)
     {
-        switch ($propertyCode) {
+        switch (ToString::toString($propertyCode)) {
             case Strength::STRENGTH :
                 return $this->getStrength();
             case Agility::AGILITY :

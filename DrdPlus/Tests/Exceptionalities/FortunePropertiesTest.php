@@ -4,7 +4,7 @@ namespace DrdPlus\Tests\Exceptionalities;
 use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\FortuneProperties;
 
-class FortunePropertiesTest extends AbstractTestOfExceptionalityProperties
+class FortunePropertiesTest extends ExceptionalityPropertiesTest
 {
     /**
      * @return FortuneProperties
@@ -102,13 +102,9 @@ class FortunePropertiesTest extends AbstractTestOfExceptionalityProperties
         $this->assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
     }
 
-    /**
-     * @test
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownBasePropertyCode
-     */
-    public function I_can_not_use_invalid_property_code_for_generic_getter()
+    protected function createExceptionalityProperties()
     {
-        $exceptionalityProperties = new FortuneProperties(
+        return new FortuneProperties(
             $this->getStrength(),
             $this->getRoll(),
             $this->getAgility(),
@@ -122,7 +118,5 @@ class FortunePropertiesTest extends AbstractTestOfExceptionalityProperties
             $this->getCharisma(),
             $this->getRoll()
         );
-
-        $exceptionalityProperties->getProperty('invalid code');
     }
 }
