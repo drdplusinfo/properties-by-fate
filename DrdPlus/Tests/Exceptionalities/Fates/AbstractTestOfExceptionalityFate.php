@@ -3,7 +3,7 @@ namespace DrdPlus\Tests\Exceptionalities\Fates;
 
 use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
-use DrdPlus\Tests\Tools\TestWithMockery;
+use Granam\Tests\Tools\TestWithMockery;
 
 abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
 {

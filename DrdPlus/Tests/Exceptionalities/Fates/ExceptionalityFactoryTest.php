@@ -6,7 +6,7 @@ use DrdPlus\Exceptionalities\Choices\PlayerDecision;
 use DrdPlus\Exceptionalities\Fates\FateOfCombination;
 use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
 use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
-use DrdPlus\Tests\Tools\TestWithMockery;
+use Granam\Tests\Tools\TestWithMockery;
 
 class ExceptionalityFactoryTest extends TestWithMockery
 {
