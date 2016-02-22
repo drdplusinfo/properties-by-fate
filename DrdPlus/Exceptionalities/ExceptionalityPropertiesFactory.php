@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities;
 
-use Drd\DiceRoll\RollInterface;
+use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Properties\Base\Agility;
@@ -20,12 +20,12 @@ class ExceptionalityPropertiesFactory extends StrictObject
     public function createFortuneProperties(
         ExceptionalityFate $fate,
         ProfessionLevel $professionLevel,
-        RollInterface $strengthRoll,
-        RollInterface $agilityRoll,
-        RollInterface $knackRoll,
-        RollInterface $willRoll,
-        RollInterface $intelligenceRoll,
-        RollInterface $charismaRoll,
+        Roll1d6 $strengthRoll,
+        Roll1d6 $agilityRoll,
+        Roll1d6 $knackRoll,
+        Roll1d6 $willRoll,
+        Roll1d6 $intelligenceRoll,
+        Roll1d6 $charismaRoll,
         BasePropertyFactory $basePropertyFactory
     )
     {
@@ -67,7 +67,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
     private function createFortuneProperty(
         ProfessionLevel $profession,
         ExceptionalityFate $fate,
-        RollInterface $roll,
+        Roll1d6 $roll,
         $propertyCode,
         BasePropertyFactory $basePropertyFactory
     )

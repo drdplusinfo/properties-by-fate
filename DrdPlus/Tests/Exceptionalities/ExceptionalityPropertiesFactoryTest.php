@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities;
 
-use Drd\DiceRoll\RollInterface;
+use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Professions\Profession;
@@ -473,8 +473,8 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     {
         $fate = $this->mockery(ExceptionalityFate::class);
         $fate->shouldReceive('getPrimaryPropertyBonusOnFortune')
-            ->with(\Mockery::type(RollInterface::class))
-            ->andReturnUsing(function (RollInterface $roll) use ($testMultiplier) {
+            ->with(\Mockery::type(Roll1d6::class))
+            ->andReturnUsing(function (Roll1d6 $roll) use ($testMultiplier) {
                 return $roll->getLastRollSummary() * $testMultiplier;
             });
 
@@ -483,11 +483,11 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
 
     /**
      * @param $value
-     * @return RollInterface
+     * @return Roll1d6
      */
     private function createRoll($value)
     {
-        $roll = $this->mockery(RollInterface::class);
+        $roll = $this->mockery(Roll1d6::class);
         $roll->shouldReceive('getLastRollSummary')
             ->andReturn($value);
 
@@ -549,8 +549,8 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     {
         $fate = $this->mockery(ExceptionalityFate::class);
         $fate->shouldReceive('getSecondaryPropertyBonusOnFortune')
-            ->with(\Mockery::type(RollInterface::class))
-            ->andReturnUsing(function (RollInterface $roll) use ($testMultiplier) {
+            ->with(\Mockery::type(Roll1d6::class))
+            ->andReturnUsing(function (Roll1d6 $roll) use ($testMultiplier) {
                 return $roll->getLastRollSummary() * $testMultiplier;
             });
 
