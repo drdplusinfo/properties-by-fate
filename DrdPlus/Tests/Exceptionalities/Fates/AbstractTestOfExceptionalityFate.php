@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\Tests\Exceptionalities\Fates;
 
-use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use Granam\Tests\Tools\TestWithMockery;
 
 abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
@@ -67,10 +67,10 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
     public function I_can_get_properties_bonus_on_fortune(ExceptionalityFate $kind)
     {
         foreach ([1, 2, 3, 4, 5, 6] as $value) {
-            $roll = $this->mockery(RollInterface::class);
-            $roll->shouldReceive('getLastRollSummary')
+            $roll = $this->mockery(Integer1To6::class);
+            $roll->shouldReceive('getValue')
                 ->andReturn($value);
-            /** @var RollInterface $roll */
+            /** @var Integer1to6 $roll */
             $this->assertSame(
                 $this->getExpectedPrimaryPropertiesBonusOnFortune($value),
                 $kind->getPrimaryPropertyBonusOnFortune($roll),
@@ -95,10 +95,10 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
      */
     public function I_can_not_use_unexpected_roll_for_primary_property_on_fortune(ExceptionalityFate $fate)
     {
-        $roll = $this->mockery(RollInterface::class);
-        $roll->shouldReceive('getLastRollSummary')
+        $roll = $this->mockery(Integer1to6::class);
+        $roll->shouldReceive('getValue')
             ->andReturn(7);
-        /** @var RollInterface $roll */
+        /** @var Integer1to6 $roll */
         $fate->getPrimaryPropertyBonusOnFortune($roll);
     }
 
@@ -111,10 +111,10 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
      */
     public function I_can_not_use_unexpected_roll_for_secondary_property_on_fortune(ExceptionalityFate $fate)
     {
-        $roll = $this->mockery(RollInterface::class);
-        $roll->shouldReceive('getLastRollSummary')
+        $roll = $this->mockery(Integer1to6::class);
+        $roll->shouldReceive('getValue')
             ->andReturn(7);
-        /** @var RollInterface $roll */
+        /** @var Integer1to6 $roll */
         $fate->getSecondaryPropertyBonusOnFortune($roll);
     }
 

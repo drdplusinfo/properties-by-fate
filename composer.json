@@ -15,7 +15,6 @@
     "granam/scalar": "dev-master",
     "granam/tools": "dev-master",
     "drd-plus/properties": "dev-master",
-    "drd-plus/tools": "dev-master",
     "drd-plus/profession-levels": "dev-master"
   },
   "require-dev": {

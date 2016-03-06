@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities\Fates;
 
-use Drd\DiceRoll\RollInterface;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use Granam\Tools\ValueDescriber;
 
 class FateOfExceptionalProperties extends ExceptionalityFate
@@ -32,13 +32,13 @@ class FateOfExceptionalProperties extends ExceptionalityFate
     }
 
     /**
-     * @param RollInterface $roll
+     * @param Integer1to6 $roll
      *
      * @return int
      */
-    public function getPrimaryPropertyBonusOnFortune(RollInterface $roll)
+    public function getPrimaryPropertyBonusOnFortune(Integer1To6 $roll)
     {
-        switch ($roll->getLastRollSummary()) {
+        switch ($roll->getValue()) {
             case 1:
             case 2:
             case 3:
@@ -49,19 +49,19 @@ class FateOfExceptionalProperties extends ExceptionalityFate
                 return 2;
             default:
                 throw new Exceptions\UnexpectedRoll(
-                    'Unexpected roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
+                    'Unexpected roll value ' . ValueDescriber::describe($roll->getValue())
                 );
         }
     }
 
     /**
-     * @param RollInterface $roll
+     * @param Integer1to6 $roll
      *
      * @return int
      */
-    public function getSecondaryPropertyBonusOnFortune(RollInterface $roll)
+    public function getSecondaryPropertyBonusOnFortune(Integer1to6 $roll)
     {
-        switch ($roll->getLastRollSummary()) {
+        switch ($roll->getValue()) {
             case 1:
                 return 0;
             case 2:
@@ -74,7 +74,7 @@ class FateOfExceptionalProperties extends ExceptionalityFate
                 return 3;
             default:
                 throw new Exceptions\UnexpectedRoll(
-                    'Unexpected roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
+                    'Unexpected roll value ' . ValueDescriber::describe($roll->getValue())
                 );
         }
     }

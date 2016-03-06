@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities\Fates;
 
-use Drd\DiceRoll\RollInterface;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use Granam\Tools\ValueDescriber;
 
 class FateOfCombination extends ExceptionalityFate
@@ -33,13 +33,13 @@ class FateOfCombination extends ExceptionalityFate
     }
 
     /**
-     * @param RollInterface $roll
+     * @param Integer1to6 $roll
      *
      * @return int
      */
-    public function getPrimaryPropertyBonusOnFortune(RollInterface $roll)
+    public function getPrimaryPropertyBonusOnFortune(Integer1To6 $roll)
     {
-        switch ($roll->getLastRollSummary()) {
+        switch ($roll->getValue()) {
             case 1:
             case 2:
                 return 0;
@@ -51,17 +51,17 @@ class FateOfCombination extends ExceptionalityFate
                 return 2;
             default:
                 throw new Exceptions\UnexpectedRoll(
-                    'Unexpected roll value ' . ValueDescriber::describe($roll->getLastRollSummary())
+                    'Unexpected roll value ' . ValueDescriber::describe($roll->getValue())
                 );
         }
     }
 
     /**
-     * @param RollInterface $roll
+     * @param Integer1to6 $roll
      *
      * @return int
      */
-    public function getSecondaryPropertyBonusOnFortune(RollInterface $roll)
+    public function getSecondaryPropertyBonusOnFortune(Integer1to6 $roll)
     {
         // combination has same secondary and primary properties bonus
         return $this->getPrimaryPropertyBonusOnFortune($roll);

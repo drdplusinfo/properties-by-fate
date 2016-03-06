@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\Tests\Exceptionalities;
 
-use Drd\DiceRoll\RollInterface;
 use DrdPlus\Exceptionalities\FortuneProperties;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 
 class FortunePropertiesTest extends ExceptionalityPropertiesTest
 {
@@ -36,12 +36,12 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
 
     /**
      * @param $value = null
-     * @return \Mockery\MockInterface|RollInterface
+     * @return \Mockery\MockInterface|Integer1To6
      */
     protected function getRoll($value = null)
     {
-        $roll = $this->mockery(RollInterface::class);
-        $roll->shouldReceive('getLastRollSummary')
+        $roll = $this->mockery(Integer1to6::class);
+        $roll->shouldReceive('getValue')
             ->andReturn($value);
 
         return $roll;

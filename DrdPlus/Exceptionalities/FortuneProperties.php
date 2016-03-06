@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities;
 
-use Drd\DiceRoll\RollInterface;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
@@ -47,26 +47,26 @@ class FortuneProperties extends ExceptionalityProperties
 
     public function __construct(
         Strength $strength,
-        RollInterface $strengthRoll,
+        Integer1To6 $strengthRoll,
         Agility $agility,
-        RollInterface $agilityRoll,
+        Integer1to6 $agilityRoll,
         Knack $knack,
-        RollInterface $knackRoll,
+        Integer1to6 $knackRoll,
         Will $will,
-        RollInterface $willRoll,
+        Integer1to6 $willRoll,
         Intelligence $intelligence,
-        RollInterface $intelligenceRoll,
+        Integer1to6 $intelligenceRoll,
         Charisma $charisma,
-        RollInterface $charismaRoll
+        Integer1to6 $charismaRoll
     )
     {
         parent::__construct($strength, $agility, $knack, $will, $intelligence, $charisma);
-        $this->strengthRoll = $strengthRoll->getLastRollSummary();
-        $this->agilityRoll = $agilityRoll->getLastRollSummary();
-        $this->knackRoll = $knackRoll->getLastRollSummary();
-        $this->willRoll = $willRoll->getLastRollSummary();
-        $this->intelligenceRoll = $intelligenceRoll->getLastRollSummary();
-        $this->charismaRoll = $charismaRoll->getLastRollSummary();
+        $this->strengthRoll = $strengthRoll->getValue();
+        $this->agilityRoll = $agilityRoll->getValue();
+        $this->knackRoll = $knackRoll->getValue();
+        $this->willRoll = $willRoll->getValue();
+        $this->intelligenceRoll = $intelligenceRoll->getValue();
+        $this->charismaRoll = $charismaRoll->getValue();
     }
 
     /**

@@ -2,7 +2,7 @@
 namespace DrdPlus\Exceptionalities\Fates;
 
 use Doctrineum\Scalar\ScalarEnum;
-use Drd\DiceRoll\RollInterface;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use Granam\Tools\Naming;
 
 abstract class ExceptionalityFate extends ScalarEnum
@@ -31,18 +31,18 @@ abstract class ExceptionalityFate extends ScalarEnum
     abstract public function getSecondaryPropertiesBonusOnChoice();
 
     /**
-     * @param RollInterface $roll
+     * @param Integer1To6 $roll
      *
      * @return int
      */
-    abstract public function getPrimaryPropertyBonusOnFortune(RollInterface $roll);
+    abstract public function getPrimaryPropertyBonusOnFortune(Integer1To6 $roll);
 
     /**
-     * @param RollInterface $roll
+     * @param Integer1To6 $roll
      *
      * @return int
      */
-    abstract public function getSecondaryPropertyBonusOnFortune(RollInterface $roll);
+    abstract public function getSecondaryPropertyBonusOnFortune(Integer1To6 $roll);
 
     /**
      * @return int

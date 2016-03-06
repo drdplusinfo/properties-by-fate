@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\Exceptionalities;
 
-use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BaseProperty;
@@ -17,33 +17,51 @@ use Granam\Strict\Object\StrictObject;
 class ExceptionalityPropertiesFactory extends StrictObject
 {
 
+    /**
+     * @param ExceptionalityFate $fate
+     * @param ProfessionLevel $professionLevel
+     * @param int $strengthRollValue
+     * @param int $agilityRollValue
+     * @param int $knackRollValue
+     * @param int $willRollValue
+     * @param int $intelligenceRollValue
+     * @param int $charismaRollValue
+     * @param BasePropertyFactory $basePropertyFactory
+     * @return FortuneProperties
+     */
     public function createFortuneProperties(
         ExceptionalityFate $fate,
         ProfessionLevel $professionLevel,
-        Roll1d6 $strengthRoll,
-        Roll1d6 $agilityRoll,
-        Roll1d6 $knackRoll,
-        Roll1d6 $willRoll,
-        Roll1d6 $intelligenceRoll,
-        Roll1d6 $charismaRoll,
+        $strengthRollValue,
+        $agilityRollValue,
+        $knackRollValue,
+        $willRollValue,
+        $intelligenceRollValue,
+        $charismaRollValue,
         BasePropertyFactory $basePropertyFactory
     )
     {
+        $strengthRoll = new Integer1To6($strengthRollValue);
         $strength = $this->createFortuneProperty(
             $professionLevel, $fate, $strengthRoll, Strength::STRENGTH, $basePropertyFactory
         );
+        $agilityRoll = new Integer1To6($agilityRollValue);
         $agility = $this->createFortuneProperty(
             $professionLevel, $fate, $agilityRoll, Agility::AGILITY, $basePropertyFactory
         );
+        $knackRoll = new Integer1To6($knackRollValue);
         $knack = $this->createFortuneProperty(
             $professionLevel, $fate, $knackRoll, Knack::KNACK, $basePropertyFactory
         );
+        $willRoll = new Integer1To6($willRollValue);
         $will = $this->createFortuneProperty(
             $professionLevel, $fate, $willRoll, Will::WILL, $basePropertyFactory
         );
+        $intelligenceRoll = new Integer1To6($intelligenceRollValue);
         $intelligence = $this->createFortuneProperty(
             $professionLevel, $fate, $intelligenceRoll, Intelligence::INTELLIGENCE, $basePropertyFactory
         );
+        $charismaRoll = new Integer1To6($charismaRollValue);
         $charisma = $this->createFortuneProperty(
             $professionLevel, $fate, $charismaRoll, Charisma::CHARISMA, $basePropertyFactory
         );
@@ -67,7 +85,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
     private function createFortuneProperty(
         ProfessionLevel $profession,
         ExceptionalityFate $fate,
-        Roll1d6 $roll,
+        Integer1To6 $roll,
         $propertyCode,
         BasePropertyFactory $basePropertyFactory
     )

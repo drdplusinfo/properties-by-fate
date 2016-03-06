@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\Exceptionalities;
 
-use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Professions\Profession;
 use DrdPlus\Properties\Base\Agility;
@@ -443,12 +443,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 Intelligence::INTELLIGENCE,
                 Charisma::CHARISMA,
             ]),
-            $this->createRoll($strengthRoll),
-            $this->createRoll($agilityRoll),
-            $this->createRoll($knackRoll),
-            $this->createRoll($willRoll),
-            $this->createRoll($intelligenceRoll),
-            $this->createRoll($charismaRoll),
+            $strengthRoll,
+            $agilityRoll,
+            $knackRoll,
+            $willRoll,
+            $intelligenceRoll,
+            $charismaRoll,
             new BasePropertyFactory()
         );
         $this->assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
@@ -473,25 +473,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     {
         $fate = $this->mockery(ExceptionalityFate::class);
         $fate->shouldReceive('getPrimaryPropertyBonusOnFortune')
-            ->with(\Mockery::type(Roll1d6::class))
-            ->andReturnUsing(function (Roll1d6 $roll) use ($testMultiplier) {
-                return $roll->getLastRollSummary() * $testMultiplier;
+            ->with(\Mockery::type(Integer1to6::class))
+            ->andReturnUsing(function (Integer1to6 $roll) use ($testMultiplier) {
+                return $roll->getValue() * $testMultiplier;
             });
 
         return $fate;
-    }
-
-    /**
-     * @param $value
-     * @return Roll1d6
-     */
-    private function createRoll($value)
-    {
-        $roll = $this->mockery(Roll1d6::class);
-        $roll->shouldReceive('getLastRollSummary')
-            ->andReturn($value);
-
-        return $roll;
     }
 
     /**
@@ -519,12 +506,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
         $chosenProperties = $factory->createFortuneProperties(
             $this->createFortuneFateForSecondaryPropertiesOnly($testMultiplier = 456),
             $this->createProfessionLevel([]), // all properties as secondary
-            $this->createRoll($strengthRoll),
-            $this->createRoll($agilityRoll),
-            $this->createRoll($knackRoll),
-            $this->createRoll($willRoll),
-            $this->createRoll($intelligenceRoll),
-            $this->createRoll($charismaRoll),
+            $strengthRoll,
+            $agilityRoll,
+            $knackRoll,
+            $willRoll,
+            $intelligenceRoll,
+            $charismaRoll,
             new BasePropertyFactory()
         );
         $this->assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
@@ -549,9 +536,9 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     {
         $fate = $this->mockery(ExceptionalityFate::class);
         $fate->shouldReceive('getSecondaryPropertyBonusOnFortune')
-            ->with(\Mockery::type(Roll1d6::class))
-            ->andReturnUsing(function (Roll1d6 $roll) use ($testMultiplier) {
-                return $roll->getLastRollSummary() * $testMultiplier;
+            ->with(\Mockery::type(Integer1to6::class))
+            ->andReturnUsing(function (Integer1to6 $roll) use ($testMultiplier) {
+                return $roll->getValue() * $testMultiplier;
             });
 
         return $fate;
