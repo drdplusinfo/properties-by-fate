@@ -6,7 +6,7 @@ use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BaseProperty;
-use DrdPlus\Properties\Base\BasePropertyFactory;
+use DrdPlus\Properties\Base\BasePropertiesFactory;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
@@ -26,7 +26,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
      * @param int $willRollValue
      * @param int $intelligenceRollValue
      * @param int $charismaRollValue
-     * @param BasePropertyFactory $basePropertyFactory
+     * @param BasePropertiesFactory $basePropertyFactory
      * @return FortuneProperties
      */
     public function createFortuneProperties(
@@ -38,7 +38,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         $willRollValue,
         $intelligenceRollValue,
         $charismaRollValue,
-        BasePropertyFactory $basePropertyFactory
+        BasePropertiesFactory $basePropertyFactory
     )
     {
         $strengthRoll = new Integer1To6($strengthRollValue);
@@ -87,7 +87,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
         ExceptionalityFate $fate,
         Integer1To6 $roll,
         $propertyCode,
-        BasePropertyFactory $basePropertyFactory
+        BasePropertiesFactory $basePropertyFactory
     )
     {
         if ($professionLevel->isPrimaryProperty($propertyCode)) {
