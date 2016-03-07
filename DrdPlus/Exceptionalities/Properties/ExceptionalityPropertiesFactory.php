@@ -83,14 +83,14 @@ class ExceptionalityPropertiesFactory extends StrictObject
     }
 
     private function createFortuneProperty(
-        ProfessionLevel $profession,
+        ProfessionLevel $professionLevel,
         ExceptionalityFate $fate,
         Integer1To6 $roll,
         $propertyCode,
         BasePropertyFactory $basePropertyFactory
     )
     {
-        if ($profession->isPrimaryProperty($propertyCode)) {
+        if ($professionLevel->isPrimaryProperty($propertyCode)) {
             $value = $fate->getPrimaryPropertyBonusOnFortune($roll);
         } else {
             $value = $fate->getSecondaryPropertyBonusOnFortune($roll);
