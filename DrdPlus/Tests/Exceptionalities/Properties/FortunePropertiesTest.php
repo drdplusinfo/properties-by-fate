@@ -1,7 +1,7 @@
 <?php
-namespace DrdPlus\Tests\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities\Properties;
 
-use DrdPlus\Exceptionalities\FortuneProperties;
+use DrdPlus\Exceptionalities\Properties\FortuneProperties;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;
 
 class FortunePropertiesTest extends ExceptionalityPropertiesTest

@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\Exceptionalities;
+namespace DrdPlus\Exceptionalities\Properties;
 
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;

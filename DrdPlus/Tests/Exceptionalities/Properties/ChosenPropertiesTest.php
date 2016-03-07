@@ -1,7 +1,7 @@
 <?php
-namespace DrdPlus\Tests\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities\Properties;
 
-use DrdPlus\Exceptionalities\ChosenProperties;
+use DrdPlus\Exceptionalities\Properties\ChosenProperties;
 
 class ChosenPropertiesTest extends ExceptionalityPropertiesTest
 {

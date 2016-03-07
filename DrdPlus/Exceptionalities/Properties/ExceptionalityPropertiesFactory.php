@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\Exceptionalities;
+namespace DrdPlus\Exceptionalities\Properties;
 
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;

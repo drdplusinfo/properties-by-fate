@@ -1,8 +1,8 @@
 <?php
-namespace DrdPlus\Tests\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities\Properties;
 
-use DrdPlus\Exceptionalities\ChosenProperties;
-use DrdPlus\Exceptionalities\ExceptionalityProperties;
+use DrdPlus\Exceptionalities\Properties\ChosenProperties;
+use DrdPlus\Exceptionalities\Properties\ExceptionalityProperties;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
@@ -127,7 +127,7 @@ abstract class ExceptionalityPropertiesTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownBasePropertyCode
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\UnknownBasePropertyCode
      */
     public function I_can_not_use_invalid_property_code_for_generic_getter()
     {
@@ -143,7 +143,7 @@ abstract class ExceptionalityPropertiesTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownBasePropertyCode
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\UnknownBasePropertyCode
      */
     public function I_can_not_use_true_as_property_code_for_generic_getter()
     {

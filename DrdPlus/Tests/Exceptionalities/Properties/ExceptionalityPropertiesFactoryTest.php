@@ -1,7 +1,8 @@
 <?php
-namespace DrdPlus\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities\Properties;
 
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\Exceptionalities\Properties\ExceptionalityPropertiesFactory;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use DrdPlus\Person\ProfessionLevels\ProfessionLevel;
 use DrdPlus\Professions\Profession;
@@ -171,7 +172,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
      *
      * @test
      * @dataProvider getChosenProperties
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\InvalidValueOfChosenProperty
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\InvalidValueOfChosenProperty
      */
     public function I_can_not_use_higher_than_allowed_chosen_property_tested_as_primary($strength, $agility, $knack, $will, $intelligence, $charisma)
     {
@@ -210,7 +211,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
      *
      * @test
      * @dataProvider getChosenProperties
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\InvalidSumOfChosenProperties
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\InvalidSumOfChosenProperties
      */
     public function I_can_not_use_higher_than_expected_chosen_properties_sum_tested_as_primary($strength, $agility, $knack, $will, $intelligence, $charisma)
     {
@@ -249,7 +250,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
      *
      * @test
      * @dataProvider getChosenProperties
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\InvalidSumOfChosenProperties
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\InvalidSumOfChosenProperties
      */
     public function I_can_not_use_lesser_than_expected_chosen_properties_sum_tested_as_primary($strength, $agility, $knack, $will, $intelligence, $charisma)
     {
@@ -325,7 +326,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
      *
      * @test
      * @dataProvider getChosenProperties
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\InvalidSumOfChosenProperties
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\InvalidSumOfChosenProperties
      */
     public function I_can_not_use_higher_than_expected_chosen_properties_sum_tested_as_secondary($strength, $agility, $knack, $will, $intelligence, $charisma)
     {
@@ -357,7 +358,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
      *
      * @test
      * @dataProvider getChosenProperties
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\InvalidValueOfChosenProperty
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\InvalidValueOfChosenProperty
      */
     public function I_can_not_use_higher_than_allowed_chosen_property_tested_as_secondary($strength, $agility, $knack, $will, $intelligence, $charisma)
     {
@@ -389,7 +390,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
      *
      * @test
      * @dataProvider getChosenProperties
-     * @expectedException \DrdPlus\Exceptionalities\Exceptions\InvalidSumOfChosenProperties
+     * @expectedException \DrdPlus\Exceptionalities\Properties\Exceptions\InvalidSumOfChosenProperties
      */
     public function I_can_not_use_lesser_than_expected_chosen_properties_sum_tested_as_secondary($strength, $agility, $knack, $will, $intelligence, $charisma)
     {

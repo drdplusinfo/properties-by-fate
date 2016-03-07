@@ -3,7 +3,7 @@ namespace DrdPlus\Tests\Exceptionalities;
 
 use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
 use DrdPlus\Exceptionalities\Exceptionality;
-use DrdPlus\Exceptionalities\ExceptionalityProperties;
+use DrdPlus\Exceptionalities\Properties\ExceptionalityProperties;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use Granam\Tests\Tools\TestWithMockery;
 

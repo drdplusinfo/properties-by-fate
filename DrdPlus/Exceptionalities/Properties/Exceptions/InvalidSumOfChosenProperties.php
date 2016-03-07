@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\Exceptionalities\Exceptions;
+namespace DrdPlus\Exceptionalities\Properties\Exceptions;
 
 class InvalidSumOfChosenProperties extends \LogicException implements Logic
 {

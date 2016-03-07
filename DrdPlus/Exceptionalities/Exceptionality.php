@@ -3,6 +3,7 @@ namespace DrdPlus\Exceptionalities;
 
 use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\Exceptionalities\Properties\ExceptionalityProperties;
 use Granam\Strict\Object\StrictObject;
 
 /**
