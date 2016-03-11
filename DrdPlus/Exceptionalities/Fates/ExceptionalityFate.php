@@ -3,7 +3,7 @@ namespace DrdPlus\Exceptionalities\Fates;
 
 use Doctrineum\Scalar\ScalarEnum;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;
-use Granam\Tools\Naming;
+use Granam\String\StringTools;
 
 abstract class ExceptionalityFate extends ScalarEnum
 {
@@ -17,7 +17,7 @@ abstract class ExceptionalityFate extends ScalarEnum
 
     public static function getCode()
     {
-        return Naming::camelCaseClassToSnakeCase(static::class);
+        return StringTools::camelCaseClassToSnakeCase(static::class);
     }
 
     /**
