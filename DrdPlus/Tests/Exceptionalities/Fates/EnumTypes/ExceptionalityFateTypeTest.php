@@ -14,8 +14,8 @@ class ExceptionalityFateTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function I_can_get_its_type_name()
     {
-        $this->assertSame('exceptionality_fate', ExceptionalityFateType::getTypeName());
-        $this->assertSame('exceptionality_fate', ExceptionalityFateType::EXCEPTIONALITY_FATE);
+        self::assertSame('exceptionality_fate', ExceptionalityFateType::getTypeName());
+        self::assertSame('exceptionality_fate', ExceptionalityFateType::EXCEPTIONALITY_FATE);
     }
 
     /**
@@ -24,7 +24,7 @@ class ExceptionalityFateTypeTest extends \PHPUnit_Framework_TestCase
     public function I_can_register_it_by_self()
     {
         ExceptionalityFateType::registerSelf();
-        $this->assertTrue(Type::hasType(ExceptionalityFateType::getTypeName()));
+        self::assertTrue(Type::hasType(ExceptionalityFateType::getTypeName()));
     }
 
     /**
@@ -33,9 +33,9 @@ class ExceptionalityFateTypeTest extends \PHPUnit_Framework_TestCase
     public function I_can_register_specific_fates()
     {
         ExceptionalityFateType::registerFates();
-        $this->assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfCombination::class));
-        $this->assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfExceptionalProperties::class));
-        $this->assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfGoodRear::class));
+        self::assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfCombination::class));
+        self::assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfExceptionalProperties::class));
+        self::assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfGoodRear::class));
     }
 
 }

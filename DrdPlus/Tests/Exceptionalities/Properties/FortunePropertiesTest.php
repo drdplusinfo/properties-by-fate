@@ -29,7 +29,7 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
             $this->getRoll()
         );
 
-        $this->assertNotNull($instance);
+        self::assertNotNull($instance);
 
         return $instance;
     }
@@ -67,12 +67,12 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
             $charisma = $this->getCharisma(),
             $this->getRoll()
         );
-        $this->assertSame($strength, $fortuneProperties->getStrength());
-        $this->assertSame($agility, $fortuneProperties->getAgility());
-        $this->assertSame($knack, $fortuneProperties->getKnack());
-        $this->assertSame($will, $fortuneProperties->getWill());
-        $this->assertSame($intelligence, $fortuneProperties->getIntelligence());
-        $this->assertSame($charisma, $fortuneProperties->getCharisma());
+        self::assertSame($strength, $fortuneProperties->getStrength());
+        self::assertSame($agility, $fortuneProperties->getAgility());
+        self::assertSame($knack, $fortuneProperties->getKnack());
+        self::assertSame($will, $fortuneProperties->getWill());
+        self::assertSame($intelligence, $fortuneProperties->getIntelligence());
+        self::assertSame($charisma, $fortuneProperties->getCharisma());
     }
 
     /**
@@ -94,12 +94,12 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
             $this->getCharisma(),
             $this->getRoll($charismaRoll = 6)
         );
-        $this->assertSame($strengthRoll, $fortuneProperties->getStrengthRoll());
-        $this->assertSame($agilityRoll, $fortuneProperties->getAgilityRoll());
-        $this->assertSame($knackRoll, $fortuneProperties->getKnackRoll());
-        $this->assertSame($willRoll, $fortuneProperties->getWillRoll());
-        $this->assertSame($intelligenceRoll, $fortuneProperties->getIntelligenceRoll());
-        $this->assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
+        self::assertSame($strengthRoll, $fortuneProperties->getStrengthRoll());
+        self::assertSame($agilityRoll, $fortuneProperties->getAgilityRoll());
+        self::assertSame($knackRoll, $fortuneProperties->getKnackRoll());
+        self::assertSame($willRoll, $fortuneProperties->getWillRoll());
+        self::assertSame($intelligenceRoll, $fortuneProperties->getIntelligenceRoll());
+        self::assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
     }
 
     protected function createExceptionalityProperties()

@@ -17,7 +17,7 @@ abstract class AbstractTestOfChoice extends \PHPUnit_Framework_TestCase
     {
         $choiceClass = $this->getChoiceClass();
         $instance = $choiceClass::getIt();
-        $this->assertInstanceOf($choiceClass, $instance);
+        self::assertInstanceOf($choiceClass, $instance);
 
         return $instance;
     }
@@ -36,12 +36,12 @@ abstract class AbstractTestOfChoice extends \PHPUnit_Framework_TestCase
     public function I_can_get_choice_code()
     {
         $choiceClass = $this->getChoiceClass();
-        $this->assertSame(
+        self::assertSame(
             $this->getExpectedChoiceCode(),
             $choiceClass::getCode()
         );
         $codeConstantName = $this->getCodeConstantName();
-        $this->assertSame(
+        self::assertSame(
             $this->getExpectedChoiceCode(),
             constant("$choiceClass::$codeConstantName")
         );

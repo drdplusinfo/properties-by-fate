@@ -53,12 +53,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             $intelligence = $this->createIntelligence($intelligence),
             $charisma = $this->createCharisma($charisma)
         );
-        $this->assertSame($strength, $chosenProperties->getStrength());
-        $this->assertSame($agility, $chosenProperties->getAgility());
-        $this->assertSame($knack, $chosenProperties->getKnack());
-        $this->assertSame($will, $chosenProperties->getWill());
-        $this->assertSame($intelligence, $chosenProperties->getIntelligence());
-        $this->assertSame($charisma, $chosenProperties->getCharisma());
+        self::assertSame($strength, $chosenProperties->getStrength());
+        self::assertSame($agility, $chosenProperties->getAgility());
+        self::assertSame($knack, $chosenProperties->getKnack());
+        self::assertSame($will, $chosenProperties->getWill());
+        self::assertSame($intelligence, $chosenProperties->getIntelligence());
+        self::assertSame($charisma, $chosenProperties->getCharisma());
     }
 
     public function getChosenProperties()
@@ -98,7 +98,7 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
         $professionLevel = $this->mockery(ProfessionLevel::class);
         $professionLevel->shouldReceive('isPrimaryProperty')
             ->andReturnUsing(function ($propertyCode) use ($primaryPropertyCodes) {
-                return in_array($propertyCode, $primaryPropertyCodes);
+                return in_array($propertyCode, $primaryPropertyCodes, true);
             });
         $professionLevel->shouldReceive('getProfession')
             ->andReturn($profession = $this->mockery(Profession::class));
@@ -308,12 +308,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             $intelligence = $this->createIntelligence($intelligence),
             $charisma = $this->createCharisma($charisma)
         );
-        $this->assertSame($strength, $chosenProperties->getStrength());
-        $this->assertSame($agility, $chosenProperties->getAgility());
-        $this->assertSame($knack, $chosenProperties->getKnack());
-        $this->assertSame($will, $chosenProperties->getWill());
-        $this->assertSame($intelligence, $chosenProperties->getIntelligence());
-        $this->assertSame($charisma, $chosenProperties->getCharisma());
+        self::assertSame($strength, $chosenProperties->getStrength());
+        self::assertSame($agility, $chosenProperties->getAgility());
+        self::assertSame($knack, $chosenProperties->getKnack());
+        self::assertSame($will, $chosenProperties->getWill());
+        self::assertSame($intelligence, $chosenProperties->getIntelligence());
+        self::assertSame($charisma, $chosenProperties->getCharisma());
     }
 
     /**
@@ -452,18 +452,18 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             $charismaRoll,
             new BasePropertiesFactory()
         );
-        $this->assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
-        $this->assertSame($strengthRoll, $chosenProperties->getStrengthRoll());
-        $this->assertSame($agilityRoll * $testMultiplier, $chosenProperties->getAgility()->getValue());
-        $this->assertSame($agilityRoll, $chosenProperties->getAgilityRoll());
-        $this->assertSame($knackRoll * $testMultiplier, $chosenProperties->getKnack()->getValue());
-        $this->assertSame($knackRoll, $chosenProperties->getKnackRoll());
-        $this->assertSame($willRoll * $testMultiplier, $chosenProperties->getWill()->getValue());
-        $this->assertSame($willRoll, $chosenProperties->getWillRoll());
-        $this->assertSame($intelligenceRoll * $testMultiplier, $chosenProperties->getIntelligence()->getValue());
-        $this->assertSame($intelligenceRoll, $chosenProperties->getIntelligenceRoll());
-        $this->assertSame($charismaRoll * $testMultiplier, $chosenProperties->getCharisma()->getValue());
-        $this->assertSame($charismaRoll, $chosenProperties->getCharismaRoll());
+        self::assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
+        self::assertSame($strengthRoll, $chosenProperties->getStrengthRoll());
+        self::assertSame($agilityRoll * $testMultiplier, $chosenProperties->getAgility()->getValue());
+        self::assertSame($agilityRoll, $chosenProperties->getAgilityRoll());
+        self::assertSame($knackRoll * $testMultiplier, $chosenProperties->getKnack()->getValue());
+        self::assertSame($knackRoll, $chosenProperties->getKnackRoll());
+        self::assertSame($willRoll * $testMultiplier, $chosenProperties->getWill()->getValue());
+        self::assertSame($willRoll, $chosenProperties->getWillRoll());
+        self::assertSame($intelligenceRoll * $testMultiplier, $chosenProperties->getIntelligence()->getValue());
+        self::assertSame($intelligenceRoll, $chosenProperties->getIntelligenceRoll());
+        self::assertSame($charismaRoll * $testMultiplier, $chosenProperties->getCharisma()->getValue());
+        self::assertSame($charismaRoll, $chosenProperties->getCharismaRoll());
     }
 
     /**
@@ -515,18 +515,18 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             $charismaRoll,
             new BasePropertiesFactory()
         );
-        $this->assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
-        $this->assertSame($strengthRoll, $chosenProperties->getStrengthRoll());
-        $this->assertSame($agilityRoll * $testMultiplier, $chosenProperties->getAgility()->getValue());
-        $this->assertSame($agilityRoll, $chosenProperties->getAgilityRoll());
-        $this->assertSame($knackRoll * $testMultiplier, $chosenProperties->getKnack()->getValue());
-        $this->assertSame($knackRoll, $chosenProperties->getKnackRoll());
-        $this->assertSame($willRoll * $testMultiplier, $chosenProperties->getWill()->getValue());
-        $this->assertSame($willRoll, $chosenProperties->getWillRoll());
-        $this->assertSame($intelligenceRoll * $testMultiplier, $chosenProperties->getIntelligence()->getValue());
-        $this->assertSame($intelligenceRoll, $chosenProperties->getIntelligenceRoll());
-        $this->assertSame($charismaRoll * $testMultiplier, $chosenProperties->getCharisma()->getValue());
-        $this->assertSame($charismaRoll, $chosenProperties->getCharismaRoll());
+        self::assertSame($strengthRoll * $testMultiplier, $chosenProperties->getStrength()->getValue());
+        self::assertSame($strengthRoll, $chosenProperties->getStrengthRoll());
+        self::assertSame($agilityRoll * $testMultiplier, $chosenProperties->getAgility()->getValue());
+        self::assertSame($agilityRoll, $chosenProperties->getAgilityRoll());
+        self::assertSame($knackRoll * $testMultiplier, $chosenProperties->getKnack()->getValue());
+        self::assertSame($knackRoll, $chosenProperties->getKnackRoll());
+        self::assertSame($willRoll * $testMultiplier, $chosenProperties->getWill()->getValue());
+        self::assertSame($willRoll, $chosenProperties->getWillRoll());
+        self::assertSame($intelligenceRoll * $testMultiplier, $chosenProperties->getIntelligence()->getValue());
+        self::assertSame($intelligenceRoll, $chosenProperties->getIntelligenceRoll());
+        self::assertSame($charismaRoll * $testMultiplier, $chosenProperties->getCharisma()->getValue());
+        self::assertSame($charismaRoll, $chosenProperties->getCharismaRoll());
     }
 
     /**

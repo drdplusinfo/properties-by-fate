@@ -20,10 +20,10 @@ class ExceptionalityTest extends TestWithMockery
             $properties = $this->createExceptionalityProperties()
         );
 
-        $this->assertSame($choice, $exceptionality->getExceptionalityChoice());
-        $this->assertSame($fate, $exceptionality->getExceptionalityFate());
-        $this->assertSame($properties, $exceptionality->getExceptionalityProperties());
-        $this->assertSame(null, $exceptionality->getId());
+        self::assertSame($choice, $exceptionality->getExceptionalityChoice());
+        self::assertSame($fate, $exceptionality->getExceptionalityFate());
+        self::assertSame($properties, $exceptionality->getExceptionalityProperties());
+        self::assertNull($exceptionality->getId());
     }
 
     /**
@@ -31,9 +31,7 @@ class ExceptionalityTest extends TestWithMockery
      */
     private function createExceptionalityChoice()
     {
-        $choice = \Mockery::mock(ExceptionalityChoice::class);
-
-        return $choice;
+        return \Mockery::mock(ExceptionalityChoice::class);
     }
 
     /**
@@ -41,9 +39,7 @@ class ExceptionalityTest extends TestWithMockery
      */
     private function createExceptionalityFate()
     {
-        $choice = \Mockery::mock(ExceptionalityFate::class);
-
-        return $choice;
+        return \Mockery::mock(ExceptionalityFate::class);
     }
 
     /**
@@ -51,9 +47,7 @@ class ExceptionalityTest extends TestWithMockery
      */
     private function createExceptionalityProperties()
     {
-        $properties = \Mockery::mock(ExceptionalityProperties::class);
-
-        return $properties;
+        return \Mockery::mock(ExceptionalityProperties::class);
     }
 
 }

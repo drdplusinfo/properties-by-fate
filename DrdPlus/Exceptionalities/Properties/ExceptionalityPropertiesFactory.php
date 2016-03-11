@@ -96,9 +96,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
             $value = $fate->getSecondaryPropertyBonusOnFortune($roll);
         }
 
-        $property = $basePropertyFactory->createProperty($value, $propertyCode);
-
-        return $property;
+        return $basePropertyFactory->createProperty($value, $propertyCode);
     }
 
     public function createChosenProperties(
@@ -159,7 +157,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
             throw new Exceptions\InvalidValueOfChosenProperty(
                 "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher than allowed"
                 . " maximum {$fate->getUpToSingleProperty()} for profession {$professionLevel->getProfession()->getValue()}"
-                . " and fate {$fate->getCode()}"
+                . " and fate {$fate::getCode()}"
             );
         }
     }
@@ -169,14 +167,14 @@ class ExceptionalityPropertiesFactory extends StrictObject
         if ($primaryPropertiesSum !== $fate->getPrimaryPropertiesBonusOnChoice()) {
             throw new Exceptions\InvalidSumOfChosenProperties(
                 "Expected sum of primary properties is {$fate->getPrimaryPropertiesBonusOnChoice()}, got $primaryPropertiesSum"
-                . " for profession {$professionLevel->getProfession()->getValue()} and fate {$fate->getCode()}"
+                . " for profession {$professionLevel->getProfession()->getValue()} and fate {$fate::getCode()}"
             );
         }
 
         if ($secondaryPropertiesSum !== $fate->getSecondaryPropertiesBonusOnChoice()) {
             throw new Exceptions\InvalidSumOfChosenProperties(
                 "Expected sum of secondary properties is {$fate->getSecondaryPropertiesBonusOnChoice()}, got $secondaryPropertiesSum"
-                . " for profession {$professionLevel->getProfession()->getValue()} and fate {$fate->getCode()}"
+                . " for profession {$professionLevel->getProfession()->getValue()} and fate {$fate::getCode()}"
             );
         }
     }

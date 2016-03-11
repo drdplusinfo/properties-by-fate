@@ -17,7 +17,7 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
     {
         $exceptionalityClass = $this->getFateClass();
         $instance = $exceptionalityClass::getIt();
-        $this->assertInstanceOf($exceptionalityClass, $instance);
+        self::assertInstanceOf($exceptionalityClass, $instance);
 
         return $instance;
     }
@@ -38,11 +38,11 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
      */
     public function I_can_get_properties_bonus_on_choice(ExceptionalityFate $fate)
     {
-        $this->assertSame(
+        self::assertSame(
             $this->getExpectedPrimaryPropertiesBonusOnChoice(),
             $fate->getPrimaryPropertiesBonusOnChoice()
         );
-        $this->assertSame(
+        self::assertSame(
             $this->getExpectedSecondaryPropertiesBonusOnChoice(),
             $fate->getSecondaryPropertiesBonusOnChoice()
         );
@@ -71,13 +71,13 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
             $roll->shouldReceive('getValue')
                 ->andReturn($value);
             /** @var Integer1to6 $roll */
-            $this->assertSame(
+            self::assertSame(
                 $this->getExpectedPrimaryPropertiesBonusOnFortune($value),
                 $kind->getPrimaryPropertyBonusOnFortune($roll),
                 "Value of $value should result to bonus {$this->getExpectedSecondaryPropertiesBonusOnFortune($value)}"
                 . ", but resulted into {$kind->getSecondaryPropertyBonusOnFortune($roll)}"
             );
-            $this->assertSame(
+            self::assertSame(
                 $this->getExpectedSecondaryPropertiesBonusOnFortune($value),
                 $kind->getSecondaryPropertyBonusOnFortune($roll),
                 "Value of $value should result to bonus {$this->getExpectedSecondaryPropertiesBonusOnFortune($value)}"
@@ -137,7 +137,7 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
      */
     public function I_can_get_up_to_single_property_limit(ExceptionalityFate $fate)
     {
-        $this->assertSame($this->getExpectedUpToSingleProperty(), $fate->getUpToSingleProperty());
+        self::assertSame($this->getExpectedUpToSingleProperty(), $fate->getUpToSingleProperty());
     }
 
     /**
@@ -151,12 +151,12 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
     public function I_can_get_choice_code()
     {
         $fateClass = $this->getFateClass();
-        $this->assertSame(
+        self::assertSame(
             $this->getExpectedFateCode(),
             $fateClass::getCode()
         );
         $codeConstantName = $this->getCodeConstantName();
-        $this->assertSame(
+        self::assertSame(
             $this->getExpectedFateCode(),
             constant("$fateClass::$codeConstantName")
         );

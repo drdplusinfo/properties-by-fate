@@ -13,8 +13,8 @@ class Integer1To6Test extends \PHPUnit_Framework_TestCase
     {
         for($value = 1; $value <=6; $value++) {
             $integer1to6 = new Integer1To6($value);
-            $this->assertInstanceOf(IntegerInterface::class, $integer1to6);
-            $this->assertSame($value, $integer1to6->getValue());
+            self::assertInstanceOf(IntegerInterface::class, $integer1to6);
+            self::assertSame($value, $integer1to6->getValue());
         }
     }
 

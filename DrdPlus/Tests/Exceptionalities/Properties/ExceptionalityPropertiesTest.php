@@ -31,8 +31,8 @@ abstract class ExceptionalityPropertiesTest extends TestWithMockery
         );
 
         /** @var ChosenProperties $instance */
-        $this->assertNotNull($instance);
-        $this->assertNull($instance->getId());
+        self::assertNotNull($instance);
+        self::assertNull($instance->getId());
 
         return $instance;
     }
@@ -111,18 +111,18 @@ abstract class ExceptionalityPropertiesTest extends TestWithMockery
             $intelligence = $this->getIntelligence(),
             $charisma = $this->getCharisma()
         );
-        $this->assertSame($strength, $exceptionalityProperties->getStrength());
-        $this->assertSame($strength, $exceptionalityProperties->getProperty(Strength::STRENGTH));
-        $this->assertSame($agility, $exceptionalityProperties->getAgility());
-        $this->assertSame($agility, $exceptionalityProperties->getProperty(Agility::AGILITY));
-        $this->assertSame($knack, $exceptionalityProperties->getKnack());
-        $this->assertSame($knack, $exceptionalityProperties->getProperty(Knack::KNACK));
-        $this->assertSame($will, $exceptionalityProperties->getWill());
-        $this->assertSame($will, $exceptionalityProperties->getProperty(Will::WILL));
-        $this->assertSame($intelligence, $exceptionalityProperties->getIntelligence());
-        $this->assertSame($intelligence, $exceptionalityProperties->getProperty(Intelligence::INTELLIGENCE));
-        $this->assertSame($charisma, $exceptionalityProperties->getCharisma());
-        $this->assertSame($charisma, $exceptionalityProperties->getProperty(Charisma::CHARISMA));
+        self::assertSame($strength, $exceptionalityProperties->getStrength());
+        self::assertSame($strength, $exceptionalityProperties->getProperty(Strength::STRENGTH));
+        self::assertSame($agility, $exceptionalityProperties->getAgility());
+        self::assertSame($agility, $exceptionalityProperties->getProperty(Agility::AGILITY));
+        self::assertSame($knack, $exceptionalityProperties->getKnack());
+        self::assertSame($knack, $exceptionalityProperties->getProperty(Knack::KNACK));
+        self::assertSame($will, $exceptionalityProperties->getWill());
+        self::assertSame($will, $exceptionalityProperties->getProperty(Will::WILL));
+        self::assertSame($intelligence, $exceptionalityProperties->getIntelligence());
+        self::assertSame($intelligence, $exceptionalityProperties->getProperty(Intelligence::INTELLIGENCE));
+        self::assertSame($charisma, $exceptionalityProperties->getCharisma());
+        self::assertSame($charisma, $exceptionalityProperties->getProperty(Charisma::CHARISMA));
     }
 
     /**

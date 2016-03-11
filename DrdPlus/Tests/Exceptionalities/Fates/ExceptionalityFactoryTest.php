@@ -16,7 +16,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
     public function I_can_create_it()
     {
         $instance = new ExceptionalityFactory();
-        $this->assertNotNull($instance);
+        self::assertNotNull($instance);
 
         return $instance;
     }
@@ -31,7 +31,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_player_decision(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(PlayerDecision::class, $factory->getPlayerDecision());
+        self::assertInstanceOf(PlayerDecision::class, $factory->getPlayerDecision());
     }
 
     /**
@@ -42,7 +42,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_fortune(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(Fortune::class, $factory->getFortune());
+        self::assertInstanceOf(Fortune::class, $factory->getFortune());
     }
 
     /**
@@ -55,7 +55,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
     public function I_can_get_choice_by_code($code, $expectedChoiceClass)
     {
         $exceptionalityFactory = new ExceptionalityFactory();
-        $this->assertInstanceOf($expectedChoiceClass, $exceptionalityFactory->getChoice($code));
+        self::assertInstanceOf($expectedChoiceClass, $exceptionalityFactory->getChoice($code));
     }
 
     public function provideChoiceCodeAndExpectedClass()
@@ -98,7 +98,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_good_rear(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(FateOfGoodRear::class, $factory->getFateOfGoodRear());
+        self::assertInstanceOf(FateOfGoodRear::class, $factory->getFateOfGoodRear());
     }
 
     /**
@@ -109,7 +109,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_combination(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(FateOfCombination::class, $factory->getFateOfCombination());
+        self::assertInstanceOf(FateOfCombination::class, $factory->getFateOfCombination());
     }
 
     /**
@@ -120,7 +120,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_exceptional_properties(ExceptionalityFactory $factory)
     {
-        $this->assertInstanceOf(FateOfExceptionalProperties::class, $factory->getFateOfExceptionalProperties());
+        self::assertInstanceOf(FateOfExceptionalProperties::class, $factory->getFateOfExceptionalProperties());
     }
 
     /**
@@ -133,7 +133,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
     public function I_can_get_fate_by_code($fateCode, $expectedFateClass)
     {
         $factory = new ExceptionalityFactory();
-        $this->assertInstanceOf($expectedFateClass, $factory->getFate($fateCode));
+        self::assertInstanceOf($expectedFateClass, $factory->getFate($fateCode));
     }
 
     public function provideFateCodeAndExpectedClass()

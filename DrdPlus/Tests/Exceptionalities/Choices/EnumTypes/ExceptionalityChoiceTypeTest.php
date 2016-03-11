@@ -13,8 +13,8 @@ class ExceptionalityChoiceTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function I_can_get_its_type_name()
     {
-        $this->assertSame('exceptionality_choice', ExceptionalityChoiceType::getTypeName());
-        $this->assertSame('exceptionality_choice', ExceptionalityChoiceType::EXCEPTIONALITY_CHOICE);
+        self::assertSame('exceptionality_choice', ExceptionalityChoiceType::getTypeName());
+        self::assertSame('exceptionality_choice', ExceptionalityChoiceType::EXCEPTIONALITY_CHOICE);
     }
 
     /**
@@ -23,7 +23,7 @@ class ExceptionalityChoiceTypeTest extends \PHPUnit_Framework_TestCase
     public function I_can_register_it_by_self()
     {
         ExceptionalityChoiceType::registerSelf();
-        $this->assertTrue(Type::hasType(ExceptionalityChoiceType::getTypeName()));
+        self::assertTrue(Type::hasType(ExceptionalityChoiceType::getTypeName()));
     }
 
     /**
@@ -32,8 +32,8 @@ class ExceptionalityChoiceTypeTest extends \PHPUnit_Framework_TestCase
     public function I_can_register_specific_choices()
     {
         ExceptionalityChoiceType::registerChoices();
-        $this->assertTrue(ExceptionalityChoiceType::hasSubTypeEnum(Fortune::class));
-        $this->assertTrue(ExceptionalityChoiceType::hasSubTypeEnum(PlayerDecision::class));
+        self::assertTrue(ExceptionalityChoiceType::hasSubTypeEnum(Fortune::class));
+        self::assertTrue(ExceptionalityChoiceType::hasSubTypeEnum(PlayerDecision::class));
     }
 
 }
