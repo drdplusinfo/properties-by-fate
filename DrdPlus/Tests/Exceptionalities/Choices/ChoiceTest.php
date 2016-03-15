@@ -5,7 +5,7 @@ use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
 use DrdPlus\Exceptionalities\Choices\Fortune;
 use DrdPlus\Exceptionalities\Choices\PlayerDecision;
 
-abstract class AbstractTestOfChoice extends \PHPUnit_Framework_TestCase
+abstract class ChoiceTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

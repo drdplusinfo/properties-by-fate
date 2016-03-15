@@ -1,21 +1,22 @@
 <?php
-namespace DrdPlus\Exceptionalities;
+namespace DrdPlus\Tests\Exceptionalities;
 
 use DrdPlus\Exceptionalities\Choices\Fortune;
 use DrdPlus\Exceptionalities\Choices\PlayerDecision;
+use DrdPlus\Exceptionalities\ExceptionalitiesFactory;
 use DrdPlus\Exceptionalities\Fates\FateOfCombination;
 use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
 use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
 use Granam\Tests\Tools\TestWithMockery;
 
-class ExceptionalityFactoryTest extends TestWithMockery
+class ExceptionalitiesFactoryTest extends TestWithMockery
 {
     /**
      * @test
      */
     public function I_can_create_it()
     {
-        $instance = new ExceptionalityFactory();
+        $instance = new ExceptionalitiesFactory();
         self::assertNotNull($instance);
 
         return $instance;
@@ -27,9 +28,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @depends I_can_create_it
      * @test
      *
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_get_player_decision(ExceptionalityFactory $factory)
+    public function I_can_get_player_decision(ExceptionalitiesFactory $factory)
     {
         self::assertInstanceOf(PlayerDecision::class, $factory->getPlayerDecision());
     }
@@ -38,9 +39,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @depends I_can_create_it
      * @test
      *
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_get_fortune(ExceptionalityFactory $factory)
+    public function I_can_get_fortune(ExceptionalitiesFactory $factory)
     {
         self::assertInstanceOf(Fortune::class, $factory->getFortune());
     }
@@ -54,7 +55,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_choice_by_code($code, $expectedChoiceClass)
     {
-        $exceptionalityFactory = new ExceptionalityFactory();
+        $exceptionalityFactory = new ExceptionalitiesFactory();
         self::assertInstanceOf($expectedChoiceClass, $exceptionalityFactory->getChoice($code));
     }
 
@@ -70,9 +71,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @test
      * @depends I_can_create_it
      * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityChoice
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_not_create_choice_from_unknown_code(ExceptionalityFactory $factory)
+    public function I_can_not_create_choice_from_unknown_code(ExceptionalitiesFactory $factory)
     {
         $factory->getChoice('Gardener');
     }
@@ -81,9 +82,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @test
      * @depends I_can_create_it
      * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityChoice
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_not_create_choice_from_true_as_code(ExceptionalityFactory $factory)
+    public function I_can_not_create_choice_from_true_as_code(ExceptionalitiesFactory $factory)
     {
         $factory->getChoice(true);
     }
@@ -94,9 +95,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @depends I_can_create_it
      * @test
      *
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_get_good_rear(ExceptionalityFactory $factory)
+    public function I_can_get_good_rear(ExceptionalitiesFactory $factory)
     {
         self::assertInstanceOf(FateOfGoodRear::class, $factory->getFateOfGoodRear());
     }
@@ -105,9 +106,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @depends I_can_create_it
      * @test
      *
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_get_combination(ExceptionalityFactory $factory)
+    public function I_can_get_combination(ExceptionalitiesFactory $factory)
     {
         self::assertInstanceOf(FateOfCombination::class, $factory->getFateOfCombination());
     }
@@ -116,9 +117,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @depends I_can_create_it
      * @test
      *
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_get_exceptional_properties(ExceptionalityFactory $factory)
+    public function I_can_get_exceptional_properties(ExceptionalitiesFactory $factory)
     {
         self::assertInstanceOf(FateOfExceptionalProperties::class, $factory->getFateOfExceptionalProperties());
     }
@@ -132,7 +133,7 @@ class ExceptionalityFactoryTest extends TestWithMockery
      */
     public function I_can_get_fate_by_code($fateCode, $expectedFateClass)
     {
-        $factory = new ExceptionalityFactory();
+        $factory = new ExceptionalitiesFactory();
         self::assertInstanceOf($expectedFateClass, $factory->getFate($fateCode));
     }
 
@@ -149,9 +150,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @test
      * @depends I_can_create_it
      * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityFate
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_not_create_fate_from_unknown_code(ExceptionalityFactory $factory)
+    public function I_can_not_create_fate_from_unknown_code(ExceptionalitiesFactory $factory)
     {
         $factory->getFate('Conquer of the words');
     }
@@ -160,9 +161,9 @@ class ExceptionalityFactoryTest extends TestWithMockery
      * @test
      * @depends I_can_create_it
      * @expectedException \DrdPlus\Exceptionalities\Exceptions\UnknownExceptionalityFate
-     * @param ExceptionalityFactory $factory
+     * @param ExceptionalitiesFactory $factory
      */
-    public function I_can_not_create_fate_from_true_as_code(ExceptionalityFactory $factory)
+    public function I_can_not_create_fate_from_true_as_code(ExceptionalitiesFactory $factory)
     {
         $factory->getFate(true);
     }

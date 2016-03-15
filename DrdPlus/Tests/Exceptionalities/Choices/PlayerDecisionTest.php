@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\Exceptionalities\Choices;
 
-class PlayerDecisionTest extends AbstractTestOfChoice
+class PlayerDecisionTest extends ChoiceTest
 {
     protected function getExpectedChoiceCode()
     {

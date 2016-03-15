@@ -10,7 +10,7 @@ use Granam\Scalar\Tools\ToString;
 use Granam\Tools\ValueDescriber;
 use Granam\Strict\Object\StrictObject;
 
-class ExceptionalityFactory extends StrictObject
+class ExceptionalitiesFactory extends StrictObject
 {
 
     // CHOICES

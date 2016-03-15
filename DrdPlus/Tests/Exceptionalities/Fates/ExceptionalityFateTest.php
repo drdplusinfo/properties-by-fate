@@ -5,7 +5,7 @@ use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use Granam\Tests\Tools\TestWithMockery;
 
-abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
+abstract class ExceptionalityFateTest extends TestWithMockery
 {
 
     /**
@@ -27,7 +27,7 @@ abstract class AbstractTestOfExceptionalityFate extends TestWithMockery
      */
     protected function getFateClass()
     {
-        return preg_replace('~Test$~', '', static::class);
+        return preg_replace('~[\\\]Tests([\\\].+)Test$~', '$1', static::class);
     }
 
     /**
