@@ -1,7 +1,9 @@
 <?php
-namespace DrdPlus\Tests\Exceptionalities\Fates;
+namespace DrdPlus\Exceptionalities\Fates;
 
-class FateOfExceptionalPropertiesTest extends ExceptionalityFateTest
+use DrdPlus\Tests\Exceptionalities\Fates\AbstractTestOfExceptionalityFate;
+
+class FateOfExceptionalPropertiesTest extends AbstractTestOfExceptionalityFate
 {
 
     protected function getExpectedPrimaryPropertiesBonusOnChoice()

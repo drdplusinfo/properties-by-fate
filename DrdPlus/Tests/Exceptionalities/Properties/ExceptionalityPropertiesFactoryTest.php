@@ -46,25 +46,19 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 Intelligence::INTELLIGENCE,
                 Charisma::CHARISMA,
             ]),
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $strength = $this->createStrength($strength),
+            $agility = $this->createAgility($agility),
+            $knack = $this->createKnack($knack),
+            $will = $this->createWill($will),
+            $intelligence = $this->createIntelligence($intelligence),
+            $charisma = $this->createCharisma($charisma)
         );
-        self::assertInstanceOf(Strength::class, $chosenProperties->getStrength());
-        self::assertSame($strength, $chosenProperties->getStrength()->getValue());
-        self::assertInstanceOf(Agility::class, $chosenProperties->getAgility());
-        self::assertSame($agility, $chosenProperties->getAgility()->getValue());
-        self::assertInstanceOf(Knack::class, $chosenProperties->getKnack());
-        self::assertSame($knack, $chosenProperties->getKnack()->getValue());
-        self::assertInstanceOf(Will::class, $chosenProperties->getWill());
-        self::assertSame($will, $chosenProperties->getWill()->getValue());
-        self::assertInstanceOf(Intelligence::class, $chosenProperties->getIntelligence());
-        self::assertSame($intelligence, $chosenProperties->getIntelligence()->getValue());
-        self::assertInstanceOf(Charisma::class, $chosenProperties->getCharisma());
-        self::assertSame($charisma, $chosenProperties->getCharisma()->getValue());
+        self::assertSame($strength, $chosenProperties->getStrength());
+        self::assertSame($agility, $chosenProperties->getAgility());
+        self::assertSame($knack, $chosenProperties->getKnack());
+        self::assertSame($will, $chosenProperties->getWill());
+        self::assertSame($intelligence, $chosenProperties->getIntelligence());
+        self::assertSame($charisma, $chosenProperties->getCharisma());
     }
 
     public function getChosenProperties()
@@ -115,6 +109,60 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     }
 
     /**
+     * @param $value
+     * @return Strength
+     */
+    private function createStrength($value)
+    {
+        return Strength::getIt($value);
+    }
+
+    /**
+     * @param $value
+     * @return Agility
+     */
+    private function createAgility($value)
+    {
+        return Agility::getIt($value);
+    }
+
+    /**
+     * @param $value
+     * @return Knack
+     */
+    private function createKnack($value)
+    {
+        return Knack::getIt($value);
+    }
+
+    /**
+     * @param $value
+     * @return Will
+     */
+    private function createWill($value)
+    {
+        return Will::getIt($value);
+    }
+
+    /**
+     * @param $value
+     * @return Intelligence
+     */
+    private function createIntelligence($value)
+    {
+        return Intelligence::getIt($value);
+    }
+
+    /**
+     * @param $value
+     * @return Charisma
+     */
+    private function createCharisma($value)
+    {
+        return Charisma::getIt($value);
+    }
+
+    /**
      * @param $strength
      * @param $agility
      * @param $knack
@@ -144,12 +192,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 Intelligence::INTELLIGENCE,
                 Charisma::CHARISMA,
             ]),
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $this->createStrength($strength),
+            $this->createAgility($agility),
+            $this->createKnack($knack),
+            $this->createWill($will),
+            $this->createIntelligence($intelligence),
+            $this->createCharisma($charisma)
         );
     }
 
@@ -183,12 +231,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 Intelligence::INTELLIGENCE,
                 Charisma::CHARISMA,
             ]),
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $this->createStrength($strength),
+            $this->createAgility($agility),
+            $this->createKnack($knack),
+            $this->createWill($will),
+            $this->createIntelligence($intelligence),
+            $this->createCharisma($charisma)
         );
     }
 
@@ -222,12 +270,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 Intelligence::INTELLIGENCE,
                 Charisma::CHARISMA,
             ]),
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $this->createStrength($strength),
+            $this->createAgility($agility),
+            $this->createKnack($knack),
+            $this->createWill($will),
+            $this->createIntelligence($intelligence),
+            $this->createCharisma($charisma)
         );
     }
 
@@ -253,25 +301,19 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
             ),
             $this->createProfessionLevel([]), // all properties as secondary
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $strength = $this->createStrength($strength),
+            $agility = $this->createAgility($agility),
+            $knack = $this->createKnack($knack),
+            $will = $this->createWill($will),
+            $intelligence = $this->createIntelligence($intelligence),
+            $charisma = $this->createCharisma($charisma)
         );
-        self::assertInstanceOf(Strength::class, $chosenProperties->getStrength());
-        self::assertSame($strength, $chosenProperties->getStrength()->getValue());
-        self::assertInstanceOf(Agility::class, $chosenProperties->getAgility());
-        self::assertSame($agility, $chosenProperties->getAgility()->getValue());
-        self::assertInstanceOf(Knack::class, $chosenProperties->getKnack());
-        self::assertSame($knack, $chosenProperties->getKnack()->getValue());
-        self::assertInstanceOf(Will::class, $chosenProperties->getWill());
-        self::assertSame($will, $chosenProperties->getWill()->getValue());
-        self::assertInstanceOf(Intelligence::class, $chosenProperties->getIntelligence());
-        self::assertSame($intelligence, $chosenProperties->getIntelligence()->getValue());
-        self::assertInstanceOf(Charisma::class, $chosenProperties->getCharisma());
-        self::assertSame($charisma, $chosenProperties->getCharisma()->getValue());
+        self::assertSame($strength, $chosenProperties->getStrength());
+        self::assertSame($agility, $chosenProperties->getAgility());
+        self::assertSame($knack, $chosenProperties->getKnack());
+        self::assertSame($will, $chosenProperties->getWill());
+        self::assertSame($intelligence, $chosenProperties->getIntelligence());
+        self::assertSame($charisma, $chosenProperties->getCharisma());
     }
 
     /**
@@ -297,12 +339,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
             ),
             $this->createProfessionLevel([]),
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $this->createStrength($strength),
+            $this->createAgility($agility),
+            $this->createKnack($knack),
+            $this->createWill($will),
+            $this->createIntelligence($intelligence),
+            $this->createCharisma($charisma)
         );
     }
 
@@ -329,12 +371,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 max($strength, $agility, $knack, $will, $intelligence, $charisma) - 1 /* allowed a little bit lesser than given */
             ),
             $this->createProfessionLevel([]), // no primary property
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $this->createStrength($strength),
+            $this->createAgility($agility),
+            $this->createKnack($knack),
+            $this->createWill($will),
+            $this->createIntelligence($intelligence),
+            $this->createCharisma($charisma)
         );
     }
 
@@ -361,12 +403,12 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
             ),
             $this->createProfessionLevel([]), // no primary property
-            $strength,
-            $agility,
-            $knack,
-            $will,
-            $intelligence,
-            $charisma
+            $this->createStrength($strength),
+            $this->createAgility($agility),
+            $this->createKnack($knack),
+            $this->createWill($will),
+            $this->createIntelligence($intelligence),
+            $this->createCharisma($charisma)
         );
     }
 

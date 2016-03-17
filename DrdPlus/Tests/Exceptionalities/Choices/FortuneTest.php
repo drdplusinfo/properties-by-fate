@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\Exceptionalities\Choices;
 
-class FortuneTest extends ChoiceTest
+class FortuneTest extends AbstractTestOfChoice
 {
     protected function getExpectedChoiceCode()
     {

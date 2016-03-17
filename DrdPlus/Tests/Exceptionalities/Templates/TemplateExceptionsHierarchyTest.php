@@ -3,9 +3,9 @@ namespace DrdPlus\Tests\Exceptionalities\Templates;
 
 use DrdPlus\Exceptionalities\Exceptionality;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;
-use Granam\Exceptions\Tests\Tools\AbstractTestOfExceptionsHierarchy;
+use Granam\Tests\Exceptions\Tools\AbstractExceptionsHierarchyTest;
 
-class ExceptionsHierarchyTest extends AbstractTestOfExceptionsHierarchy
+class TemplateExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
     protected function getTestedNamespace()
     {

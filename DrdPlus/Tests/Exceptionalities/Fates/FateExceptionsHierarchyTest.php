@@ -3,9 +3,9 @@ namespace DrdPlus\Tests\Exceptionalities\Fates;
 
 use DrdPlus\Exceptionalities\Exceptionality;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
-use Granam\Exceptions\Tests\Tools\AbstractTestOfExceptionsHierarchy;
+use Granam\Tests\Exceptions\Tools\AbstractExceptionsHierarchyTest;
 
-class ExceptionsHierarchyTest extends AbstractTestOfExceptionsHierarchy
+class FateExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
     protected function getTestedNamespace()
     {
