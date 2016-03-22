@@ -99,24 +99,35 @@ class ExceptionalityPropertiesFactory extends StrictObject
         return $basePropertyFactory->createProperty($value, $propertyCode);
     }
 
+    /**
+     * @param ExceptionalityFate $fate
+     * @param ProfessionLevel $professionLevel
+     * @param int $chosenStrengthValue
+     * @param int $chosenAgilityValue
+     * @param int $chosenKnackValue
+     * @param int $chosenWillValue
+     * @param int $chosenIntelligenceValue
+     * @param int $chosenCharismaValue
+     * @return ChosenProperties
+     */
     public function createChosenProperties(
         ExceptionalityFate $fate,
         ProfessionLevel $professionLevel,
-        Strength $chosenStrength,
-        Agility $chosenAgility,
-        Knack $chosenKnack,
-        Will $chosenWill,
-        Intelligence $chosenIntelligence,
-        Charisma $chosenCharisma
+        $chosenStrengthValue,
+        $chosenAgilityValue,
+        $chosenKnackValue,
+        $chosenWillValue,
+        $chosenIntelligenceValue,
+        $chosenCharismaValue
     )
     {
         $this->checkChosenProperties(
-            $chosenStrength,
-            $chosenAgility,
-            $chosenKnack,
-            $chosenWill,
-            $chosenIntelligence,
-            $chosenCharisma,
+            $chosenStrength = Strength::getIt($chosenStrengthValue),
+            $chosenAgility = Agility::getIt($chosenAgilityValue),
+            $chosenKnack = Knack::getIt($chosenKnackValue),
+            $chosenWill = Will::getIt($chosenWillValue),
+            $chosenIntelligence = Intelligence::getIt($chosenIntelligenceValue),
+            $chosenCharisma = Charisma::getIt($chosenCharismaValue),
             $professionLevel,
             $fate
         );
