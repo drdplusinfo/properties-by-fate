@@ -9,6 +9,22 @@ class FateOfCombination extends ExceptionalityFate
     const FATE_OF_COMBINATION = 'fate_of_combination';
 
     /**
+     * @return FateOfCombination
+     */
+    public static function getIt()
+    {
+        return parent::getIt();
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCode()
+    {
+        return parent::getCode();
+    }
+
+    /**
      * @return int
      */
     public function getPrimaryPropertiesBonusOnChoice()

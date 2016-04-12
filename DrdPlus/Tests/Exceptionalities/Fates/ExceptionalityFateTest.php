@@ -2,6 +2,9 @@
 namespace DrdPlus\Tests\Exceptionalities\Fates;
 
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
+use DrdPlus\Exceptionalities\Fates\FateOfCombination;
+use DrdPlus\Exceptionalities\Fates\FateOfExceptionalProperties;
+use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
 use DrdPlus\Exceptionalities\Templates\Integer1To6;
 use Granam\Tests\Tools\TestWithMockery;
 
@@ -19,15 +22,27 @@ abstract class ExceptionalityFateTest extends TestWithMockery
         $instance = $exceptionalityClass::getIt();
         self::assertInstanceOf($exceptionalityClass, $instance);
 
+        $sameInstance = ExceptionalityFate::getItByCode($this->getExpectedFateCode());
+        self::assertSame($instance, $sameInstance);
+
         return $instance;
     }
 
     /**
-     * @return string|ExceptionalityFate
+     * @return string|ExceptionalityFate|FateOfCombination|FateOfExceptionalProperties|FateOfGoodRear
      */
     protected function getFateClass()
     {
         return preg_replace('~[\\\]Tests([\\\].+)Test$~', '$1', static::class);
+    }
+
+    /**
+     * @test
+     * @expectedException \DrdPlus\Exceptionalities\Fates\Exceptions\ClassNotFoundByCode
+     */
+    public function I_can_not_create_fate_by_invalid_code()
+    {
+        ExceptionalityFate::getItByCode('King of Ping from Pong');
     }
 
     /**

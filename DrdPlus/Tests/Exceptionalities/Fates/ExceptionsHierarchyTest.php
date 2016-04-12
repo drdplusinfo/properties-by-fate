@@ -5,7 +5,7 @@ use DrdPlus\Exceptionalities\Exceptionality;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use Granam\Tests\Exceptions\Tools\AbstractExceptionsHierarchyTest;
 
-class FateExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
+class ExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
     protected function getTestedNamespace()
     {

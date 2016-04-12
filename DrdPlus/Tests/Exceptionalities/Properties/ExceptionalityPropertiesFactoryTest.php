@@ -83,8 +83,6 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
             ->andReturn($primaryPropertiesBonus);
         $fate->shouldReceive('getUpToSingleProperty')
             ->andReturn($upToSingleProperty);
-        $fate->shouldReceive('getCode')
-            ->andReturn('foo');
 
         return $fate;
     }

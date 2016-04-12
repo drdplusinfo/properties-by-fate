@@ -7,6 +7,23 @@ use Granam\Tools\ValueDescriber;
 class FateOfExceptionalProperties extends ExceptionalityFate
 {
     const FATE_OF_EXCEPTIONAL_PROPERTIES = 'fate_of_exceptional_properties';
+
+    /**
+     * @return FateOfExceptionalProperties
+     */
+    public static function getIt()
+    {
+        return parent::getIt();
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCode()
+    {
+        return parent::getCode();
+    }
+
     /**
      * @return int
      */

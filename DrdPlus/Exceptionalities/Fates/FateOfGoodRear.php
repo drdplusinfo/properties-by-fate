@@ -9,6 +9,22 @@ class FateOfGoodRear extends ExceptionalityFate
     const FATE_OF_GOOD_REAR = 'fate_of_good_rear';
 
     /**
+     * @return FateOfGoodRear
+     */
+    public static function getIt()
+    {
+        return parent::getIt();
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCode()
+    {
+        return parent::getCode();
+    }
+
+    /**
      * @return int
      */
     public function getPrimaryPropertiesBonusOnChoice()
