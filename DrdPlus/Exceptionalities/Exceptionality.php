@@ -5,11 +5,11 @@ use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\Exceptionalities\Properties\ExceptionalityProperties;
 use Granam\Strict\Object\StrictObject;
+use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * Container for all the pieces making together the exceptionality
  *
- * @ORM\Table()
  * @ORM\Entity()
  */
 class Exceptionality extends StrictObject
@@ -40,7 +40,7 @@ class Exceptionality extends StrictObject
     /**
      * @var ExceptionalityProperties
      *
-     * @ORM\OneToOne(targetEntity="DrdPlus\Exceptionalities\ExceptionalityProperties")
+     * @ORM\OneToOne(targetEntity="DrdPlus\Exceptionalities\Properties\ExceptionalityProperties", cascade={"persist"})
      */
     private $exceptionalityProperties;
 

@@ -8,6 +8,7 @@ use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
@@ -16,32 +17,32 @@ class FortuneProperties extends ExceptionalityProperties
 {
     /**
      * @var int
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $strengthRoll;
     /**
      * @var int
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $agilityRoll;
     /**
      * @var int
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $knackRoll;
     /**
      * @var int
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $willRoll;
     /**
      * @var int
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $intelligenceRoll;
     /**
      * @var int
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $charismaRoll;
 

@@ -10,8 +10,9 @@ class ExceptionalityFateType extends ScalarEnumType
 {
     const EXCEPTIONALITY_FATE = 'exceptionality_fate';
 
-    public static function registerFates()
+    public static function registerAll()
     {
+        self::registerSelf();
         if (!static::hasSubTypeEnum(FateOfCombination::class)) {
             static::addSubTypeEnum(FateOfCombination::class, '~^' . FateOfCombination::FATE_OF_COMBINATION . '$~');
         }

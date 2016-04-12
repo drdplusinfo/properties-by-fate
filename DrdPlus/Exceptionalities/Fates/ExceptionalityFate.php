@@ -17,7 +17,7 @@ abstract class ExceptionalityFate extends ScalarEnum
 
     public static function getCode()
     {
-        return StringTools::camelCaseClassToSnakeCase(static::class);
+        return StringTools::camelToSnakeCaseBasename(static::class);
     }
 
     /**

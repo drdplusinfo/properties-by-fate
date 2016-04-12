@@ -1,6 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities\Properties;
 
+use Doctrineum\Entity\Entity;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
@@ -9,12 +10,12 @@ use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
 use Granam\Scalar\Tools\ToString;
 use Granam\Strict\Object\StrictObject;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\InheritanceType("JOINED")
+ * @ORM\MappedSuperclass()
  */
-abstract class ExceptionalityProperties extends StrictObject
+abstract class ExceptionalityProperties extends StrictObject implements Entity
 {
 
     /**
@@ -24,7 +25,7 @@ abstract class ExceptionalityProperties extends StrictObject
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var Strength

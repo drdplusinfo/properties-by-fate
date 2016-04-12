@@ -9,8 +9,9 @@ class ExceptionalityChoiceType extends ScalarEnumType
 {
     const EXCEPTIONALITY_CHOICE = 'exceptionality_choice';
 
-    public static function registerChoices()
+    public static function registerAll()
     {
+        ExceptionalityChoiceType::registerSelf();
         if (!static::hasSubTypeEnum(Fortune::class)) {
             static::addSubTypeEnum(Fortune::class, '~^' . Fortune::FORTUNE . '$~');
         }

@@ -30,9 +30,10 @@ class ExceptionalityFateTypeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function I_can_register_specific_fates()
+    public function I_can_register_it_and_specific_fates_by_self()
     {
-        ExceptionalityFateType::registerFates();
+        ExceptionalityFateType::registerAll();
+        self::assertTrue(Type::hasType(ExceptionalityFateType::getTypeName()));
         self::assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfCombination::class));
         self::assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfExceptionalProperties::class));
         self::assertTrue(ExceptionalityFateType::hasSubTypeEnum(FateOfGoodRear::class));

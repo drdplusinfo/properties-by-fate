@@ -29,9 +29,10 @@ class ExceptionalityChoiceTypeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function I_can_register_specific_choices()
+    public function I_can_register_it_and_specific_choices_by_self()
     {
-        ExceptionalityChoiceType::registerChoices();
+        ExceptionalityChoiceType::registerAll();
+        self::assertTrue(Type::hasType(ExceptionalityChoiceType::getTypeName()));
         self::assertTrue(ExceptionalityChoiceType::hasSubTypeEnum(Fortune::class));
         self::assertTrue(ExceptionalityChoiceType::hasSubTypeEnum(PlayerDecision::class));
     }

@@ -17,6 +17,6 @@ abstract class ExceptionalityChoice extends ScalarEnum
 
     public static function getCode()
     {
-        return StringTools::camelCaseClassToSnakeCase(static::class);
+        return StringTools::camelToSnakeCaseBasename(static::class);
     }
 }
