@@ -166,7 +166,7 @@ class ExceptionalityPropertiesFactory extends StrictObject
     {
         if ($chosenProperty->getValue() > $fate->getUpToSingleProperty()) {
             throw new Exceptions\InvalidValueOfChosenProperty(
-                "Required {$chosenProperty->getCode()} of value {$chosenProperty->getValue()} is higher than allowed"
+                "Requested {$chosenProperty->getCode()} value {$chosenProperty->getValue()} is higher than allowed"
                 . " maximum {$fate->getUpToSingleProperty()} for profession {$professionLevel->getProfession()->getValue()}"
                 . " and fate {$fate::getCode()}"
             );
