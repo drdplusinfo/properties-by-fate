@@ -45,6 +45,11 @@ class DoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
 
     protected function createEntitiesToPersist()
     {
+        return self::createEntities();
+    }
+
+    public static function createEntities()
+    {
         $factory = new ExceptionalityPropertiesFactory();
 
         return [
