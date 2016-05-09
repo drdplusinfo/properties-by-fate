@@ -26,4 +26,13 @@ class ExceptionalityFateType extends ScalarEnumType
             static::addSubTypeEnum(FateOfGoodRear::class, '~^' . FateOfGoodRear::FATE_OF_GOOD_REAR . '$~');
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return self::EXCEPTIONALITY_FATE;
+    }
+
 }

@@ -19,4 +19,12 @@ class ExceptionalityChoiceType extends ScalarEnumType
             static::addSubTypeEnum(PlayerDecision::class, '~^' . PlayerDecision::PLAYER_DECISION . '$~');
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return self::EXCEPTIONALITY_CHOICE;
+    }
 }
