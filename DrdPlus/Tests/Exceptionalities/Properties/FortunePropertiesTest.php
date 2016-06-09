@@ -40,7 +40,7 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
      */
     protected function getRoll($value = null)
     {
-        $roll = $this->mockery(Integer1to6::class);
+        $roll = $this->mockery(Integer1To6::class);
         $roll->shouldReceive('getValue')
             ->andReturn($value);
 

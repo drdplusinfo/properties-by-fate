@@ -49,9 +49,9 @@ class FateOfCombination extends ExceptionalityFate
     }
 
     /**
-     * @param Integer1to6 $roll
-     *
+     * @param Integer1To6 $roll
      * @return int
+     * @throws \DrdPlus\Exceptionalities\Fates\Exceptions\UnexpectedRoll
      */
     public function getPrimaryPropertyBonusOnFortune(Integer1To6 $roll)
     {
@@ -73,11 +73,11 @@ class FateOfCombination extends ExceptionalityFate
     }
 
     /**
-     * @param Integer1to6 $roll
-     *
+     * @param Integer1To6 $roll
      * @return int
+     * @throws \DrdPlus\Exceptionalities\Fates\Exceptions\UnexpectedRoll
      */
-    public function getSecondaryPropertyBonusOnFortune(Integer1to6 $roll)
+    public function getSecondaryPropertyBonusOnFortune(Integer1To6 $roll)
     {
         // combination has same secondary and primary properties bonus
         return $this->getPrimaryPropertyBonusOnFortune($roll);

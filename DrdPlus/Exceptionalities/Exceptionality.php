@@ -1,6 +1,7 @@
 <?php
 namespace DrdPlus\Exceptionalities;
 
+use Doctrineum\Entity\Entity;
 use DrdPlus\Exceptionalities\Choices\ExceptionalityChoice;
 use DrdPlus\Exceptionalities\Fates\ExceptionalityFate;
 use DrdPlus\Exceptionalities\Properties\ExceptionalityProperties;
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping AS ORM;
  *
  * @ORM\Entity()
  */
-class Exceptionality extends StrictObject
+class Exceptionality extends StrictObject implements Entity
 {
     /**
      * @var integer

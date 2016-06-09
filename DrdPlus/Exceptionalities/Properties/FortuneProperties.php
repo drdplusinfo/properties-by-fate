@@ -50,15 +50,15 @@ class FortuneProperties extends ExceptionalityProperties
         Strength $strength,
         Integer1To6 $strengthRoll,
         Agility $agility,
-        Integer1to6 $agilityRoll,
+        Integer1To6 $agilityRoll,
         Knack $knack,
-        Integer1to6 $knackRoll,
+        Integer1To6 $knackRoll,
         Will $will,
-        Integer1to6 $willRoll,
+        Integer1To6 $willRoll,
         Intelligence $intelligence,
-        Integer1to6 $intelligenceRoll,
+        Integer1To6 $intelligenceRoll,
         Charisma $charisma,
-        Integer1to6 $charismaRoll
+        Integer1To6 $charismaRoll
     )
     {
         parent::__construct($strength, $agility, $knack, $will, $intelligence, $charisma);

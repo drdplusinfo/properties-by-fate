@@ -85,7 +85,7 @@ abstract class ExceptionalityFateTest extends TestWithMockery
             $roll = $this->mockery(Integer1To6::class);
             $roll->shouldReceive('getValue')
                 ->andReturn($value);
-            /** @var Integer1to6 $roll */
+            /** @var Integer1To6 $roll */
             self::assertSame(
                 $this->getExpectedPrimaryPropertiesBonusOnFortune($value),
                 $kind->getPrimaryPropertyBonusOnFortune($roll),
@@ -110,10 +110,10 @@ abstract class ExceptionalityFateTest extends TestWithMockery
      */
     public function I_can_not_use_unexpected_roll_for_primary_property_on_fortune(ExceptionalityFate $fate)
     {
-        $roll = $this->mockery(Integer1to6::class);
+        $roll = $this->mockery(Integer1To6::class);
         $roll->shouldReceive('getValue')
             ->andReturn(7);
-        /** @var Integer1to6 $roll */
+        /** @var Integer1To6 $roll */
         $fate->getPrimaryPropertyBonusOnFortune($roll);
     }
 
@@ -126,10 +126,10 @@ abstract class ExceptionalityFateTest extends TestWithMockery
      */
     public function I_can_not_use_unexpected_roll_for_secondary_property_on_fortune(ExceptionalityFate $fate)
     {
-        $roll = $this->mockery(Integer1to6::class);
+        $roll = $this->mockery(Integer1To6::class);
         $roll->shouldReceive('getValue')
             ->andReturn(7);
-        /** @var Integer1to6 $roll */
+        /** @var Integer1To6 $roll */
         $fate->getSecondaryPropertyBonusOnFortune($roll);
     }
 

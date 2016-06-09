@@ -418,8 +418,8 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     {
         $fate = $this->mockery(ExceptionalityFate::class);
         $fate->shouldReceive('getPrimaryPropertyBonusOnFortune')
-            ->with(\Mockery::type(Integer1to6::class))
-            ->andReturnUsing(function (Integer1to6 $roll) use ($testMultiplier) {
+            ->with(\Mockery::type(Integer1To6::class))
+            ->andReturnUsing(function (Integer1To6 $roll) use ($testMultiplier) {
                 return $roll->getValue() * $testMultiplier;
             });
 
@@ -481,8 +481,8 @@ class ExceptionalityPropertiesFactoryTest extends TestWithMockery
     {
         $fate = $this->mockery(ExceptionalityFate::class);
         $fate->shouldReceive('getSecondaryPropertyBonusOnFortune')
-            ->with(\Mockery::type(Integer1to6::class))
-            ->andReturnUsing(function (Integer1to6 $roll) use ($testMultiplier) {
+            ->with(\Mockery::type(Integer1To6::class))
+            ->andReturnUsing(function (Integer1To6 $roll) use ($testMultiplier) {
                 return $roll->getValue() * $testMultiplier;
             });
 
