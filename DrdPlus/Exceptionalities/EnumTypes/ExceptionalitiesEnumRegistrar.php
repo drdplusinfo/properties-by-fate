@@ -11,7 +11,6 @@ class ExceptionalitiesEnumRegistrar
     {
         ExceptionalityChoiceType::registerAll();
         ExceptionalityFateType::registerAll();
-
         PropertiesEnumRegistrar::registerAll();
     }
 }

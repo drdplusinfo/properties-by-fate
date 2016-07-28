@@ -17,7 +17,7 @@ use DrdPlus\Professions\Thief;
 use DrdPlus\Professions\Wizard;
 use DrdPlus\Properties\Base\BasePropertiesFactory;
 
-class DoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
+class ExceptionalitiesDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
 {
     protected function setUp()
     {
