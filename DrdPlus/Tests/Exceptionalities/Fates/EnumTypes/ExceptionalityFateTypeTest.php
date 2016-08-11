@@ -10,6 +10,15 @@ use DrdPlus\Exceptionalities\Fates\FateOfGoodRear;
 
 class ExceptionalityFateTypeTest extends AbstractSelfRegisteringTypeTest
 {
+    protected function setUp()
+    {
+        foreach ([FateOfCombination::class, FateOfGoodRear::class, FateOfExceptionalProperties::class] as $exceptionalityClass) {
+            if (ExceptionalityFateType::hasSubTypeEnum($exceptionalityClass)) {
+                ExceptionalityFateType::removeSubTypeEnum($exceptionalityClass);
+            }
+        }
+    }
+
     /**
      * @test
      */
