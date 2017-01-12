@@ -5,7 +5,7 @@ use Doctrineum\Tests\Entity\AbstractDoctrineEntitiesTest;
 use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\FateCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
-use DrdPlus\PropertiesByFate\EnumTypes\ExceptionalitiesEnumRegistrar;
+use DrdPlus\PropertiesByFate\EnumTypes\PropertiesByFateEnumRegistrar;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
 use DrdPlus\Professions\Fighter;
@@ -25,7 +25,7 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
 {
     protected function setUp()
     {
-        ExceptionalitiesEnumRegistrar::registerAll();
+        PropertiesByFateEnumRegistrar::registerAll();
         parent::setUp();
     }
 

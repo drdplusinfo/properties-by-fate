@@ -4,7 +4,7 @@ namespace DrdPlus\PropertiesByFate\EnumTypes;
 use DrdPlus\Codes\EnumTypes\FateCodeType;
 use DrdPlus\Properties\EnumTypes\PropertiesEnumRegistrar;
 
-class ExceptionalitiesEnumRegistrar
+class PropertiesByFateEnumRegistrar
 {
     public static function registerAll()
     {
