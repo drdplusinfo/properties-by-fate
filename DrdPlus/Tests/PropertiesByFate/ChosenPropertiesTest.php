@@ -3,6 +3,7 @@ namespace DrdPlus\Tests\PropertiesByFate;
 
 use DrdPlus\Codes\ChoiceCode;
 use DrdPlus\Codes\FateCode;
+use DrdPlus\Codes\PropertyCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\Properties\Base\Agility;
@@ -36,12 +37,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             $fateCode = FateCode::getIt(FateCode::COMBINATION_OF_PROPERTIES_AND_BACKGROUND),
             $this->createProfession([
-                Strength::STRENGTH,
-                Agility::AGILITY,
-                Knack::KNACK,
-                Will::WILL,
-                Intelligence::INTELLIGENCE,
-                Charisma::CHARISMA,
+                PropertyCode::STRENGTH,
+                PropertyCode::AGILITY,
+                PropertyCode::KNACK,
+                PropertyCode::WILL,
+                PropertyCode::INTELLIGENCE,
+                PropertyCode::CHARISMA,
             ]),
             $this->createPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma,
@@ -129,12 +130,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::GOOD_BACKGROUND),
             $this->createProfession([
-                Strength::STRENGTH,
-                Agility::AGILITY,
-                Knack::KNACK,
-                Will::WILL,
-                Intelligence::INTELLIGENCE,
-                Charisma::CHARISMA,
+                PropertyCode::STRENGTH,
+                PropertyCode::AGILITY,
+                PropertyCode::KNACK,
+                PropertyCode::WILL,
+                PropertyCode::INTELLIGENCE,
+                PropertyCode::CHARISMA,
             ]),
             $this->createPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma,
@@ -166,12 +167,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::EXCEPTIONAL_PROPERTIES),
             $this->createProfession([
-                Strength::STRENGTH,
-                Agility::AGILITY,
-                Knack::KNACK,
-                Will::WILL,
-                Intelligence::INTELLIGENCE,
-                Charisma::CHARISMA,
+                PropertyCode::STRENGTH,
+                PropertyCode::AGILITY,
+                PropertyCode::KNACK,
+                PropertyCode::WILL,
+                PropertyCode::INTELLIGENCE,
+                PropertyCode::CHARISMA,
             ]),
             $this->createPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma - 1 /* allowed a little bit less than given*/,
@@ -210,12 +211,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::EXCEPTIONAL_PROPERTIES),
             $this->createProfession([
-                Strength::STRENGTH,
-                Agility::AGILITY,
-                Knack::KNACK,
-                Will::WILL,
-                Intelligence::INTELLIGENCE,
-                Charisma::CHARISMA,
+                PropertyCode::STRENGTH,
+                PropertyCode::AGILITY,
+                PropertyCode::KNACK,
+                PropertyCode::WILL,
+                PropertyCode::INTELLIGENCE,
+                PropertyCode::CHARISMA,
             ]),
             $this->createPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma + 1/* expected a little bit more than given*/,

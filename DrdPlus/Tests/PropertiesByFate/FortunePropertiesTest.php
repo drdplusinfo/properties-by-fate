@@ -4,15 +4,10 @@ namespace DrdPlus\Tests\PropertiesByFate;
 use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\ChoiceCode;
 use DrdPlus\Codes\FateCode;
+use DrdPlus\Codes\PropertyCode;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
-use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BasePropertiesFactory;
-use DrdPlus\Properties\Base\Charisma;
-use DrdPlus\Properties\Base\Intelligence;
-use DrdPlus\Properties\Base\Knack;
-use DrdPlus\Properties\Base\Strength;
-use DrdPlus\Properties\Base\Will;
 use DrdPlus\Tables\History\InfluenceOfFortuneTable;
 
 class FortunePropertiesTest extends PropertiesByFateTest
@@ -84,12 +79,12 @@ class FortunePropertiesTest extends PropertiesByFateTest
             $this->createRoll($charismaRoll),
             FateCode::getIt(FateCode::EXCEPTIONAL_PROPERTIES),
             $this->createProfession([
-                Strength::STRENGTH,
-                Agility::AGILITY,
-                Knack::KNACK,
-                Will::WILL,
-                Intelligence::INTELLIGENCE,
-                Charisma::CHARISMA,
+                PropertyCode::STRENGTH,
+                PropertyCode::AGILITY,
+                PropertyCode::KNACK,
+                PropertyCode::WILL,
+                PropertyCode::INTELLIGENCE,
+                PropertyCode::CHARISMA,
             ]),
             $this->createInfluenceOfFortuneFateTable($testMultiplier = 456),
             new BasePropertiesFactory()
