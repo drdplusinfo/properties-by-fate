@@ -6,7 +6,7 @@ use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\FateCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
 use DrdPlus\PropertiesByFate\EnumTypes\ExceptionalitiesEnumRegistrar;
-use DrdPlus\PropertiesByFate\ExceptionalityProperties;
+use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
 use DrdPlus\Professions\Fighter;
 use DrdPlus\Professions\Thief;
@@ -31,7 +31,7 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
 
     protected function getDirsWithEntities()
     {
-        $exceptionalityReflection = new \ReflectionClass(ExceptionalityProperties::class);
+        $exceptionalityReflection = new \ReflectionClass(PropertiesByFate::class);
 
         return [
             dirname($exceptionalityReflection->getFileName()),

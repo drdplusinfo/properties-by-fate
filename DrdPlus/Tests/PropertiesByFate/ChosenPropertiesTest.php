@@ -4,7 +4,7 @@ namespace DrdPlus\Tests\PropertiesByFate;
 use DrdPlus\Codes\ChoiceCode;
 use DrdPlus\Codes\FateCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
-use DrdPlus\PropertiesByFate\ExceptionalityProperties;
+use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
@@ -13,7 +13,7 @@ use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
 use DrdPlus\Tables\History\PlayerDecisionsTable;
 
-class ChosenPropertiesTest extends ExceptionalityPropertiesTest
+class ChosenPropertiesTest extends PropertiesByFateTest
 {
     /**
      * @test
@@ -52,6 +52,7 @@ class ChosenPropertiesTest extends ExceptionalityPropertiesTest
         $this->I_get_null_as_id_before_persist($chosenProperties);
         $this->I_get_expected_choice_code($chosenProperties);
         $this->I_get_fate_code_created_with($chosenProperties, $fateCode);
+        $this->I_can_get_property_by_its_code($chosenProperties);
         self::assertSame($strength, $chosenProperties->getStrength()->getValue());
         self::assertSame($agility, $chosenProperties->getAgility()->getValue());
         self::assertSame($knack, $chosenProperties->getKnack()->getValue());
@@ -86,18 +87,13 @@ class ChosenPropertiesTest extends ExceptionalityPropertiesTest
         return $playerDecisionsTable;
     }
 
-    protected function I_get_null_as_id_before_persist(ExceptionalityProperties $chosenProperties)
-    {
-        self::assertNull($chosenProperties->getId());
-    }
-
-    protected function I_get_expected_choice_code(ExceptionalityProperties $chosenProperties)
+    protected function I_get_expected_choice_code(PropertiesByFate $chosenProperties)
     {
         self::assertSame(ChoiceCode::getIt(ChoiceCode::PLAYER_DECISION), $chosenProperties->getChoiceCode());
     }
 
     protected function I_get_fate_code_created_with(
-        ExceptionalityProperties $chosenProperties,
+        PropertiesByFate $chosenProperties,
         FateCode $expectedFateCode
     )
     {

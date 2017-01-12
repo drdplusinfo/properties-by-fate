@@ -18,7 +18,7 @@ use DrdPlus\Tables\History\PlayerDecisionsTable;
 /**
  * @ORM\Entity()
  */
-class ChosenProperties extends ExceptionalityProperties
+class ChosenProperties extends PropertiesByFate
 {
 
     /**

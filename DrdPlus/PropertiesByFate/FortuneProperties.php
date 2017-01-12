@@ -19,7 +19,7 @@ use DrdPlus\Tables\History\InfluenceOfFortuneTable;
 /**
  * @ORM\Entity()
  */
-class FortuneProperties extends ExceptionalityProperties
+class FortuneProperties extends PropertiesByFate
 {
     /**
      * @var int

@@ -1,14 +1,14 @@
 <?php
 namespace DrdPlus\Tests\PropertiesByFate;
 
-use DrdPlus\PropertiesByFate\ExceptionalityProperties;
+use DrdPlus\PropertiesByFate\PropertiesByFate;
 use Granam\Tests\Exceptions\Tools\AbstractExceptionsHierarchyTest;
 
 class ExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
     protected function getTestedNamespace()
     {
-        $reflection = new \ReflectionClass(ExceptionalityProperties::class);
+        $reflection = new \ReflectionClass(PropertiesByFate::class);
 
         return $reflection->getNamespaceName();
     }

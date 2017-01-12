@@ -4,7 +4,9 @@ namespace DrdPlus\PropertiesByFate;
 use Doctrineum\Entity\Entity;
 use DrdPlus\Codes\ChoiceCode;
 use DrdPlus\Codes\FateCode;
+use DrdPlus\Codes\PropertyCode;
 use DrdPlus\Properties\Base\Agility;
+use DrdPlus\Properties\Base\BaseProperty;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
@@ -16,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass()
  */
-abstract class ExceptionalityProperties extends StrictObject implements Entity
+abstract class PropertiesByFate extends StrictObject implements Entity
 {
 
     /**
@@ -158,4 +160,31 @@ abstract class ExceptionalityProperties extends StrictObject implements Entity
      * @return ChoiceCode
      */
     abstract public function getChoiceCode();
+
+    /**
+     * @param PropertyCode $propertyCode
+     * @return BaseProperty
+     * @throws \DrdPlus\PropertiesByFate\Exceptions\NotFateAffectedProperty
+     */
+    public function getProperty(PropertyCode $propertyCode)
+    {
+        switch ($propertyCode->getValue()) {
+            case PropertyCode::STRENGTH :
+                return $this->getStrength();
+            case PropertyCode::AGILITY :
+                return $this->getAgility();
+            case PropertyCode::KNACK :
+                return $this->getKnack();
+            case PropertyCode::WILL :
+                return $this->getWill();
+            case PropertyCode::INTELLIGENCE :
+                return $this->getIntelligence();
+            case PropertyCode::CHARISMA :
+                return $this->getCharisma();
+            default :
+                throw new Exceptions\NotFateAffectedProperty(
+                    "Required property {$propertyCode} is not affected by fate"
+                );
+        }
+    }
 }

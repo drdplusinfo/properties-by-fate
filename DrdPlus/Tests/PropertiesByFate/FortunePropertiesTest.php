@@ -4,7 +4,7 @@ namespace DrdPlus\Tests\PropertiesByFate;
 use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\ChoiceCode;
 use DrdPlus\Codes\FateCode;
-use DrdPlus\PropertiesByFate\ExceptionalityProperties;
+use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BasePropertiesFactory;
@@ -15,7 +15,7 @@ use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
 use DrdPlus\Tables\History\InfluenceOfFortuneTable;
 
-class FortunePropertiesTest extends ExceptionalityPropertiesTest
+class FortunePropertiesTest extends PropertiesByFateTest
 {
     /**
      * @test
@@ -37,6 +37,7 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
         $this->I_get_null_as_id_before_persist($fortuneProperties);
         $this->I_get_expected_choice_code($fortuneProperties);
         $this->I_get_fate_code_created_with($fortuneProperties, $fateCode);
+        $this->I_can_get_property_by_its_code($fortuneProperties);
         self::assertSame($strengthRoll, $fortuneProperties->getStrengthRoll());
         self::assertSame($agilityRoll, $fortuneProperties->getAgilityRoll());
         self::assertSame($knackRoll, $fortuneProperties->getKnackRoll());
@@ -45,17 +46,12 @@ class FortunePropertiesTest extends ExceptionalityPropertiesTest
         self::assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
     }
 
-    protected function I_get_null_as_id_before_persist(ExceptionalityProperties $fortuneProperties)
-    {
-        self::assertNull($fortuneProperties->getId());
-    }
-
-    protected function I_get_expected_choice_code(ExceptionalityProperties $fortuneProperties)
+    protected function I_get_expected_choice_code(PropertiesByFate $fortuneProperties)
     {
         self::assertSame(ChoiceCode::getIt(ChoiceCode::FORTUNE), $fortuneProperties->getChoiceCode());
     }
 
-    protected function I_get_fate_code_created_with(ExceptionalityProperties $fortuneProperties, FateCode $expectedFateCode)
+    protected function I_get_fate_code_created_with(PropertiesByFate $fortuneProperties, FateCode $expectedFateCode)
     {
         self::assertSame($expectedFateCode, $fortuneProperties->getFateCode());
     }
