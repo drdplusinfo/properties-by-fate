@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\PropertiesByFate;
 
-use DrdPlus\Codes\ChoiceCode;
-use DrdPlus\Codes\FateCode;
+use DrdPlus\Codes\History\ChoiceCode;
+use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\PropertyCode;
 use DrdPlus\Professions\Profession;
 use DrdPlus\Properties\Base\Agility;

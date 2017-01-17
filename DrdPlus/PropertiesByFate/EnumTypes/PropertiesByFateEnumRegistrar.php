@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\PropertiesByFate\EnumTypes;
 
-use DrdPlus\Codes\EnumTypes\FateCodeType;
+use DrdPlus\Codes\History\EnumTypes\FateCodeType;
 use DrdPlus\Properties\EnumTypes\PropertiesEnumRegistrar;
 
 class PropertiesByFateEnumRegistrar

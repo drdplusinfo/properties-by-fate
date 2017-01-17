@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\Tests\PropertiesByFate;
 
-use DrdPlus\Codes\ChoiceCode;
-use DrdPlus\Codes\FateCode;
+use DrdPlus\Codes\History\ChoiceCode;
+use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\PropertyCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
 use DrdPlus\PropertiesByFate\PropertiesByFate;

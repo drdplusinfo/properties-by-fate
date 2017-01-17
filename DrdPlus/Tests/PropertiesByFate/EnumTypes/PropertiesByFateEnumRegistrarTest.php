@@ -2,7 +2,7 @@
 namespace DrdPlus\Tests\PropertiesByFate;
 
 use Doctrine\DBAL\Types\Type;
-use DrdPlus\Codes\EnumTypes\FateCodeType;
+use DrdPlus\Codes\History\EnumTypes\FateCodeType;
 use DrdPlus\PropertiesByFate\EnumTypes\PropertiesByFateEnumRegistrar;
 use Granam\Tests\Tools\TestWithMockery;
 
