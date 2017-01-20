@@ -13,7 +13,7 @@ use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
 use Doctrine\ORM\Mapping as ORM;
-use DrdPlus\Tables\History\PlayerDecisionsTable;
+use DrdPlus\Tables\Tables;
 
 /**
  * @ORM\Entity()
@@ -30,7 +30,7 @@ class ChosenProperties extends PropertiesByFate
      * @param Charisma $charisma
      * @param FateCode $fateCode
      * @param Profession $profession
-     * @param PlayerDecisionsTable $playerDecisionsTable
+     * @param Tables $tables
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidValueOfChosenProperty
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidSumOfChosenProperties
      */
@@ -43,7 +43,7 @@ class ChosenProperties extends PropertiesByFate
         Charisma $charisma,
         FateCode $fateCode,
         Profession $profession,
-        PlayerDecisionsTable $playerDecisionsTable
+        Tables $tables
     )
     {
         $this->checkChosenProperties(
@@ -55,7 +55,7 @@ class ChosenProperties extends PropertiesByFate
             $charisma,
             $fateCode,
             $profession,
-            $playerDecisionsTable
+            $tables
         );
         parent::__construct($strength, $agility, $knack, $will, $intelligence, $charisma, $fateCode);
     }
@@ -69,7 +69,7 @@ class ChosenProperties extends PropertiesByFate
      * @param Charisma $charisma
      * @param FateCode $fate
      * @param Profession $profession
-     * @param PlayerDecisionsTable $playerDecisionsTable
+     * @param Tables $tables
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidValueOfChosenProperty
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidSumOfChosenProperties
      */
@@ -82,13 +82,13 @@ class ChosenProperties extends PropertiesByFate
         Charisma $charisma,
         FateCode $fate,
         Profession $profession,
-        PlayerDecisionsTable $playerDecisionsTable
+        Tables $tables
     )
     {
         $primaryPropertiesSum = 0;
         $secondaryPropertiesSum = 0;
         foreach ([$strength, $agility, $knack, $will, $intelligence, $charisma] as $property) {
-            $this->checkChosenProperty($profession, $fate, $property, $playerDecisionsTable);
+            $this->checkChosenProperty($profession, $fate, $property, $tables);
 
             /** @var BaseProperty $property */
             if ($profession->isPrimaryProperty(PropertyCode::getIt($property->getCode()))) {
@@ -98,33 +98,27 @@ class ChosenProperties extends PropertiesByFate
             }
         }
 
-        $this->checkChosenPropertiesSum(
-            $primaryPropertiesSum,
-            $secondaryPropertiesSum,
-            $fate,
-            $profession,
-            $playerDecisionsTable
-        );
+        $this->checkChosenPropertiesSum($primaryPropertiesSum, $secondaryPropertiesSum, $fate, $profession, $tables);
     }
 
     /**
      * @param Profession $profession
      * @param FateCode $fate
      * @param BaseProperty $chosenProperty
-     * @param PlayerDecisionsTable $playerDecisionsTable
+     * @param Tables $tables
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidValueOfChosenProperty
      */
     private function checkChosenProperty(
         Profession $profession,
         FateCode $fate,
         BaseProperty $chosenProperty,
-        PlayerDecisionsTable $playerDecisionsTable
+        Tables $tables
     )
     {
-        if ($chosenProperty->getValue() > $playerDecisionsTable->getMaximumToSingleProperty($fate)) {
+        if ($chosenProperty->getValue() > $tables->getPlayerDecisionsTable()->getMaximumToSingleProperty($fate)) {
             throw new Exceptions\InvalidValueOfChosenProperty(
                 "Requested {$chosenProperty->getCode()} value {$chosenProperty->getValue()} is higher than allowed"
-                . " maximum {$playerDecisionsTable->getMaximumToSingleProperty($fate)}"
+                . " maximum {$tables->getPlayerDecisionsTable()->getMaximumToSingleProperty($fate)}"
                 . " for profession {$profession->getValue()} and fate {$fate}"
             );
         }
@@ -135,7 +129,7 @@ class ChosenProperties extends PropertiesByFate
      * @param int $secondaryPropertiesSum
      * @param FateCode $fateCode
      * @param Profession $profession
-     * @param PlayerDecisionsTable $playerDecisionsTable
+     * @param Tables $tables
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidSumOfChosenProperties
      */
     private function checkChosenPropertiesSum(
@@ -143,26 +137,29 @@ class ChosenProperties extends PropertiesByFate
         $secondaryPropertiesSum,
         FateCode $fateCode,
         Profession $profession,
-        PlayerDecisionsTable $playerDecisionsTable
+        Tables $tables
     )
     {
-        if ($primaryPropertiesSum !== $playerDecisionsTable->getPointsToPrimaryProperties($fateCode)) {
+        if ($primaryPropertiesSum !== $tables->getPlayerDecisionsTable()->getPointsToPrimaryProperties($fateCode)) {
             throw new Exceptions\InvalidSumOfChosenProperties(
-                "Expected {$playerDecisionsTable->getPointsToPrimaryProperties($fateCode)} as sum of primary properties,"
+                "Expected {$tables->getPlayerDecisionsTable()->getPointsToPrimaryProperties($fateCode)} as sum of primary properties,"
                 . " got $primaryPropertiesSum for profession '{$profession->getValue()}'"
                 . " and fate '{$fateCode}'"
             );
         }
 
-        if ($secondaryPropertiesSum !== $playerDecisionsTable->getPointsToSecondaryProperties($fateCode)) {
+        if ($secondaryPropertiesSum !== $tables->getPlayerDecisionsTable()->getPointsToSecondaryProperties($fateCode)) {
             throw new Exceptions\InvalidSumOfChosenProperties(
-                "Expected {$playerDecisionsTable->getPointsToSecondaryProperties($fateCode)} as sum of secondary properties,"
+                "Expected {$tables->getPlayerDecisionsTable()->getPointsToSecondaryProperties($fateCode)} as sum of secondary properties,"
                 . " got $secondaryPropertiesSum for profession '{$profession->getValue()}'"
                 . " and fate '{$fateCode}'"
             );
         }
     }
 
+    /**
+     * @return ChoiceCode
+     */
     public function getChoiceCode()
     {
         return ChoiceCode::getIt(ChoiceCode::PLAYER_DECISION);

@@ -9,6 +9,7 @@ use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
 use DrdPlus\Properties\Base\BasePropertiesFactory;
 use DrdPlus\Tables\History\InfluenceOfFortuneTable;
+use DrdPlus\Tables\Tables;
 
 class FortunePropertiesTest extends PropertiesByFateTest
 {
@@ -26,7 +27,7 @@ class FortunePropertiesTest extends PropertiesByFateTest
             $this->createRoll($charismaRoll = 6),
             $fateCode = FateCode::getIt(FateCode::COMBINATION_OF_PROPERTIES_AND_BACKGROUND),
             $this->createProfession([]), // all properties as secondary
-            $this->createInfluenceOfFortuneTableForSecondaryPropertiesOnly($testMultiplier = 456),
+            $this->createTablesWithInfluenceOfFortuneTable($testMultiplier = 456, false /* for secondary properties */),
             new BasePropertiesFactory()
         );
         $this->I_get_null_as_id_before_persist($fortuneProperties);
@@ -86,7 +87,7 @@ class FortunePropertiesTest extends PropertiesByFateTest
                 PropertyCode::INTELLIGENCE,
                 PropertyCode::CHARISMA,
             ]),
-            $this->createInfluenceOfFortuneFateTable($testMultiplier = 456),
+            $this->createTablesWithInfluenceOfFortuneTable($testMultiplier = 456, true /* for primary properties */),
             new BasePropertiesFactory()
         );
         self::assertSame($strengthRoll * $testMultiplier, $fortuneProperties->getStrength()->getValue());
@@ -125,19 +126,25 @@ class FortunePropertiesTest extends PropertiesByFateTest
 
     /**
      * @param int $testMultiplier
-     * @return InfluenceOfFortuneTable|\Mockery\MockInterface
+     * @param bool $forPrimaryProperty
+     * @return Tables|\Mockery\MockInterface
      */
-    private function createInfluenceOfFortuneFateTable($testMultiplier)
+    private function createTablesWithInfluenceOfFortuneTable($testMultiplier, $forPrimaryProperty)
     {
-        $influenceOfFortuneTable = $this->mockery(InfluenceOfFortuneTable::class);
+        $tables = $this->mockery(Tables::class);
+        $tables->shouldReceive('getInfluenceOfFortuneTable')
+            ->andReturn($influenceOfFortuneTable = $this->mockery(InfluenceOfFortuneTable::class));
         /** @noinspection PhpUnusedParameterInspection */
-        $influenceOfFortuneTable->shouldReceive('getPrimaryPropertyOnFate')
+        $influenceOfFortuneTable->shouldReceive($forPrimaryProperty
+            ? 'getPrimaryPropertyOnFate'
+            : 'getSecondaryPropertyOnFate'
+        )
             ->with($this->type(FateCode::class), $this->type(Roll1d6::class))
             ->andReturnUsing(function (FateCode $fateCode, Roll1d6 $roll) use ($testMultiplier) {
                 return $roll->getValue() * $testMultiplier;
             });
 
-        return $influenceOfFortuneTable;
+        return $tables;
     }
 
     /**
@@ -168,7 +175,7 @@ class FortunePropertiesTest extends PropertiesByFateTest
             $this->createRoll($charismaRoll),
             FateCode::getIt(FateCode::COMBINATION_OF_PROPERTIES_AND_BACKGROUND),
             $this->createProfession([]), // all properties as secondary
-            $this->createInfluenceOfFortuneTableForSecondaryPropertiesOnly($testMultiplier = 456),
+            $this->createTablesWithInfluenceOfFortuneTable($testMultiplier = 456, false /* for secondary properties */),
             new BasePropertiesFactory()
         );
         self::assertSame($strengthRoll * $testMultiplier, $fortuneProperties->getStrength()->getValue());
@@ -183,22 +190,5 @@ class FortunePropertiesTest extends PropertiesByFateTest
         self::assertSame($intelligenceRoll, $fortuneProperties->getIntelligenceRoll());
         self::assertSame($charismaRoll * $testMultiplier, $fortuneProperties->getCharisma()->getValue());
         self::assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
-    }
-
-    /**
-     * @param int $testMultiplier
-     * @return InfluenceOfFortuneTable|\Mockery\MockInterface
-     */
-    private function createInfluenceOfFortuneTableForSecondaryPropertiesOnly($testMultiplier)
-    {
-        $fate = $this->mockery(InfluenceOfFortuneTable::class);
-        /** @noinspection PhpUnusedParameterInspection */
-        $fate->shouldReceive('getSecondaryPropertyOnFate')
-            ->with($this->type(FateCode::class), $this->type(Roll1d6::class))
-            ->andReturnUsing(function (FateCode $fateCode, Roll1d6 $roll) use ($testMultiplier) {
-                return $roll->getValue() * $testMultiplier;
-            });
-
-        return $fate;
     }
 }

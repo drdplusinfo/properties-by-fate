@@ -14,7 +14,7 @@ use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
 use Doctrine\ORM\Mapping as ORM;
-use DrdPlus\Tables\History\InfluenceOfFortuneTable;
+use DrdPlus\Tables\Tables;
 
 /**
  * @ORM\Entity()
@@ -61,7 +61,7 @@ class FortuneProperties extends PropertiesByFate
      * @param Roll1d6 $charismaRoll
      * @param FateCode $fateCode
      * @param Profession $profession
-     * @param InfluenceOfFortuneTable $influenceOfFortuneTable
+     * @param Tables $tables
      * @param BasePropertiesFactory $basePropertiesFactory
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidValueOfChosenProperty
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidSumOfChosenProperties
@@ -75,27 +75,27 @@ class FortuneProperties extends PropertiesByFate
         Roll1d6 $charismaRoll,
         FateCode $fateCode,
         Profession $profession,
-        InfluenceOfFortuneTable $influenceOfFortuneTable,
+        Tables $tables,
         BasePropertiesFactory $basePropertiesFactory
     )
     {
         $strength = $this->createFortuneProperty(
-            $profession, $fateCode, $strengthRoll, PropertyCode::getIt(PropertyCode::STRENGTH), $influenceOfFortuneTable, $basePropertiesFactory
+            $profession, $fateCode, $strengthRoll, PropertyCode::getIt(PropertyCode::STRENGTH), $tables, $basePropertiesFactory
         );
         $agility = $this->createFortuneProperty(
-            $profession, $fateCode, $agilityRoll, PropertyCode::getIt(PropertyCode::AGILITY), $influenceOfFortuneTable, $basePropertiesFactory
+            $profession, $fateCode, $agilityRoll, PropertyCode::getIt(PropertyCode::AGILITY), $tables, $basePropertiesFactory
         );
         $knack = $this->createFortuneProperty(
-            $profession, $fateCode, $knackRoll, PropertyCode::getIt(PropertyCode::KNACK), $influenceOfFortuneTable, $basePropertiesFactory
+            $profession, $fateCode, $knackRoll, PropertyCode::getIt(PropertyCode::KNACK), $tables, $basePropertiesFactory
         );
         $will = $this->createFortuneProperty(
-            $profession, $fateCode, $willRoll, PropertyCode::getIt(PropertyCode::WILL), $influenceOfFortuneTable, $basePropertiesFactory
+            $profession, $fateCode, $willRoll, PropertyCode::getIt(PropertyCode::WILL), $tables, $basePropertiesFactory
         );
         $intelligence = $this->createFortuneProperty(
-            $profession, $fateCode, $intelligenceRoll, PropertyCode::getIt(PropertyCode::INTELLIGENCE), $influenceOfFortuneTable, $basePropertiesFactory
+            $profession, $fateCode, $intelligenceRoll, PropertyCode::getIt(PropertyCode::INTELLIGENCE), $tables, $basePropertiesFactory
         );
         $charisma = $this->createFortuneProperty(
-            $profession, $fateCode, $charismaRoll, PropertyCode::getIt(PropertyCode::CHARISMA), $influenceOfFortuneTable, $basePropertiesFactory
+            $profession, $fateCode, $charismaRoll, PropertyCode::getIt(PropertyCode::CHARISMA), $tables, $basePropertiesFactory
         );
         parent::__construct($strength, $agility, $knack, $will, $intelligence, $charisma, $fateCode);
         $this->strengthRoll = $strengthRoll->getValue();
@@ -111,7 +111,7 @@ class FortuneProperties extends PropertiesByFate
      * @param FateCode $fateCode
      * @param Roll1d6 $roll
      * @param PropertyCode $propertyCode
-     * @param InfluenceOfFortuneTable $influenceOfFortuneTable
+     * @param Tables $tables
      * @param BasePropertiesFactory $basePropertiesFactory
      * @return Strength|Agility|Knack|Will|Intelligence|Charisma
      * @throws \DrdPlus\PropertiesByFate\Exceptions\InvalidValueOfChosenProperty
@@ -122,16 +122,16 @@ class FortuneProperties extends PropertiesByFate
         FateCode $fateCode,
         Roll1d6 $roll,
         PropertyCode $propertyCode,
-        InfluenceOfFortuneTable $influenceOfFortuneTable,
+        Tables $tables,
         BasePropertiesFactory $basePropertiesFactory
     )
     {
         if ($profession->isPrimaryProperty($propertyCode)) {
             /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
-            $value = $influenceOfFortuneTable->getPrimaryPropertyOnFate($fateCode, $roll);
+            $value = $tables->getInfluenceOfFortuneTable()->getPrimaryPropertyOnFate($fateCode, $roll);
         } else {
             /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
-            $value = $influenceOfFortuneTable->getSecondaryPropertyOnFate($fateCode, $roll);
+            $value = $tables->getInfluenceOfFortuneTable()->getSecondaryPropertyOnFate($fateCode, $roll);
         }
 
         /** @noinspection ExceptionsAnnotatingAndHandlingInspection */

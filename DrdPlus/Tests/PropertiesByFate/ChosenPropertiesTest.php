@@ -13,6 +13,7 @@ use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
 use DrdPlus\Tables\History\PlayerDecisionsTable;
+use DrdPlus\Tables\Tables;
 
 class ChosenPropertiesTest extends PropertiesByFateTest
 {
@@ -44,7 +45,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
                 PropertyCode::INTELLIGENCE,
                 PropertyCode::CHARISMA,
             ]),
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma,
                 0,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
@@ -73,11 +74,13 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $primaryPropertiesBonus
      * @param int $secondaryPropertiesBonus
      * @param int $upToSingleProperty
-     * @return PlayerDecisionsTable|\Mockery\MockInterface
+     * @return Tables|\Mockery\MockInterface
      */
-    private function createPlayerDecisionsTable($primaryPropertiesBonus, $secondaryPropertiesBonus, $upToSingleProperty)
+    private function createTablesWithPlayerDecisionsTable($primaryPropertiesBonus, $secondaryPropertiesBonus, $upToSingleProperty)
     {
-        $playerDecisionsTable = $this->mockery(PlayerDecisionsTable::class);
+        $tables = $this->mockery(Tables::class);
+        $tables->shouldReceive('getPlayerDecisionsTable')
+            ->andReturn($playerDecisionsTable = $this->mockery(PlayerDecisionsTable::class));
         $playerDecisionsTable->shouldReceive('getPointsToSecondaryProperties')
             ->andReturn($secondaryPropertiesBonus);
         $playerDecisionsTable->shouldReceive('getPointsToPrimaryProperties')
@@ -85,7 +88,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
         $playerDecisionsTable->shouldReceive('getMaximumToSingleProperty')
             ->andReturn($upToSingleProperty);
 
-        return $playerDecisionsTable;
+        return $tables;
     }
 
     protected function I_get_expected_choice_code(PropertiesByFate $chosenProperties)
@@ -137,7 +140,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
                 PropertyCode::INTELLIGENCE,
                 PropertyCode::CHARISMA,
             ]),
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma,
                 0,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma) - 1 /* allowed a little bit lesser than given */
@@ -174,7 +177,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
                 PropertyCode::INTELLIGENCE,
                 PropertyCode::CHARISMA,
             ]),
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma - 1 /* allowed a little bit less than given*/,
                 0,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
@@ -218,7 +221,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
                 PropertyCode::INTELLIGENCE,
                 PropertyCode::CHARISMA,
             ]),
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 $strength + $agility + $knack + $will + $intelligence + $charisma + 1/* expected a little bit more than given*/,
                 0,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
@@ -247,7 +250,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::COMBINATION_OF_PROPERTIES_AND_BACKGROUND),
             $this->createProfession([]), // all properties as secondary
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 0,
                 $strength + $agility + $knack + $will + $intelligence + $charisma,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
@@ -290,7 +293,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::EXCEPTIONAL_PROPERTIES),
             $this->createProfession([]),
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 0,
                 $strength + $agility + $knack + $will + $intelligence + $charisma - 1 /* allowed a little bit less than given*/,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
@@ -327,7 +330,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::GOOD_BACKGROUND),
             $this->createProfession([]), // no primary property
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 0,
                 $strength + $agility + $knack + $will + $intelligence + $charisma,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma) - 1 /* allowed a little bit lesser than given */
@@ -364,7 +367,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
             Charisma::getIt($charisma),
             FateCode::getIt(FateCode::COMBINATION_OF_PROPERTIES_AND_BACKGROUND),
             $this->createProfession([]), // no primary property
-            $this->createPlayerDecisionsTable(
+            $this->createTablesWithPlayerDecisionsTable(
                 0,
                 $strength + $agility + $knack + $will + $intelligence + $charisma + 1 /* expected a little bit more than given*/,
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)

@@ -18,8 +18,7 @@ use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
-use DrdPlus\Tables\History\InfluenceOfFortuneTable;
-use DrdPlus\Tables\History\PlayerDecisionsTable;
+use DrdPlus\Tables\Tables;
 
 class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
 {
@@ -63,7 +62,7 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
                 Charisma::getIt(1),
                 FateCode::getIt(FateCode::COMBINATION_OF_PROPERTIES_AND_BACKGROUND),
                 Fighter::getIt(),
-                new PlayerDecisionsTable()
+                Tables::getIt()
             ),
             new ChosenProperties(
                 Strength::getIt(1),
@@ -74,7 +73,7 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
                 Charisma::getIt(3),
                 FateCode::getIt(FateCode::EXCEPTIONAL_PROPERTIES),
                 Wizard::getIt(),
-                new PlayerDecisionsTable()
+                Tables::getIt()
             ),
             new FortuneProperties(
                 self::createRoll1d6(1),
@@ -85,7 +84,7 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
                 self::createRoll1d6(2),
                 FateCode::getIt(FateCode::EXCEPTIONAL_PROPERTIES),
                 Thief::getIt(),
-                new InfluenceOfFortuneTable(),
+                Tables::getIt(),
                 new BasePropertiesFactory()
             ),
         ];
