@@ -4,7 +4,7 @@ namespace DrdPlus\Tests\PropertiesByFate;
 use Drd\DiceRoll\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
-use DrdPlus\Codes\PropertyCode;
+use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
 use DrdPlus\Properties\Base\BasePropertiesFactory;

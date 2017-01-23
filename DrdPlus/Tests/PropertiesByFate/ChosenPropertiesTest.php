@@ -3,7 +3,7 @@ namespace DrdPlus\Tests\PropertiesByFate;
 
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
-use DrdPlus\Codes\PropertyCode;
+use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\Properties\Base\Agility;

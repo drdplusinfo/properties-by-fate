@@ -4,7 +4,7 @@ namespace DrdPlus\PropertiesByFate;
 use Doctrineum\Entity\Entity;
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
-use DrdPlus\Codes\PropertyCode;
+use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\Properties\Base\BaseProperty;
 use DrdPlus\Properties\Base\Charisma;
