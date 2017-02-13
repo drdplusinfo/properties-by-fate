@@ -2,7 +2,7 @@
 namespace DrdPlus\Tests\PropertiesByFate;
 
 use Doctrineum\Tests\Entity\AbstractDoctrineEntitiesTest;
-use Drd\DiceRoll\Templates\Rolls\Roll1d6;
+use Drd\DiceRolls\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\History\FateCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
 use DrdPlus\PropertiesByFate\EnumTypes\PropertiesByFateEnumRegistrar;

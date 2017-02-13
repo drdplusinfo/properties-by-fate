@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\PropertiesByFate;
 
-use Drd\DiceRoll\Templates\Rolls\Roll1d6;
+use Drd\DiceRolls\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\Properties\PropertyCode;
