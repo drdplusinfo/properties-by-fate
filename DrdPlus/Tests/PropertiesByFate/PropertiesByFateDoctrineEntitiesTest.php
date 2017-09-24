@@ -28,29 +28,24 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
         parent::setUp();
     }
 
-    protected function getDirsWithEntities()
+    protected function getDirsWithEntities(): array
     {
         $exceptionalityReflection = new \ReflectionClass(PropertiesByFate::class);
 
-        return [
-            dirname($exceptionalityReflection->getFileName()),
-        ];
+        return [dirname($exceptionalityReflection->getFileName())];
     }
 
-    protected function getExpectedEntityClasses()
+    protected function getExpectedEntityClasses(): array
     {
-        return [
-            ChosenProperties::class,
-            FortuneProperties::class,
-        ];
+        return [ChosenProperties::class, FortuneProperties::class];
     }
 
-    protected function createEntitiesToPersist()
+    protected function createEntitiesToPersist(): array
     {
         return self::createEntities();
     }
 
-    public static function createEntities()
+    public static function createEntities(): array
     {
         return [
             new ChosenProperties(
@@ -94,7 +89,7 @@ class PropertiesByFateDoctrineEntitiesTest extends AbstractDoctrineEntitiesTest
      * @param $value
      * @return \Mockery\MockInterface|Roll1d6
      */
-    private static function createRoll1d6($value)
+    private static function createRoll1d6($value): Roll1d6
     {
         $roll = \Mockery::mock(Roll1d6::class);
         $roll->shouldReceive('getValue')
