@@ -160,7 +160,7 @@ class ChosenProperties extends PropertiesByFate
     /**
      * @return ChoiceCode
      */
-    public function getChoiceCode()
+    public function getChoiceCode(): ChoiceCode
     {
         return ChoiceCode::getIt(ChoiceCode::PLAYER_DECISION);
     }

@@ -141,7 +141,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return int
      */
-    public function getStrengthRoll()
+    public function getStrengthRoll(): int
     {
         return $this->strengthRoll;
     }
@@ -149,7 +149,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return int
      */
-    public function getAgilityRoll()
+    public function getAgilityRoll(): int
     {
         return $this->agilityRoll;
     }
@@ -157,7 +157,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return int
      */
-    public function getKnackRoll()
+    public function getKnackRoll(): int
     {
         return $this->knackRoll;
     }
@@ -165,7 +165,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return int
      */
-    public function getWillRoll()
+    public function getWillRoll(): int
     {
         return $this->willRoll;
     }
@@ -173,7 +173,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return int
      */
-    public function getIntelligenceRoll()
+    public function getIntelligenceRoll(): int
     {
         return $this->intelligenceRoll;
     }
@@ -181,7 +181,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return int
      */
-    public function getCharismaRoll()
+    public function getCharismaRoll(): int
     {
         return $this->charismaRoll;
     }
@@ -189,7 +189,7 @@ class FortuneProperties extends PropertiesByFate
     /**
      * @return ChoiceCode
      */
-    public function getChoiceCode()
+    public function getChoiceCode(): ChoiceCode
     {
         return ChoiceCode::getIt(ChoiceCode::FORTUNE);
     }

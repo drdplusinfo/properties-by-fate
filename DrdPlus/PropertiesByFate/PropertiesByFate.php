@@ -16,7 +16,13 @@ use Granam\Strict\Object\StrictObject;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\MappedSuperclass()
+ * @ORM\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="choice", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "fortune" = "\DrdPlus\PropertiesByFate\FortuneProperties",
+ *     "chosen" = "\DrdPlus\PropertiesByFate\ChosenProperties",
+ * })
  */
 abstract class PropertiesByFate extends StrictObject implements Entity
 {
@@ -92,10 +98,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
         $this->fateCode = $fateCode;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -103,7 +106,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return Strength
      */
-    public function getStrength()
+    public function getStrength(): Strength
     {
         return $this->strength;
     }
@@ -111,7 +114,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return Agility
      */
-    public function getAgility()
+    public function getAgility(): Agility
     {
         return $this->agility;
     }
@@ -119,7 +122,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return Knack
      */
-    public function getKnack()
+    public function getKnack(): Knack
     {
         return $this->knack;
     }
@@ -127,7 +130,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return Will
      */
-    public function getWill()
+    public function getWill(): Will
     {
         return $this->will;
     }
@@ -135,7 +138,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return Intelligence
      */
-    public function getIntelligence()
+    public function getIntelligence(): Intelligence
     {
         return $this->intelligence;
     }
@@ -143,7 +146,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return Charisma
      */
-    public function getCharisma()
+    public function getCharisma(): Charisma
     {
         return $this->charisma;
     }
@@ -151,7 +154,7 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return FateCode
      */
-    public function getFateCode()
+    public function getFateCode(): FateCode
     {
         return $this->fateCode;
     }
@@ -159,14 +162,14 @@ abstract class PropertiesByFate extends StrictObject implements Entity
     /**
      * @return ChoiceCode
      */
-    abstract public function getChoiceCode();
+    abstract public function getChoiceCode(): ChoiceCode;
 
     /**
      * @param PropertyCode $propertyCode
      * @return BaseProperty
      * @throws \DrdPlus\PropertiesByFate\Exceptions\NotFateAffectedProperty
      */
-    public function getProperty(PropertyCode $propertyCode)
+    public function getProperty(PropertyCode $propertyCode): BaseProperty
     {
         switch ($propertyCode->getValue()) {
             case PropertyCode::STRENGTH :
