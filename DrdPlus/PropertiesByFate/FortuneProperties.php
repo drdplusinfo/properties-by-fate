@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\PropertiesByFate;
 
-use Drd\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\Properties\PropertyCode;
@@ -13,42 +13,41 @@ use DrdPlus\Properties\Base\Intelligence;
 use DrdPlus\Properties\Base\Knack;
 use DrdPlus\Properties\Base\Strength;
 use DrdPlus\Properties\Base\Will;
-use Doctrine\ORM\Mapping as ORM;
 use DrdPlus\Tables\Tables;
 
 /**
- * @ORM\Entity()
+ * @Doctrine\ORM\Mapping\Entity()
  */
 class FortuneProperties extends PropertiesByFate
 {
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $strengthRoll;
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $agilityRoll;
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $knackRoll;
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $willRoll;
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $intelligenceRoll;
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $charismaRoll;
 
