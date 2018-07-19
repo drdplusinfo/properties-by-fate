@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DrdPlus\Tests\PropertiesByFate;
 
 use DrdPlus\Codes\History\ChoiceCode;
@@ -27,7 +29,13 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $intelligence
      * @param int $charisma
      */
-    public function I_can_get_chosen_properties_tested_as_primary($strength, $agility, $knack, $will, $intelligence, $charisma)
+    public function I_can_get_chosen_properties_tested_as_primary(
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence, int $charisma
+    ): void
     {
         $chosenProperties = new ChosenProperties(
             Strength::getIt($strength),

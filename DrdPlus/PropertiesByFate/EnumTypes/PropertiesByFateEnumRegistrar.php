@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace DrdPlus\PropertiesByFate\EnumTypes;
 
 use DrdPlus\Codes\History\EnumTypes\ChoiceCodeType;

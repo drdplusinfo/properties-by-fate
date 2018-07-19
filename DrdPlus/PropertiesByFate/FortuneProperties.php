@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace DrdPlus\PropertiesByFate;
 
 use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
