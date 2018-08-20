@@ -1,5 +1,5 @@
 {
-  "name": "drd-plus/properties-by-fate",
+  "name": "drdplus/properties-by-fate",
   "description": "Exceptional properties by choose or fortune for DrD+",
   "type": "project",
   "license": "MIT",
@@ -22,9 +22,9 @@
     "granam/scalar": "^4.0",
     "granam/string": "^3.0",
     "doctrineum/entity": "^2.1",
-    "drd-plus/properties": "^1.0",
-    "drd-plus/professions": "^1.0",
-    "drd-plus/dice-rolls": "^4.1"
+    "drdplus/properties": "^1.0",
+    "drdplus/professions": "^1.0",
+    "drdplus/dice-rolls": "^4.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
