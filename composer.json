@@ -24,7 +24,7 @@
     "doctrineum/entity": "^2.1",
     "drdplus/properties": "^1.0",
     "drdplus/professions": "^1.0",
-    "drdplus/dice-rolls": "^4.1"
+    "granam/dice-rolls": "^5.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
