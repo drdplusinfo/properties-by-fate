@@ -8,12 +8,12 @@ use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\PropertiesByFate\ChosenProperties;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
-use DrdPlus\Properties\Base\Agility;
-use DrdPlus\Properties\Base\Charisma;
-use DrdPlus\Properties\Base\Intelligence;
-use DrdPlus\Properties\Base\Knack;
-use DrdPlus\Properties\Base\Strength;
-use DrdPlus\Properties\Base\Will;
+use DrdPlus\BaseProperties\Agility;
+use DrdPlus\BaseProperties\Charisma;
+use DrdPlus\BaseProperties\Intelligence;
+use DrdPlus\BaseProperties\Knack;
+use DrdPlus\BaseProperties\Strength;
+use DrdPlus\BaseProperties\Will;
 use DrdPlus\Tables\History\PlayerDecisionsTable;
 use DrdPlus\Tables\Tables;
 
@@ -59,7 +59,6 @@ class ChosenPropertiesTest extends PropertiesByFateTest
                 max($strength, $agility, $knack, $will, $intelligence, $charisma)
             )
         );
-        $this->I_get_null_as_id_before_persist($chosenProperties);
         $this->I_get_expected_choice_code($chosenProperties);
         $this->I_get_fate_code_created_with($chosenProperties, $fateCode);
         $this->I_can_get_property_by_its_code($chosenProperties);
@@ -71,7 +70,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
         self::assertSame($charisma, $chosenProperties->getCharisma()->getValue());
     }
 
-    public function provideChosenProperties()
+    public function provideChosenProperties(): array
     {
         return [
             [1, 2, 3, 4, 5, 6],
@@ -84,7 +83,7 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $upToSingleProperty
      * @return Tables|\Mockery\MockInterface
      */
-    private function createTablesWithPlayerDecisionsTable($primaryPropertiesBonus, $secondaryPropertiesBonus, $upToSingleProperty)
+    private function createTablesWithPlayerDecisionsTable(int $primaryPropertiesBonus, int $secondaryPropertiesBonus, int $upToSingleProperty)
     {
         $tables = $this->mockery(Tables::class);
         $tables->shouldReceive('getPlayerDecisionsTable')
@@ -124,12 +123,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $charisma
      */
     public function I_can_not_use_higher_than_allowed_chosen_property_tested_as_primary(
-        $strength,
-        $agility,
-        $knack,
-        $will,
-        $intelligence,
-        $charisma
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
     )
     {
         new ChosenProperties(
@@ -167,7 +166,14 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $intelligence
      * @param int $charisma
      */
-    public function I_can_not_use_higher_than_expected_chosen_properties_sum_tested_as_primary($strength, $agility, $knack, $will, $intelligence, $charisma)
+    public function I_can_not_use_higher_than_expected_chosen_properties_sum_tested_as_primary(
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
+    )
     {
         new ChosenProperties(
             Strength::getIt($strength),
@@ -205,12 +211,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $charisma
      */
     public function I_can_not_use_lesser_than_expected_chosen_properties_sum_tested_as_primary(
-        $strength,
-        $agility,
-        $knack,
-        $will,
-        $intelligence,
-        $charisma
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
     )
     {
         new ChosenProperties(
@@ -247,7 +253,14 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $intelligence
      * @param int $charisma
      */
-    public function I_can_get_chosen_properties_tested_as_secondary($strength, $agility, $knack, $will, $intelligence, $charisma)
+    public function I_can_get_chosen_properties_tested_as_secondary(
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
+    )
     {
         $chosenProperties = new ChosenProperties(
             Strength::getIt($strength),
@@ -284,12 +297,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $charisma
      */
     public function I_can_not_use_higher_than_expected_chosen_properties_sum_tested_as_secondary(
-        $strength,
-        $agility,
-        $knack,
-        $will,
-        $intelligence,
-        $charisma
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
     )
     {
         new ChosenProperties(
@@ -321,12 +334,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $charisma
      */
     public function I_can_not_use_higher_than_allowed_chosen_property_tested_as_secondary(
-        $strength,
-        $agility,
-        $knack,
-        $will,
-        $intelligence,
-        $charisma
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
     )
     {
         new ChosenProperties(
@@ -358,12 +371,12 @@ class ChosenPropertiesTest extends PropertiesByFateTest
      * @param int $charisma
      */
     public function I_can_not_use_lesser_than_expected_chosen_properties_sum_tested_as_secondary(
-        $strength,
-        $agility,
-        $knack,
-        $will,
-        $intelligence,
-        $charisma
+        int $strength,
+        int $agility,
+        int $knack,
+        int $will,
+        int $intelligence,
+        int $charisma
     )
     {
         new ChosenProperties(

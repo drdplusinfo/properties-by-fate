@@ -1,27 +1,18 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace DrdPlus\Tests\PropertiesByFate;
 
-use DrdPlus\PropertiesByFate\PropertiesByFate;
 use Granam\Tests\ExceptionsHierarchy\Exceptions\AbstractExceptionsHierarchyTest;
 
 class PropertiesByFateExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
-    /**
-     * @return string
-     */
-    protected function getTestedNamespace()
+    protected function getTestedNamespace(): string
     {
-        $reflection = new \ReflectionClass(PropertiesByFate::class);
-
-        return $reflection->getNamespaceName();
+        return \str_replace('\\Tests', '', __NAMESPACE__);
     }
 
-    /**
-     * @return string
-     */
-    protected function getRootNamespace()
+    protected function getRootNamespace(): string
     {
         return $this->getTestedNamespace();
     }

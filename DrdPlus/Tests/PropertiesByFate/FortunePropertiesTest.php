@@ -1,17 +1,17 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace DrdPlus\Tests\PropertiesByFate;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\PropertiesByFate\FortuneProperties;
-use DrdPlus\Properties\Base\BasePropertiesFactory;
+use DrdPlus\BaseProperties\BasePropertiesFactory;
 use DrdPlus\Tables\History\InfluenceOfFortuneTable;
 use DrdPlus\Tables\Tables;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
 
 class FortunePropertiesTest extends PropertiesByFateTest
 {
@@ -32,7 +32,6 @@ class FortunePropertiesTest extends PropertiesByFateTest
             $this->createTablesWithInfluenceOfFortuneTable($testMultiplier = 456, false /* for secondary properties */),
             new BasePropertiesFactory()
         );
-        $this->I_get_null_as_id_before_persist($fortuneProperties);
         $this->I_get_expected_choice_code($fortuneProperties);
         $this->I_get_fate_code_created_with($fortuneProperties, $fateCode);
         $this->I_can_get_property_by_its_code($fortuneProperties);
@@ -65,12 +64,12 @@ class FortunePropertiesTest extends PropertiesByFateTest
      * @param int $charismaRoll
      */
     public function I_can_get_fortune_properties_tested_as_primary(
-        $strengthRoll,
-        $agilityRoll,
-        $knackRoll,
-        $willRoll,
-        $intelligenceRoll,
-        $charismaRoll
+        int $strengthRoll,
+        int $agilityRoll,
+        int $knackRoll,
+        int $willRoll,
+        int $intelligenceRoll,
+        int $charismaRoll
     )
     {
         $fortuneProperties = new FortuneProperties(
@@ -106,7 +105,7 @@ class FortunePropertiesTest extends PropertiesByFateTest
         self::assertSame($charismaRoll, $fortuneProperties->getCharismaRoll());
     }
 
-    public function providePropertyRolls()
+    public function providePropertyRolls(): array
     {
         return [
             [1, 2, 3, 4, 5, 6],
@@ -136,7 +135,6 @@ class FortunePropertiesTest extends PropertiesByFateTest
         $tables = $this->mockery(Tables::class);
         $tables->shouldReceive('getInfluenceOfFortuneTable')
             ->andReturn($influenceOfFortuneTable = $this->mockery(InfluenceOfFortuneTable::class));
-        /** @noinspection PhpUnusedParameterInspection */
         $influenceOfFortuneTable->shouldReceive($forPrimaryProperty
             ? 'getPrimaryPropertyOnFate'
             : 'getSecondaryPropertyOnFate'
@@ -152,20 +150,20 @@ class FortunePropertiesTest extends PropertiesByFateTest
     /**
      * @test
      * @dataProvider providePropertyRolls
-     * @param $strengthRoll
-     * @param $agilityRoll
-     * @param $knackRoll
-     * @param $willRoll
-     * @param $intelligenceRoll
-     * @param $charismaRoll
+     * @param int $strengthRoll
+     * @param int $agilityRoll
+     * @param int $knackRoll
+     * @param int $willRoll
+     * @param int $intelligenceRoll
+     * @param int $charismaRoll
      */
     public function I_can_get_fortune_properties_tested_as_secondary(
-        $strengthRoll,
-        $agilityRoll,
-        $knackRoll,
-        $willRoll,
-        $intelligenceRoll,
-        $charismaRoll
+        int $strengthRoll,
+        int $agilityRoll,
+        int $knackRoll,
+        int $willRoll,
+        int $intelligenceRoll,
+        int $charismaRoll
     )
     {
         $fortuneProperties = new FortuneProperties(

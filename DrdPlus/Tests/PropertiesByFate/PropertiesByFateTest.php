@@ -31,14 +31,6 @@ abstract class PropertiesByFateTest extends TestWithMockery
     }
 
     /**
-     * @param PropertiesByFate $propertiesByFate
-     */
-    protected function I_get_null_as_id_before_persist(PropertiesByFate $propertiesByFate)
-    {
-        self::assertNull($propertiesByFate->getId());
-    }
-
-    /**
      * @param PropertiesByFate $exceptionalityProperties
      */
     abstract protected function I_get_expected_choice_code(PropertiesByFate $exceptionalityProperties);

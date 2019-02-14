@@ -17,13 +17,10 @@
   },
   "require": {
     "php": ">=7.1",
-    "doctrine/annotations": "~1.2",
-    "granam/strict-object": "^3.0",
     "granam/scalar": "^4.0",
     "granam/string": "^3.0",
-    "doctrineum/entity": "^2.1",
-    "drdplus/properties": "^1.0",
-    "drdplus/professions": "^1.0",
+    "drdplus/properties": "~2.0",
+    "drdplus/professions": "~2.0",
     "granam/dice-rolls": "^5.0"
   },
   "require-dev": {

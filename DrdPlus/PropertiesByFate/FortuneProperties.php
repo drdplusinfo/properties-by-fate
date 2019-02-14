@@ -1,55 +1,46 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace DrdPlus\PropertiesByFate;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
 use DrdPlus\Codes\History\ChoiceCode;
 use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\Professions\Profession;
-use DrdPlus\Properties\Base\Agility;
-use DrdPlus\Properties\Base\BasePropertiesFactory;
-use DrdPlus\Properties\Base\Charisma;
-use DrdPlus\Properties\Base\Intelligence;
-use DrdPlus\Properties\Base\Knack;
-use DrdPlus\Properties\Base\Strength;
-use DrdPlus\Properties\Base\Will;
+use DrdPlus\BaseProperties\Agility;
+use DrdPlus\BaseProperties\BasePropertiesFactory;
+use DrdPlus\BaseProperties\Charisma;
+use DrdPlus\BaseProperties\Intelligence;
+use DrdPlus\BaseProperties\Knack;
+use DrdPlus\BaseProperties\Strength;
+use DrdPlus\BaseProperties\Will;
 use DrdPlus\Tables\Tables;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
 
-/**
- * @Doctrine\ORM\Mapping\Entity()
- */
 class FortuneProperties extends PropertiesByFate
 {
     /**
      * @var int
-     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $strengthRoll;
     /**
      * @var int
-     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $agilityRoll;
     /**
      * @var int
-     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $knackRoll;
     /**
      * @var int
-     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $willRoll;
     /**
      * @var int
-     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $intelligenceRoll;
     /**
      * @var int
-     * @Doctrine\ORM\Mapping\Column(type="integer")
      */
     private $charismaRoll;
 
@@ -128,68 +119,43 @@ class FortuneProperties extends PropertiesByFate
     )
     {
         if ($profession->isPrimaryProperty($propertyCode)) {
-            /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
             $value = $tables->getInfluenceOfFortuneTable()->getPrimaryPropertyOnFate($fateCode, $roll);
         } else {
-            /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
             $value = $tables->getInfluenceOfFortuneTable()->getSecondaryPropertyOnFate($fateCode, $roll);
         }
-
-        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return $basePropertiesFactory->createProperty($value, $propertyCode);
     }
 
-    /**
-     * @return int
-     */
     public function getStrengthRoll(): int
     {
         return $this->strengthRoll;
     }
 
-    /**
-     * @return int
-     */
     public function getAgilityRoll(): int
     {
         return $this->agilityRoll;
     }
 
-    /**
-     * @return int
-     */
     public function getKnackRoll(): int
     {
         return $this->knackRoll;
     }
 
-    /**
-     * @return int
-     */
     public function getWillRoll(): int
     {
         return $this->willRoll;
     }
 
-    /**
-     * @return int
-     */
     public function getIntelligenceRoll(): int
     {
         return $this->intelligenceRoll;
     }
 
-    /**
-     * @return int
-     */
     public function getCharismaRoll(): int
     {
         return $this->charismaRoll;
     }
 
-    /**
-     * @return ChoiceCode
-     */
     public function getChoiceCode(): ChoiceCode
     {
         return ChoiceCode::getIt(ChoiceCode::FORTUNE);
