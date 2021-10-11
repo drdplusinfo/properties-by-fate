@@ -6,7 +6,7 @@ use DrdPlus\Codes\History\FateCode;
 use DrdPlus\Codes\Properties\PropertyCode;
 use DrdPlus\PropertiesByFate\PropertiesByFate;
 use DrdPlus\Professions\Profession;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 abstract class PropertiesByFateTest extends TestWithMockery
 {
@@ -63,7 +63,7 @@ abstract class PropertiesByFateTest extends TestWithMockery
     public function I_can_not_get_property_not_affected_by_fortune()
     {
         $this->expectException(\DrdPlus\PropertiesByFate\Exceptions\NotFateAffectedProperty::class);
-        $this->expectExceptionMessageRegExp('~beauty~');
+        $this->expectExceptionMessageMatches('~beauty~');
         /** @var PropertiesByFate $sut */
         $sut = (new \ReflectionClass(self::getSutClass()))->newInstanceWithoutConstructor();
         $sut->getProperty(PropertyCode::getIt(PropertyCode::BEAUTY));
